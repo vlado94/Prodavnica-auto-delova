@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,7 +21,9 @@ namespace CarPartsServer.Controllers
             City retval = null;
             using (var db = new EfContext())
             {
-                retval = db.Cities.FirstOrDefault(x => x.ID == id);
+                retval = db.Cities
+                    .Include(x=>x.Country)
+                    .FirstOrDefault(x => x.ID == id);
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
@@ -30,7 +33,9 @@ namespace CarPartsServer.Controllers
             List<City> retval = null;
             using (var db = new EfContext())
             {
-                retval = db.Cities.ToList();
+                retval = db.Cities
+                    .Include(x => x.Country)
+                    .ToList();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
