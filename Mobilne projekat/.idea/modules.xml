@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Mobilne projekat.iml" filepath="$PROJECT_DIR$/Mobilne projekat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Olja\Desktop\Mobilne\app\app.iml" filepath="C:\Users\Olja\Desktop\Mobilne\app\app.iml" />
       <module fileurl="file://C:\Users\Olja\Desktop\Git Android\Prodavnica-auto-delova\Mobilne projekat\.idea\modules\app\app.iml" filepath="C:\Users\Olja\Desktop\Git Android\Prodavnica-auto-delova\Mobilne projekat\.idea\modules\app\app.iml" />
+      <module fileurl="file://C:\Users\Olja\Desktop\Mobilne\app\app.iml" filepath="C:\Users\Olja\Desktop\Mobilne\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -4,10 +4,26 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorItem">
     <TextView
-        android:id="@+id/tv_weather_data"
+        android:id="@+id/shortDescription"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        android:layout_marginLeft="175dp"
+
+
+        android:fontFamily="cursive"
+        />
+    </FrameLayout>
+    <TextView
+    android:id="@+id/dateForNews"
+    style="@style/TextAppearance.AppCompat.Large"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"/>
 </LinearLayout>

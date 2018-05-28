@@ -7,13 +7,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.olja.carpartshop.database.News;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Olja on 5/25/2018.
  */
 
 public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartViewHolder> {
 
-    private String[] listData;
+    private ArrayList<News> listData;
     private final CarPartOnClickHandler mClickHandler;
 
     /*** The interface that receives onClick messages.*/
@@ -38,8 +43,9 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
 
     @Override
     public void onBindViewHolder(CarPartViewHolder holder, int position) {
-        String weatherForThisDay = listData[position];
-        holder.currentTextView.setText(weatherForThisDay);
+        News weatherForThisDay = listData.get(position);
+        holder.currentTextView.setText(weatherForThisDay.getShortDescription());
+        holder.itemString2.setText(weatherForThisDay.getPubishDate().toString());
     }
 
     @Override
@@ -47,27 +53,32 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
         if (null == listData) {
             return 0;
         }
-        return listData.length;
+        return listData.size();
     }
 
 
-
-    public void setListData(String[] weatherData) {
-        listData = weatherData;
+    public void setTasks(List<News> taskEntries) {
+        listData = (ArrayList<News>) taskEntries;
         notifyDataSetChanged();
     }
+    /*public void setListData(String[] weatherData) {
+        listData = weatherData;
+        notifyDataSetChanged();
+    }*/
 
 
 /*View holder kao unutrasnja klasa*/
     public class CarPartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public final TextView currentTextView;
+    public final TextView itemString2;
 
 
 
         public CarPartViewHolder(View view) {
             super(view);
-            currentTextView = (TextView) view.findViewById(R.id.tv_weather_data);
+            currentTextView = (TextView) view.findViewById(R.id.shortDescription);
+            itemString2 = (TextView) view.findViewById(R.id.dateForNews);
             view.setOnClickListener(this);
         }
 
@@ -75,7 +86,7 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            String weatherForDay = listData[adapterPosition];
+            String weatherForDay = listData.get(adapterPosition).getShortDescription();
             mClickHandler.onClick(weatherForDay);
         }
     }
