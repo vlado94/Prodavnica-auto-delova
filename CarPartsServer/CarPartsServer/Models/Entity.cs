@@ -11,7 +11,7 @@ namespace CarPartsServer.Models
     {
         
         [Key]
-        public virtual int? ID { get; set; }
+        public virtual int ID { get; set; }
 
         public Boolean IsDeleted { get; set; }
 
