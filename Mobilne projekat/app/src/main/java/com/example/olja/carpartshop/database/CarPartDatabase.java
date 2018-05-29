@@ -34,4 +34,5 @@ public abstract class CarPartDatabase extends RoomDatabase {
     }
 
     public abstract NewsDao newsDao();
+    public abstract CountryDao countryDao();
 }

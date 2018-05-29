@@ -5,7 +5,7 @@
 
     <!-- Icon Sizes -->
     <dimen name="today_icon">96dp</dimen>
-    <dimen name="list_icon">40dp</dimen>
+    <dimen name="list_icon">100dp</dimen>
 
     <dimen name="details_news_icon">80dp</dimen>
 

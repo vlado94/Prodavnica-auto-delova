@@ -77,10 +77,7 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
     }*/
 
     public String parse(Date date){
-        String fullDate = date.toString();
-        String[] splitedStrings = fullDate.split("G");
-
-        return splitedStrings[0];
+        return android.text.format.DateFormat.format("yyyy-MM-dd HH:mm",date).toString();
     }
 
 

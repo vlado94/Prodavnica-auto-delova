@@ -75,6 +75,13 @@ public class MainActivity extends AppCompatActivity implements CarPartAdapter.Ca
 
             Toast toast = Toast.makeText(this, text, duration);
             toast.show();
+        }else if(id == R.id.drzave){
+            //String textEntered = weatherForDay;
+            Context context = MainActivity.this;
+            Class destinationActivity = CountriesActivity.class;
+            Intent startChildActivityIntent = new Intent(context, destinationActivity);
+            //startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, textEntered);
+            startActivity(startChildActivityIntent);
         }
         return super.onOptionsItemSelected(item);
     }

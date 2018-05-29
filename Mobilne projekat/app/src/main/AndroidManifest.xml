@@ -18,6 +18,10 @@
         </activity>
 
         <activity android:name="com.example.olja.carpartshop.CarPartDetailActivity"
+        android:parentActivityName=".MainActivity">
+    </activity>
+
+        <activity android:name="com.example.olja.carpartshop.CountriesActivity"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>
