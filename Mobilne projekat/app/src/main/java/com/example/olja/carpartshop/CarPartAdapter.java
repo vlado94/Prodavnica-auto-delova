@@ -1,6 +1,7 @@
 package com.example.olja.carpartshop;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import com.example.olja.carpartshop.database.News;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,8 +47,15 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
     @Override
     public void onBindViewHolder(CarPartViewHolder holder, int position) {
         News weatherForThisDay = listData.get(position);
-        holder.currentTextView.setText(weatherForThisDay.getShortDescription());
-        holder.itemString2.setText(weatherForThisDay.getPubishDate().toString());
+        holder.shortDescription.setText(weatherForThisDay.getShortDescription());
+
+        String parsedDate = parse(weatherForThisDay.getPubishDate());
+
+       /* Date now = Calendar.getInstance().getTime();
+        if(weatherForThisDay.getPubishDate().compareTo(now) == 0){
+            holder.
+        }*/
+        holder.dateForNews.setText(parsedDate);
     }
 
     @Override
@@ -66,19 +76,27 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
         notifyDataSetChanged();
     }*/
 
+    public String parse(Date date){
+        String fullDate = date.toString();
+        String[] splitedStrings = fullDate.split("G");
+
+        return splitedStrings[0];
+    }
+
 
 /*View holder kao unutrasnja klasa*/
     public class CarPartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public final TextView currentTextView;
-    public final TextView itemString2;
+    public final TextView shortDescription;
+    public final TextView dateForNews;
+
 
 
 
         public CarPartViewHolder(View view) {
             super(view);
-            currentTextView = (TextView) view.findViewById(R.id.shortDescription);
-            itemString2 = (TextView) view.findViewById(R.id.dateForNews);
+            shortDescription = (TextView) view.findViewById(R.id.shortDescription);
+            dateForNews = (TextView) view.findViewById(R.id.dateForNews);
             view.setOnClickListener(this);
         }
 
