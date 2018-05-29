@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements CarPartAdapter.Ca
     private RecyclerView mRecyclerView;
     private CarPartAdapter carPartAdapter;
 
-    private TextView mErrorMessageDisplay;
+    //private TextView mErrorMessageDisplay;
     private CarPartDatabase mDb;
     private static final int DEFAULT_TASK_ID = -1;
 
@@ -100,12 +100,12 @@ public class MainActivity extends AppCompatActivity implements CarPartAdapter.Ca
 
     private void retrieveNews() {
 
-        LiveData<List<News>> tasks = mDb.newsDao().loadAllNews();
-        tasks.observe(this, new Observer<List<News>>() {
+        LiveData<List<News>> news = mDb.newsDao().loadAllNews();
+        news.observe(this, new Observer<List<News>>() {
             @Override
-            public void onChanged(@Nullable List<News> taskEntries) {
+            public void onChanged(@Nullable List<News> newsEntries) {
                // Log.d(TAG, "Receiving database update from LiveData");
-                carPartAdapter.setTasks(taskEntries);
+                carPartAdapter.setNews(newsEntries);
             }
         });
     }

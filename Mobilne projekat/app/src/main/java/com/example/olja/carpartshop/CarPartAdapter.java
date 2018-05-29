@@ -67,8 +67,8 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
     }
 
 
-    public void setTasks(List<News> taskEntries) {
-        listData = (ArrayList<News>) taskEntries;
+    public void setNews(List<News> newsEntries) {
+        listData = (ArrayList<News>) newsEntries;
         notifyDataSetChanged();
     }
     /*public void setListData(String[] weatherData) {
