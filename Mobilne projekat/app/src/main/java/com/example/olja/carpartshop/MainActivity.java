@@ -23,10 +23,9 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements CarPartAdapter.CarPartOnClickHandler {
+
     private RecyclerView mRecyclerView;
     private CarPartAdapter carPartAdapter;
-
-    //private TextView mErrorMessageDisplay;
     private CarPartDatabase mDb;
     private static final int DEFAULT_TASK_ID = -1;
 
@@ -44,21 +43,15 @@ public class MainActivity extends AppCompatActivity implements CarPartAdapter.Ca
         mRecyclerView.setHasFixedSize(true);
         carPartAdapter = new CarPartAdapter(this);
         mRecyclerView.setAdapter(carPartAdapter);
-       // ArrayList<News> weatherData =new ArrayList<News>();
-        //weatherData.add(first);
-        //weatherData.add(second);
-        //carPartAdapter.setTasks(weatherData);
+
 
         mDb = CarPartDatabase.getInstance(getApplicationContext());
-//mDb.clearAllTables();
         addNews();
         retrieveNews();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-       // return super.onCreateOptionsMenu(menu);
-
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main, menu);
         return true;
@@ -88,15 +81,6 @@ public class MainActivity extends AppCompatActivity implements CarPartAdapter.Ca
 
     @Override
     public void onClick(String weatherForDay) {
-
-        //int duration = Toast.LENGTH_SHORT;
-       // Toast toast = Toast.makeText(this, weatherForDay, duration);
-        //toast.show();
-        // COMPLETED (3) Remove the Toast and launch the DetailActivity using an explicit Intent
-        //Class destinationClass = DetailActivity.class;
-        //Intent intentToStartDetailActivity = new Intent(context, destinationClass);
-        //startActivity(intentToStartDetailActivity);
-
         String textEntered = weatherForDay;
         Context context = MainActivity.this;
         Class destinationActivity = CarPartDetailActivity.class;

@@ -74,6 +74,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
             super(view);
             nameOfCountry = (TextView) view.findViewById(R.id.nameOfCountry);
             //dateForNews = (TextView) view.findViewById(R.id.dateForNews);
+            Log.d("dsada", "Konstruktor ViewHolder");
             view.setOnClickListener(this);
         }
 

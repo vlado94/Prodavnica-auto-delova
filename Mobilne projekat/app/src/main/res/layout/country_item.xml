@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:paddingBottom="@dimen/list_item_padding_vertical"
+    android:paddingLeft="@dimen/list_item_padding_horizontal"
+    android:paddingRight="@dimen/list_item_padding_horizontal"
+    android:paddingTop="@dimen/list_item_padding_vertical"
+    android:background="@drawable/border_for_layout">>
 
     <TextView
         android:layout_width="match_parent"
