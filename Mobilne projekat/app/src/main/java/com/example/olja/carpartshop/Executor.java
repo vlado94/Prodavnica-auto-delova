@@ -4,31 +4,30 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
  * Created by Olja on 5/28/2018.
  */
 
-public class CarPartExecutor {
+public class Executor {
 
     private static final Object LOCK = new Object();
-    private static CarPartExecutor sInstance;
-    private final Executor diskIO;
-    private final Executor mainThread;
-    private final Executor networkIO;
+    private static Executor sInstance;
+    private final java.util.concurrent.Executor diskIO;
+    private final java.util.concurrent.Executor mainThread;
+    private final java.util.concurrent.Executor networkIO;
 
-    private CarPartExecutor(Executor diskIO, Executor networkIO, Executor mainThread) {
+    private Executor(java.util.concurrent.Executor diskIO, java.util.concurrent.Executor networkIO, java.util.concurrent.Executor mainThread) {
         this.diskIO = diskIO;
         this.networkIO = networkIO;
         this.mainThread = mainThread;
     }
 
-    public static CarPartExecutor getInstance() {
+    public static Executor getInstance() {
         if (sInstance == null) {
             synchronized (LOCK) {
-                sInstance = new CarPartExecutor(Executors.newSingleThreadExecutor(),
+                sInstance = new Executor(Executors.newSingleThreadExecutor(),
                         Executors.newFixedThreadPool(3),
                         new MainThreadExecutor());
             }
@@ -36,19 +35,19 @@ public class CarPartExecutor {
         return sInstance;
     }
 
-    public Executor diskIO() {
+    public java.util.concurrent.Executor diskIO() {
         return diskIO;
     }
 
-    public Executor mainThread() {
+    public java.util.concurrent.Executor mainThread() {
         return mainThread;
     }
 
-    public Executor networkIO() {
+    public java.util.concurrent.Executor networkIO() {
         return networkIO;
     }
 
-    private static class MainThreadExecutor implements Executor {
+    private static class MainThreadExecutor implements java.util.concurrent.Executor {
         private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
 
         @Override

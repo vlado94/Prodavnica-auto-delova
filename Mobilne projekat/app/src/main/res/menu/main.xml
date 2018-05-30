@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/ikonica"
-        android:orderInCategory="1"
-        android:title="@string/tekst_ikonica"
-        app:showAsAction="never"/>
 
     <item
-        android:id="@+id/drzave"
-        android:orderInCategory="1"
-        android:title="Drzave"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/ikonica2"
+        android:id="@+id/main_icon"
         android:orderInCategory="1"
         app:showAsAction="always"
         android:icon="@mipmap/ikonica"
         android:title="ikonica"/>
+
+    <item
+        android:id="@+id/countries"
+        android:orderInCategory="2"
+        android:title="Drzave"
+        app:showAsAction="never"/>
 </menu>

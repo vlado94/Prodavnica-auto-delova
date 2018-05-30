@@ -1,17 +1,16 @@
-package com.example.olja.carpartshop;
+package com.example.olja.carpartshop.news;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.olja.carpartshop.R;
 import com.example.olja.carpartshop.database.News;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,24 +18,24 @@ import java.util.List;
  * Created by Olja on 5/25/2018.
  */
 
-public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHolder> {
 
     private ArrayList<News> listData;
-    private final CarPartOnClickHandler mClickHandler;
+    private final NewsOnClickHandler mClickHandler;
 
     /*** The interface that receives onClick messages.*/
-    public interface CarPartOnClickHandler {
-        void onClick(String weatherForDay);
+    public interface NewsOnClickHandler {
+        void onClick(int newsId);
     }
 
-    public CarPartAdapter(CarPartOnClickHandler clickHandler) {
+    public NewsAdapter(NewsOnClickHandler clickHandler) {
         mClickHandler = clickHandler;
     }
 
     @Override
     public CarPartViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layoutIdForListItem = R.layout.car_part_item;
+        int layoutIdForListItem = R.layout.news_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
 
@@ -101,8 +100,8 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            String weatherForDay = listData.get(adapterPosition).getShortDescription();
-            mClickHandler.onClick(weatherForDay);
+            //String shortDescription = listData.get(adapterPosition).getShortDescription();
+            mClickHandler.onClick(listData.get(adapterPosition).getId());
         }
     }
 }

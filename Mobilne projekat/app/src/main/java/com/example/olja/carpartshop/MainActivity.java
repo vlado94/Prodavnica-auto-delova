@@ -12,21 +12,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.olja.carpartshop.country.CountriesActivity;
 import com.example.olja.carpartshop.database.CarPartDatabase;
 import com.example.olja.carpartshop.database.News;
+import com.example.olja.carpartshop.news.NewsAdapter;
+import com.example.olja.carpartshop.news.NewsDetailActivity;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements CarPartAdapter.CarPartOnClickHandler {
+public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsOnClickHandler {
 
     private RecyclerView mRecyclerView;
-    private CarPartAdapter carPartAdapter;
-    private CarPartDatabase mDb;
+    private NewsAdapter newsAdapter;
+    private CarPartDatabase database;
     private static final int DEFAULT_TASK_ID = -1;
 
     private int mTaskId = DEFAULT_TASK_ID;
@@ -41,11 +42,9 @@ public class MainActivity extends AppCompatActivity implements CarPartAdapter.Ca
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        carPartAdapter = new CarPartAdapter(this);
-        mRecyclerView.setAdapter(carPartAdapter);
-
-
-        mDb = CarPartDatabase.getInstance(getApplicationContext());
+        newsAdapter = new NewsAdapter(this);
+        mRecyclerView.setAdapter(newsAdapter);
+        database = CarPartDatabase.getInstance(getApplicationContext());
         addNews();
         retrieveNews();
     }
@@ -61,42 +60,31 @@ public class MainActivity extends AppCompatActivity implements CarPartAdapter.Ca
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.ikonica) {
-
-            CharSequence text = "Klik na ikonicu!";
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(this, text, duration);
-            toast.show();
-        }else if(id == R.id.drzave){
-            //String textEntered = weatherForDay;
+        if(id == R.id.countries){
             Context context = MainActivity.this;
             Class destinationActivity = CountriesActivity.class;
             Intent startChildActivityIntent = new Intent(context, destinationActivity);
-            //startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, textEntered);
             startActivity(startChildActivityIntent);
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onClick(String weatherForDay) {
-        String textEntered = weatherForDay;
+    public void onClick(int newsId) {
+        int textEntered = newsId;
         Context context = MainActivity.this;
-        Class destinationActivity = CarPartDetailActivity.class;
+        Class destinationActivity = NewsDetailActivity.class;
         Intent startChildActivityIntent = new Intent(context, destinationActivity);
-        startChildActivityIntent.putExtra(Intent.EXTRA_TEXT, textEntered);
+        startChildActivityIntent.putExtra("newsId",textEntered);
         startActivity(startChildActivityIntent);
     }
 
     private void retrieveNews() {
-
-        LiveData<List<News>> news = mDb.newsDao().loadAllNews();
+        LiveData<List<News>> news = database.newsDao().loadAllNews();
         news.observe(this, new Observer<List<News>>() {
             @Override
             public void onChanged(@Nullable List<News> newsEntries) {
-               // Log.d(TAG, "Receiving database update from LiveData");
-                carPartAdapter.setNews(newsEntries);
+                newsAdapter.setNews(newsEntries);
             }
         });
     }
@@ -106,12 +94,11 @@ public class MainActivity extends AppCompatActivity implements CarPartAdapter.Ca
         Date date = new Date();
         final News first = new News( "Vijest 1","dfssfsdfssdfsfsdfsfs",date);
         final News second = new News( "Vijest 2","dsdfsdfsfsfdfsasdaa",date);
-        CarPartExecutor.getInstance().diskIO().execute(new Runnable() {
+        Executor.getInstance().diskIO().execute(new Runnable() {
            // @Override
             public void run() {
-
-                mDb.newsDao().insertNews(first);
-                mDb.newsDao().insertNews(second);
+                database.newsDao().insertNews(first);
+                database.newsDao().insertNews(second);
                 //finish();
             }
         });

@@ -17,12 +17,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.olja.carpartshop.CarPartDetailActivity"
+        <activity android:name="com.example.olja.carpartshop.news.NewsDetailActivity"
         android:parentActivityName=".MainActivity">
     </activity>
 
-        <activity android:name="com.example.olja.carpartshop.CountriesActivity"
-            android:parentActivityName=".MainActivity">
+<activity android:name="com.example.olja.carpartshop.country.CountriesActivity"
+android:parentActivityName=".MainActivity">
+</activity>
+
+        <activity android:name="com.example.olja.carpartshop.city.CitiesActivity"
+            android:parentActivityName="com.example.olja.carpartshop.country.CountriesActivity">
         </activity>
     </application>
 
