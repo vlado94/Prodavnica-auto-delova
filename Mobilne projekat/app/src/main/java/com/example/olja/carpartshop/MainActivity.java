@@ -5,6 +5,8 @@ import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewParent;
 import android.widget.Toast;
 
 import com.example.olja.carpartshop.country.CountriesActivity;
@@ -27,19 +30,28 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsOnClickHandler {
 
-    private RecyclerView mRecyclerView;
-    private NewsAdapter newsAdapter;
-    private CarPartDatabase database;
+
     private static final int DEFAULT_TASK_ID = -1;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
 
     private int mTaskId = DEFAULT_TASK_ID;
 
+    private SectionsStatePageAdapter  mSectionStateAdapter;
+    private ViewPager mViewPager;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mSectionStateAdapter = new SectionsStatePageAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        setupViewPager(mViewPager);
+
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
 
@@ -48,16 +60,17 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_forecast);
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
-        newsAdapter = new NewsAdapter(this);
-        mRecyclerView.setAdapter(newsAdapter);
-        database = CarPartDatabase.getInstance(getApplicationContext());
-        addNews();
-        retrieveNews();
+    }
+
+
+    private void setupViewPager(ViewPager viewPager){
+        SectionsStatePageAdapter adapter = new SectionsStatePageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new NewsFragment(), "NewsFragment");
+        viewPager.setAdapter(adapter);
+    }
+
+    public void setViewPager(int fragmentNumber){
+        mViewPager.setCurrentItem(fragmentNumber);
     }
 
     @Override
@@ -93,33 +106,6 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
         startChildActivityIntent.putExtra("newsId",textEntered);
         startActivity(startChildActivityIntent);
     }
-
-    private void retrieveNews() {
-        LiveData<List<News>> news = database.newsDao().loadAllNews();
-        news.observe(this, new Observer<List<News>>() {
-            @Override
-            public void onChanged(@Nullable List<News> newsEntries) {
-                newsAdapter.setNews(newsEntries);
-            }
-        });
-    }
-
-
-    private void addNews() {
-        Date date = new Date();
-        final News first = new News( "Vijest 1","dfssfsdfssdfsfsdfsfs",date);
-        final News second = new News( "Vijest 2","dsdfsdfsfsfdfsasdaa",date);
-        Executor.getInstance().diskIO().execute(new Runnable() {
-           // @Override
-            public void run() {
-                database.newsDao().insertNews(first);
-                database.newsDao().insertNews(second);
-                //finish();
-            }
-        });
-    }
-
-
 
 
 
