@@ -29,7 +29,7 @@
         android:icon="@mipmap/baseline_library_books_black_24dp"
         android:title="Vesti" />
 
-    <item android:id="@+id/Notifications"
+    <item android:id="@+id/notifications"
         android:icon="@mipmap/baseline_notifications_black_24dp"
         android:title="Obaveštenja" />
 
