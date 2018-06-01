@@ -2,4 +2,6 @@
     <string name="app_name">CarPartShop</string>
 
     <string name="tekst_ikonica">Ikonica </string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

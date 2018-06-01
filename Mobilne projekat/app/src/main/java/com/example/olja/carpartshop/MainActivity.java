@@ -5,6 +5,8 @@ import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
     private NewsAdapter newsAdapter;
     private CarPartDatabase database;
     private static final int DEFAULT_TASK_ID = -1;
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
 
     private int mTaskId = DEFAULT_TASK_ID;
 
@@ -36,6 +40,13 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close );
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_forecast);
         LinearLayoutManager layoutManager
@@ -66,6 +77,10 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
             Intent startChildActivityIntent = new Intent(context, destinationActivity);
             startActivity(startChildActivityIntent);
         }
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -103,4 +118,9 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
             }
         });
     }
+
+
+
+
+
 }

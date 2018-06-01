@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Mobilne projekat.iml" filepath="$PROJECT_DIR$/Mobilne projekat.iml" />
+      <module fileurl="file://C:\Users\Nebojsa\Desktop\CarParts\Prodavnica-auto-delova\Mobilne projekat\Mobilne projekat.iml" filepath="C:\Users\Nebojsa\Desktop\CarParts\Prodavnica-auto-delova\Mobilne projekat\Mobilne projekat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Nebojsa\Desktop\CarParts\Prodavnica-auto-delova\Mobilne projekat\app\app.iml" filepath="C:\Users\Nebojsa\Desktop\CarParts\Prodavnica-auto-delova\Mobilne projekat\app\app.iml" />
     </modules>
   </component>
 </project>

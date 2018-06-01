@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/t1"
-        android:title="Prvi" />
+    <item android:id="@+id/home"
+        android:icon="@mipmap/baseline_home_black_24dp"
+        android:title="Naslovna" />
 
-    <item android:id="@+id/t2"
-        android:title="drugi" />
+    <item android:id="@+id/search"
+        android:icon="@mipmap/baseline_search_black_24dp"
+        android:title="Pretraga proizvoda" />
 
-    <item android:id="@+id/t3"
-        android:title="treci" />
+    <item android:id="@+id/detailSearch"
+        android:icon="@mipmap/baseline_image_search_black_24dp"
+        android:title="Detaljna pretraga" />
+
+    <item android:id="@+id/shopsSearch"
+        android:icon="@mipmap/baseline_location_searching_black_24dp"
+        android:title="Pretraga prodavaca" />
+
+    <item android:id="@+id/mostRecent"
+        android:icon="@mipmap/baseline_query_builder_black_24dp"
+        android:title="Najnovije" />
+
+    <item android:id="@+id/mostPopular"
+        android:icon="@mipmap/baseline_playlist_add_check_black_24dp"
+        android:title="Najtraženije" />
+
+    <item android:id="@+id/news"
+        android:icon="@mipmap/baseline_library_books_black_24dp"
+        android:title="Vesti" />
+
+    <item android:id="@+id/Notifications"
+        android:icon="@mipmap/baseline_notifications_black_24dp"
+        android:title="Obaveštenja" />
+
+    <item android:id="@+id/termsOfUse"
+        android:icon="@mipmap/baseline_list_alt_black_24dp"
+        android:title="Uslovi korišćenja" />
 
 </menu>
