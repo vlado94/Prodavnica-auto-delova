@@ -1,39 +1,25 @@
 package com.example.olja.carpartshop;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.ViewParent;
-import android.widget.Toast;
 
 import com.example.olja.carpartshop.country.CountriesActivity;
-import com.example.olja.carpartshop.database.CarPartDatabase;
-import com.example.olja.carpartshop.database.Country;
-import com.example.olja.carpartshop.database.News;
 import com.example.olja.carpartshop.news.NewsAdapter;
 import com.example.olja.carpartshop.news.NewsDetailActivity;
 import com.example.olja.carpartshop.services.getFromLinkIntentService;
 
-import java.util.Date;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsOnClickHandler, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
 
 
     private static final int DEFAULT_TASK_ID = -1;
@@ -68,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
         setViewPager(6);
 
         Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
-        this.startService(intentToSyncImmediately);
+       this.startService(intentToSyncImmediately);
 
     }
 
@@ -116,14 +102,14 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+    /*@Override
     public void onClick(int newsId) {
         Context context = MainActivity.this;
         Class destinationActivity = NewsDetailActivity.class;
         Intent startChildActivityIntent = new Intent(context, destinationActivity);
         startChildActivityIntent.putExtra("newsId",newsId);
         startActivity(startChildActivityIntent);
-    }
+    }*/
 
     private void setNavigationViewListener() {
         NavigationView navigationView =  findViewById(R.id.nav_view);

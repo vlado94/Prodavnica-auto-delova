@@ -28,6 +28,7 @@ namespace CarPartsServer.Controllers
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
 
+
         public ActionResult GetAll()
         {
             List<City> retval = null;
@@ -38,6 +39,21 @@ namespace CarPartsServer.Controllers
                     .ToList();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
+        }
+          
+        public void GetAll1()
+        {
+            using (var db = new EfContext())
+            {
+                db.Cities.Add(new City
+                {
+                    Name = "Sarajevo",
+                    CountryID = 1,
+                    Country =  db.Countries.FirstOrDefault(x => x.ID == 1),
+                    
+                });
+                db.SaveChanges();
+            }
         }
 
         [HttpPost]

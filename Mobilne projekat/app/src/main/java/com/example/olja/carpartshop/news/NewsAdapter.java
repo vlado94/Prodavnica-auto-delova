@@ -8,10 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.olja.carpartshop.R;
-import com.example.olja.carpartshop.database.News;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,13 +46,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
         News weatherForThisDay = listData.get(position);
         holder.shortDescription.setText(weatherForThisDay.getShortDescription());
 
-        String parsedDate = parse(weatherForThisDay.getPubishDate());
+        //String parsedDate = parse(weatherForThisDay.getPubishDate());
 
        /* Date now = Calendar.getInstance().getTime();
         if(weatherForThisDay.getPubishDate().compareTo(now) == 0){
             holder.
         }*/
-        holder.dateForNews.setText(parsedDate);
+      //  holder.dateForNews.setText(parsedDate);
     }
 
     @Override
@@ -70,14 +68,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
         listData = (ArrayList<News>) newsEntries;
         notifyDataSetChanged();
     }
-    /*public void setListData(String[] weatherData) {
-        listData = weatherData;
-        notifyDataSetChanged();
-    }*/
 
-    public String parse(Date date){
+
+  /*  public String parse(Date date){
         return android.text.format.DateFormat.format("yyyy-MM-dd HH:mm",date).toString();
-    }
+    }*/
 
 
 /*View holder kao unutrasnja klasa*/
@@ -85,9 +80,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
 
     public final TextView shortDescription;
     public final TextView dateForNews;
-
-
-
 
         public CarPartViewHolder(View view) {
             super(view);

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.olja.carpartshop.R;
-import com.example.olja.carpartshop.database.Country;
 
 import java.util.ArrayList;
 import java.util.List;

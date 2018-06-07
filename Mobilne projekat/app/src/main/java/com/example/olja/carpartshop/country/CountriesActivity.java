@@ -13,8 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import com.example.olja.carpartshop.Executor;
 import com.example.olja.carpartshop.R;
 import com.example.olja.carpartshop.city.CitiesActivity;
-import com.example.olja.carpartshop.database.CarPartDatabase;
-import com.example.olja.carpartshop.database.Country;
 
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class CountriesActivity extends AppCompatActivity implements CountriesAda
 
     private RecyclerView mRecyclerView;
     private CountriesAdapter countriesAdapter;
-    private CarPartDatabase database;
+
     private static final int DEFAULT_TASK_ID = -1;
 
     private int mTaskId = DEFAULT_TASK_ID;
@@ -38,7 +36,7 @@ public class CountriesActivity extends AppCompatActivity implements CountriesAda
         mRecyclerView.setHasFixedSize(true);
         countriesAdapter = new CountriesAdapter(this);
         mRecyclerView.setAdapter(countriesAdapter);
-        database = CarPartDatabase.getInstance(getApplicationContext());
+
         addCountries();
         retrieveCountries();
 
@@ -54,19 +52,19 @@ public class CountriesActivity extends AppCompatActivity implements CountriesAda
     }
 
     private void retrieveCountries() {
-
+/*
         LiveData<List<Country>> news = database.countryDao().loadAllCountries();
         news.observe(this, new Observer<List<Country>>() {
             @Override
             public void onChanged(@Nullable List<Country> newsEntries) {
                 countriesAdapter.setNews(newsEntries);
             }
-        });
+        });*/
     }
 
 
     private void addCountries() {
-        final Country first = new Country("Drzavva 1", false);
+        /*final Country first = new Country("Drzavva 1", false);
         final Country second = new Country("Drzava 2",false);
         Executor.getInstance().diskIO().execute(new Runnable() {
             // @Override
@@ -76,6 +74,6 @@ public class CountriesActivity extends AppCompatActivity implements CountriesAda
                 database.countryDao().insertCountry(second);
                 //finish();
             }
-        });
+        });*/
     }
 }

@@ -1,4 +1,4 @@
-package com.example.olja.carpartshop.database;
+package com.example.olja.carpartshop.news;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
@@ -9,20 +9,20 @@ import java.util.Date;
 /**
  * Created by Olja on 5/28/2018.
  */
-@Entity(tableName = "news")
+
 public class News {
 
-    @PrimaryKey(autoGenerate = true)
+
     private int id;
     private String title;
     private String shortDescription;
     private String longDescription;
     private Date pubishDate;
 
-@Ignore
+
     public News(){}
 
-    @Ignore
+
     public News(String shortDescription, String longDescription, Date pubishDate, String title) {
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;

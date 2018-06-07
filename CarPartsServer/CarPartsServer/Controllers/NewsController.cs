@@ -28,6 +28,14 @@ namespace CarPartsServer.Controllers
                         ShortDescription = "short",
                         Title = "title"
                     });
+
+                    db.News.Add(new News
+                    {
+                        LongDescription = "long ling",
+                        PubishDate = new DateTime(2016, 3, 4),
+                        ShortDescription = "short short",
+                        Title = "title22"
+                    });
                     db.SaveChanges();
                 }
 

@@ -8,10 +8,10 @@ import java.util.Date;
 /**
  * Created by Olja on 5/29/2018.
  */
-//@Entity
+
 public class CarPart {
 
-    //@PrimaryKey(autoGenerate = true)
+
     private int id;
     public String name;
     //public byte[] Image { get; set; }

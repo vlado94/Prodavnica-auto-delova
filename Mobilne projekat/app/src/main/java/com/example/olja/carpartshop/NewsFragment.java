@@ -1,38 +1,48 @@
 package com.example.olja.carpartshop;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.olja.carpartshop.database.CarPartDatabase;
-import com.example.olja.carpartshop.database.Country;
-import com.example.olja.carpartshop.database.News;
+import com.example.olja.carpartshop.news.News;
 import com.example.olja.carpartshop.news.NewsAdapter;
+import com.example.olja.carpartshop.news.NewsDetailActivity;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.util.Date;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Nebojsa on 6/1/2018.
  */
 
-public class NewsFragment extends Fragment {
+public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHandler{
     private static final String TAG = "NewsFragment";
+    private String host = "192.168.0.12:52387";
+    //private List<News> listNews;
 
 
     private RecyclerView mRecyclerView;
     private NewsAdapter newsAdapter;
-    private CarPartDatabase database;
+
     private Button btnTest;
 
     @Override
@@ -54,32 +64,68 @@ public class NewsFragment extends Fragment {
                 = new LinearLayoutManager((getActivity()), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        newsAdapter = new NewsAdapter(((MainActivity)getActivity()));
+        newsAdapter = new NewsAdapter(this);
         mRecyclerView.setAdapter(newsAdapter);
-        database = CarPartDatabase.getInstance((getActivity()).getApplicationContext());
-        addNews();
-        retrieveNews();
-        List<Country> counties = retrieveCountries();
-        //Log.d("Broj drzava", String.valueOf(counties.size()));
+
+
+        new GetNewsTask().execute("Nebitno");
+        //List<Country> counties = retrieveCountries();
+
 
 
         return view;
     }
 
-    private void retrieveNews() {
-        LiveData<List<News>> news = database.newsDao().loadAllNews();
-         news.observe(this, new Observer<List<News>>() {
-            @Override
-            public void onChanged(@Nullable List<News> newsEntries) {
-                newsAdapter.setNews(newsEntries);
+
+
+    public class GetNewsTask extends AsyncTask<String, Void, List<News>> {
+
+        @Override
+        protected List<News> doInBackground(String... params) {
+            try {
+
+                Uri.Builder builder = new Uri.Builder();
+                builder.scheme("http");
+                builder.encodedAuthority(host);
+
+                builder.appendPath("News")
+                        .appendPath("GetAll");
+                String myUrl = builder.build().toString();
+                URL weatherQueryUrl = null;
+
+                try {
+                    weatherQueryUrl = new URL(myUrl);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
+                return getNewsFromJsom(jsonWeatherResponse);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
             }
-        });
+
+            return null;
+        }
 
 
+        @Override
+        protected void onPostExecute(List<News> list) {
+            newsAdapter.setNews(list);
+        }
+    }
+
+
+    private List<News> getNewsFromJsom(String json){
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<News>>(){}.getType();
+        return  gson.fromJson(json,listType);
 
     }
 
-    private List<Country> retrieveCountries(){
+  /*  private List<Country> retrieveCountries(){
 
         LiveData<List<Country>> news = database.countryDao().loadAllCountries();
         news.observe(this, new Observer<List<Country>>() {
@@ -92,21 +138,39 @@ public class NewsFragment extends Fragment {
         });
         return news.getValue();
 
+    }*/
+
+
+  public static String getResponseFromHttpUrl(URL url) throws IOException {
+      HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+      String response = null;
+      try {
+          InputStream in = urlConnection.getInputStream();
+
+          Scanner scanner = new Scanner(in);
+          scanner.useDelimiter("\\A");
+
+          boolean hasInput = scanner.hasNext();
+
+          if (hasInput) {
+              response = scanner.next();
+          }
+          scanner.close();
+          return response;
+      } finally {
+          urlConnection.disconnect();
+      }
+
+  }
+
+
+
+    @Override
+    public void onClick(int newsId) {
+        Context context = this.getActivity();
+        Class destinationActivity = NewsDetailActivity.class;
+        Intent startChildActivityIntent = new Intent(context, destinationActivity);
+        startChildActivityIntent.putExtra("newsId",newsId);
+        startActivity(startChildActivityIntent);
     }
-
-
-    private void addNews() {
-        Date date = new Date();
-        final News first = new News( "Vijest 1","dfssfsdfssdfsfsdfsfs",date,"Naslov1");
-        final News second = new News( "Vijest 2","dsdfsdfsfsfdfsasdaa",date,"Naslov1");
-        Executor.getInstance().diskIO().execute(new Runnable() {
-            // @Override
-            public void run() {
-                database.newsDao().insertNews(first);
-                database.newsDao().insertNews(second);
-                //finish();
-            }
-        });
-    }
-
 }

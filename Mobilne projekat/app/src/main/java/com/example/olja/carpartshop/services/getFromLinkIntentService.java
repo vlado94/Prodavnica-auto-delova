@@ -1,25 +1,15 @@
 package com.example.olja.carpartshop.services;
 
 import android.app.IntentService;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
-import com.example.olja.carpartshop.Executor;
-import com.example.olja.carpartshop.MainActivity;
-import com.example.olja.carpartshop.database.CarPartDatabase;
-import com.example.olja.carpartshop.database.Country;
-import com.example.olja.carpartshop.database.News;
+import com.example.olja.carpartshop.address.Address;
+import com.example.olja.carpartshop.city.City;
+import com.example.olja.carpartshop.country.Country;
+import com.example.olja.carpartshop.news.News;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +18,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,7 +26,14 @@ import java.util.Scanner;
  */
 
 public class getFromLinkIntentService extends IntentService {
-    private CarPartDatabase database;
+
+    private String host = "192.168.0.12:52387";
+
+    private List<Country> listCountries;
+    private List<City> listCities;
+    private List<News> listNews;
+    private List<Address> listAddresses;
+
     public getFromLinkIntentService() {
         super("getFromLinkIntentService");
 
@@ -45,41 +41,20 @@ public class getFromLinkIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+            getCountriesFromServer();
+            getCitiesFromServer();
+            getAddressesFromServer();
 
-        try {
-            String host = "192.168.0.12:52387";
-            Uri.Builder builder = new Uri.Builder();
-            builder.scheme("http");
-            builder.encodedAuthority(host);
-
-            builder.appendPath("Country")
-                    .appendPath("GetAll");
-            String myUrl = builder.build().toString();
-            URL weatherRequestUrl = null;
-            try {
-                URL weatherQueryUrl = new URL(myUrl);
-                Log.v("dsada", "URL: " + weatherQueryUrl);
-                weatherRequestUrl= weatherQueryUrl;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-
-            }
-
-            String jsonWeatherResponse = getResponseFromHttpUrl(weatherRequestUrl);
-
-           // Country data =new Country();
-            Gson gson = new Gson();
-            Type listType = new TypeToken<ArrayList<Country>>(){}.getType();
-            List<Country> data = gson.fromJson(jsonWeatherResponse,listType);
-
-            Log.d("TITLE", "asfasssfsfaaaaaaaaa"+data.get(0).getName());
-            addNews(data);
-        } catch (Exception e) {
-            /* Server probably invalid */
-            e.printStackTrace();
-        }
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+
+    }
+
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         String response = null;
@@ -102,33 +77,112 @@ public class getFromLinkIntentService extends IntentService {
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        database = CarPartDatabase.getInstance(getApplicationContext());
-    }
 
-    private void addNews(List<Country> data) {
 
-       for (final Country item:data) {
-           final Country newCountry =  mappingCountry(item);
-           Executor.getInstance().diskIO().execute(new Runnable() {
-               // @Override
-               public void run() {
-                  // database.countryDao().insertCountry(newCountry);
-                   // database.newsDao().insertNews(second);
-                   //finish();
-               }
-           });
+
+/* GetFromServer metode */
+    private void getCountriesFromServer(){
+        try {
+
+            Uri.Builder builder = new Uri.Builder();
+            builder.scheme("http");
+            builder.encodedAuthority(host);
+
+            builder.appendPath("Country")
+                    .appendPath("GetAll");
+            String myUrl = builder.build().toString();
+            URL weatherQueryUrl = null;
+
+            try {
+                weatherQueryUrl = new URL(myUrl);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
+            listCountries = getCountriesFromJsom(jsonWeatherResponse);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+    private void getCitiesFromServer(){
+        try {
 
+            Uri.Builder builder = new Uri.Builder();
+            builder.scheme("http");
+            builder.encodedAuthority(host);
 
+            builder.appendPath("City")
+                    .appendPath("GetAll");
+            String myUrl = builder.build().toString();
+            URL weatherQueryUrl = null;
+
+            try {
+                weatherQueryUrl = new URL(myUrl);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
+            listCities = getCitiesFromJsom(jsonWeatherResponse);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    private Country mappingCountry(Country country){
-        Country newCountry = new Country(country.getName(), country.getIsDeleted());
-        return newCountry;
+    private void getAddressesFromServer(){
+        try {
 
+            Uri.Builder builder = new Uri.Builder();
+            builder.scheme("http");
+            builder.encodedAuthority(host);
+
+            builder.appendPath("Address")
+                    .appendPath("GetAll");
+            String myUrl = builder.build().toString();
+            URL weatherQueryUrl = null;
+
+            try {
+                weatherQueryUrl = new URL(myUrl);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
+            listAddresses = getAddressesFromJsom(jsonWeatherResponse);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
+/* GetFromJSON */
+    private List<Country> getCountriesFromJsom(String json){
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<Country>>(){}.getType();
+        List<Country> countries =  gson.fromJson(json,listType);
+        return countries;
+    }
+
+
+    private List<City> getCitiesFromJsom(String json){
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<City>>(){}.getType();
+        List<City> cities =  gson.fromJson(json,listType);
+
+
+        return cities;
+    }
+    private List<Address> getAddressesFromJsom(String json){
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<Address>>(){}.getType();
+        List<Address> addresses =  gson.fromJson(json,listType);
+
+
+        return addresses;
+    }
+
+
+
 
 }
