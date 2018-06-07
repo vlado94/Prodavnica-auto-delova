@@ -4,4 +4,8 @@
     <string name="tekst_ikonica">Ikonica </string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+
+    <string name="pref_location_key" translatable="false">location</string>
+
+    <string name="pref_location_default" translatable="false">Mountain View, CA 94043</string>
 </resources>

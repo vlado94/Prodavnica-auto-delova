@@ -17,6 +17,21 @@ namespace CarPartsServer.Controllers
 
         public ActionResult Get(int id)
         {
+            if(id == 99)
+            {
+                using (var db = new EfContext())
+                {
+                    db.News.Add(new News
+                    {
+                        LongDescription = "long desc",
+                        PubishDate = new DateTime(2016,3,4),
+                        ShortDescription = "short",
+                        Title = "title"
+                    });
+                    db.SaveChanges();
+                }
+
+            }
             News retval = null;
             using (var db = new EfContext())
             {
@@ -31,6 +46,16 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 retval = db.News.ToList();
+            }
+            return Json(retval, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetAll1()
+        {
+            News retval = null;
+            using (var db = new EfContext())
+            {
+                retval = db.News.ToList().First();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }

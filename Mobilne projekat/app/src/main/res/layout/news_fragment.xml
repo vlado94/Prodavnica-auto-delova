@@ -11,16 +11,16 @@
         android:textSize="25sp"
         android:text="Vijest"
         android:layout_marginTop="40dp"
-        android:id="@+id/textTitle"/>
+        andrIDd:idID@+id/textTitle"/>
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textTitle"
+        android:layout_belowID@+id/textTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:id="@+id/btnTest"
+        andrIDd:idID@+id/btnTest"
         android:text="go to same fragment"/>
 
 -->

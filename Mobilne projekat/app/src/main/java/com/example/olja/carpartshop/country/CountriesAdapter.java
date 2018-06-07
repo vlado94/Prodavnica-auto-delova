@@ -73,7 +73,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.Coun
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            int countryId = listData.get(adapterPosition).getId();
+            int countryId = listData.get(adapterPosition).getID();
             mClickHandler.onClick(countryId);
         }
     }

@@ -14,30 +14,37 @@ public class News {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+    private String title;
     private String shortDescription;
     private String longDescription;
     private Date pubishDate;
 
+@Ignore
+    public News(){}
+
     @Ignore
-    public News(String shortDescription, String longDescription, Date pubishDate) {
+    public News(String shortDescription, String longDescription, Date pubishDate, String title) {
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.pubishDate = pubishDate;
+        this.title = title;
 
     }
 
     @Ignore
-    public News(int id, String shortDescription, String longDescription) {
+    public News(int id, String shortDescription, String longDescription, String title) {
         this.id = id;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.pubishDate = null;
+        this.title = title;
     }
-    public News(int id, String shortDescription, String longDescription, Date pubishDate) {
+    public News(int id, String shortDescription, String longDescription, Date pubishDate, String title) {
         this.id = id;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
         this.pubishDate = pubishDate;
+        this.title = title;
     }
 
     public int getId() {
@@ -70,6 +77,14 @@ public class News {
 
     public void setPubishDate(Date updatedAt) {
         this.pubishDate = pubishDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

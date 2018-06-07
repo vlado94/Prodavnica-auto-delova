@@ -66,8 +66,8 @@ public class CountriesActivity extends AppCompatActivity implements CountriesAda
 
 
     private void addCountries() {
-        final Country first = new Country("Drzavva 1");
-        final Country second = new Country("Drzava 2");
+        final Country first = new Country("Drzavva 1", false);
+        final Country second = new Country("Drzava 2",false);
         Executor.getInstance().diskIO().execute(new Runnable() {
             // @Override
             public void run() {

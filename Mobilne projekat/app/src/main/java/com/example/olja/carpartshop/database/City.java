@@ -10,10 +10,12 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 /**
  * Created by Olja on 5/28/2018.
  */
-@Entity(foreignKeys = @ForeignKey(entity = Country.class,
-        parentColumns = "id",
+
+/*@Entity(foreignKeys = @ForeignKey(entity = Country.class,
+        parentColumns = "ID",
         childColumns = "countryId",
-        onDelete = CASCADE))
+        onDelete = CASCADE))*/
+@Entity
 public class City {
 
     @PrimaryKey(autoGenerate = true)

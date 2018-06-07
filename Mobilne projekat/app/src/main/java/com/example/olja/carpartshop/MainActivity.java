@@ -24,9 +24,11 @@ import android.widget.Toast;
 
 import com.example.olja.carpartshop.country.CountriesActivity;
 import com.example.olja.carpartshop.database.CarPartDatabase;
+import com.example.olja.carpartshop.database.Country;
 import com.example.olja.carpartshop.database.News;
 import com.example.olja.carpartshop.news.NewsAdapter;
 import com.example.olja.carpartshop.news.NewsDetailActivity;
+import com.example.olja.carpartshop.services.getFromLinkIntentService;
 
 import java.util.Date;
 import java.util.List;
@@ -64,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setNavigationViewListener();
         setViewPager(6);
+
+        Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
+        this.startService(intentToSyncImmediately);
+
     }
 
 
@@ -112,11 +118,10 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsO
 
     @Override
     public void onClick(int newsId) {
-        int textEntered = newsId;
         Context context = MainActivity.this;
         Class destinationActivity = NewsDetailActivity.class;
         Intent startChildActivityIntent = new Intent(context, destinationActivity);
-        startChildActivityIntent.putExtra("newsId",textEntered);
+        startChildActivityIntent.putExtra("newsId",newsId);
         startActivity(startChildActivityIntent);
     }
 

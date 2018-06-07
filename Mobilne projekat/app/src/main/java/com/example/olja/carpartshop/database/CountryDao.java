@@ -28,7 +28,6 @@ public interface CountryDao {
     @Delete
     void deleteCountry(Country country);
 
-    // COMPLETED (1) Wrap the return type with LiveData
     @Query("SELECT * FROM country WHERE id = :id")
     LiveData<Country> loadCountryById(int id);
 }

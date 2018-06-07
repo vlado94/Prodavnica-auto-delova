@@ -15,27 +15,29 @@ namespace CarPartsServer.Controllers
         {
             using (var db = new EfContext())
             {
-                List<string> countries = new List<string> { "Srbija", "Bosna i Hercegovina", "Crna Gora"};
+                if (db.Countries.FirstOrDefault(x=>x.Name.Equals("Srbija")) == null) {
+                    List<string> countries = new List<string> { "Srbija", "Bosna i Hercegovina", "Crna Gora" };
 
-                for(int i = 0;i < countries.Count;i++)
-                {
-                    db.Countries.Add(new Country
+                    for (int i = 0; i < countries.Count; i++)
                     {
-                        IsDeleted = false,
-                        Name = countries.ElementAt(i)
-                    });
+                        db.Countries.Add(new Country
+                        {
+                            IsDeleted = false,
+                            Name = countries.ElementAt(i)
+                        });
+                    }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
+                List<string> cities = new List<string> { "Beograd", "Novi Sad", "Sabac", "Sarajevo", "Mostar", "Podgorica", "Budva", "Kotor" };
+                AddCity(cities.ElementAt(0), 1);
+                AddCity(cities.ElementAt(1), 1);
+                AddCity(cities.ElementAt(2), 1);
+                AddCity(cities.ElementAt(3), 2);
+                AddCity(cities.ElementAt(4), 2);
+                AddCity(cities.ElementAt(5), 3);
+                AddCity(cities.ElementAt(6), 3);
+                AddCity(cities.ElementAt(7), 3);
             }
-            List<string> cities = new List<string> { "Beograd", "Novi Sad", "Sabac", "Sarajevo", "Mostar", "Podgorica", "Budva", "Kotor" };
-            AddCity(cities.ElementAt(0), 1);
-            AddCity(cities.ElementAt(1), 1);
-            AddCity(cities.ElementAt(2), 1);
-            AddCity(cities.ElementAt(3), 2);
-            AddCity(cities.ElementAt(4), 2);
-            AddCity(cities.ElementAt(5), 3);
-            AddCity(cities.ElementAt(6), 3);
-            AddCity(cities.ElementAt(7), 3);
         }
 
         private void AddCity(string city,int countryID)

@@ -35,6 +35,16 @@ namespace CarPartsServer.Controllers
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetAll1()
+        {
+            Country retval = null;
+            using (var db = new EfContext())
+            {
+                retval = db.Countries.ToList().First();
+            }
+            return Json(retval, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult Save(Country model)
         {

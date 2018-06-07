@@ -36,7 +36,7 @@ namespace CarPartsServer.Models
                             cs.MapLeftKey("ShopRefId");
                             cs.MapRightKey("AddressRefId");
                             cs.ToTable("ShopAddress");
-                        });
+                        });/*
             modelBuilder.Entity<Shop>()
                         .HasMany<CarBrand>(s => s.CarBrands)
                         .WithMany()
@@ -45,7 +45,7 @@ namespace CarPartsServer.Models
                             cs.MapLeftKey("ShopRefId");
                             cs.MapRightKey("CarBrandRefId");
                             cs.ToTable("ShopCarBrand");
-                        });
+                        });*/
 
             modelBuilder.Entity<CarPart>()
                         .HasMany<Category>(s => s.Categories)
@@ -94,9 +94,9 @@ namespace CarPartsServer.Models
             {
                 IsDeleted = false,
                 Name = "Radnja 1",
-                Phone = "053423 42342",
+                /*Phone = "053423 42342",
                 Image = null,
-                Category = cat1,
+                Category = cat1,*/
             });
 
             db.Users.Add(new User() {
