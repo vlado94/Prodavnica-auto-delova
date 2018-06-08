@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,7 +38,6 @@ import java.util.Scanner;
 
 public class ShopDetailsActivity extends AppCompatActivity /*implements OnMapReadyCallback*/ {
 
-    private String host = "192.168.0.12:52387";
     private GoogleMap mGoogleMap;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class ShopDetailsActivity extends AppCompatActivity /*implements OnMapRea
                 int id = params[0];
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("http");
-                builder.encodedAuthority(host);
+                builder.encodedAuthority(Constants.url);
 
                 builder.appendPath("Shop")
                         .appendPath("Get")

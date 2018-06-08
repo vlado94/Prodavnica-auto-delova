@@ -136,5 +136,4 @@ public class NewsDetailActivity extends AppCompatActivity {
         return news;
 
     }
-
 }
