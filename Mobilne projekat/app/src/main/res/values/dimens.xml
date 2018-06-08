@@ -6,7 +6,7 @@
     <!-- Icon Sizes -->
 
     <dimen name="list_icon">100dp</dimen>
-
+    <dimen name="call_icon">70dp</dimen>
     <!-- List item Sizes -->
     <dimen name="list_item_padding_horizontal">16dp</dimen>
     <dimen name="list_item_padding_vertical">12dp</dimen>

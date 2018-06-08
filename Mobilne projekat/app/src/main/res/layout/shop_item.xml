@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:paddingBottom="@dimen/list_item_padding_vertical"
+    android:paddingLeft="@dimen/list_item_padding_horizontal"
+    android:paddingRight="@dimen/list_item_padding_horizontal"
+    android:paddingTop="@dimen/list_item_padding_vertical"
+    android:background="@drawable/border_for_layout">
+
+    <!--<ImageView
+        android:id="@+id/weather_icon"
+        android:layout_width="@dimen/list_icon"
+        android:layout_height="@dimen/list_icon"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        android:src="@mipmap/hot_news_foreground"/>
+-->
+    <TextView
+        android:id="@+id/shopName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/list_item_short_des_left_margin"
+        android:layout_marginStart="@dimen/list_item_short_des_start_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        android:textSize="25sp"
+        android:text="Today, April 03"/>
+
+
+    <ImageView
+        android:id="@+id/callShop"
+        android:layout_width="@dimen/call_icon"
+        android:layout_height="@dimen/call_icon"
+        android:layout_marginLeft="@dimen/list_item_short_des_left_margin"
+        android:layout_marginStart="@dimen/list_item_short_des_start_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@mipmap/call_icon_round"/>
+
+
+    <TextView
+        android:id="@+id/shopPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/list_item_short_des_left_margin"
+        android:layout_marginStart="@dimen/list_item_short_des_start_margin"
+
+        app:layout_constraintTop_toBottomOf="@id/shopName"
+        android:textSize="20sp"
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/secondary_text" />
+    <!-- android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+
+    app:layout_constraintLeft_toLeftOf="parent"
+        <TextView
+            android:id="@+id/dateForNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintLeft_toLeftOf="@+id/shortDescription"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            android:textSize="20sp"
+            android:text="Rainy"/>
+-->
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5"/>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <TextView
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:id="@+id/searchShopsBar">
+
+       <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp"
-        android:text="Pretraga prodavaca"
+        android:textSize="30sp"
+        android:text="Ponudjene prodavnice"
+           android:paddingLeft="30dp"
         android:layout_marginTop="40dp"
+           android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:id="@+id/textTitle7"/>
 
-</RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/searchShopsBar">
+
+
+                    <android.support.v7.widget.RecyclerView
+                      android:id="@+id/recyclerview_shops"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

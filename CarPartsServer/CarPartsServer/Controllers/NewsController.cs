@@ -17,29 +17,7 @@ namespace CarPartsServer.Controllers
 
         public ActionResult Get(int id)
         {
-            if(id == 99)
-            {
-                using (var db = new EfContext())
-                {
-                    db.News.Add(new News
-                    {
-                        LongDescription = "long desc",
-                        PubishDate = new DateTime(2016,3,4),
-                        ShortDescription = "short",
-                        Title = "title"
-                    });
-
-                    db.News.Add(new News
-                    {
-                        LongDescription = "long ling",
-                        PubishDate = new DateTime(2016, 3, 4),
-                        ShortDescription = "short short",
-                        Title = "title22"
-                    });
-                    db.SaveChanges();
-                }
-
-            }
+           
             News retval = null;
             using (var db = new EfContext())
             {

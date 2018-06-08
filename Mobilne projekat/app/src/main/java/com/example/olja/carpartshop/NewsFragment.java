@@ -37,7 +37,7 @@ import java.util.Scanner;
 
 public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHandler{
     private static final String TAG = "NewsFragment";
-    private String host = "192.168.0.18:52387";
+    private String host = "192.168.0.12:52387";
     //private List<News> listNews;
 
 
@@ -126,52 +126,7 @@ private List<News> mappingNews(List<NewsDTO> dtos){
     }
     return retVal;
 }
-  /*  private List<Country> retrieveCountries(){
 
-        LiveData<List<Country>> news = database.countryDao().loadAllCountries();
-        news.observe(this, new Observer<List<Country>>() {
-            @Override
-            public void onChanged(@Nullable List<Country> countries) {
-
-            }
-
-
-        });
-        return news.getValue();
-
-    }*/
-
-
-  /*  private void addNews(){
-        Date date = new Date();
-        final News first = new News( "Vijest 1","dfssfsdfssdfsfsdfsfs",date,"Naslov1");
-        final News second = new News( "Vijest 2","dsdfsdfsfsfdfsasdaa",date,"Naslov1");
-        Executor.getInstance().diskIO().execute(new Runnable() {
-            // @Override
-            public void run() {
-                database.newsDao().insertNews(first);
-                database.newsDao().insertNews(second);
-                //finish();
-            }
-        });
-
-
-    final City city1 = new City("City1", 1);
-    Executor.getInstance().diskIO().execute(new Runnable() {
-        // @Override
-        public void run() {
-            try {
-            database.cityDao().insertCity(city1);
-            //database.newsDao().insertNews(second);
-            //finish();
-            }catch (Exception e){
-                e.printStackTrace();
-
-            }
-        }
-    });
-
-    }*/
   public static String getResponseFromHttpUrl(URL url) throws IOException {
       HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
       String response = null;
