@@ -20,7 +20,10 @@ namespace CarPartsServer.Controllers
             Shop retval = null;
             using (var db = new EfContext())
             {
-                retval = db.Shops.FirstOrDefault(x => x.ID == id);
+                retval = db.Shops
+                    .Include(x=>x.Addresses.Select(y=>y.City))
+                    .Include(x=>x.CarBrands)
+                    .FirstOrDefault(x => x.ID == id);
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
