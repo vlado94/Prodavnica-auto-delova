@@ -92,7 +92,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            //String shortDescription = listData.get(adapterPosition).getShortDescription();
             mClickHandler.onClick(listData.get(adapterPosition).getId());
         }
     }

@@ -36,7 +36,7 @@ import java.util.Scanner;
 
 public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHandler{
     private static final String TAG = "NewsFragment";
-    private String host = "192.168.0.12:52387";
+    private String host = "192.168.0.18:52387";
     //private List<News> listNews;
 
 
