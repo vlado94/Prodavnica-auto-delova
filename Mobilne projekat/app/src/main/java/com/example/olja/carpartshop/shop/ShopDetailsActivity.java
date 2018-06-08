@@ -1,9 +1,12 @@
 package com.example.olja.carpartshop.shop;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
@@ -11,9 +14,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.R;
+import com.example.olja.carpartshop.address.Address;
+import com.example.olja.carpartshop.carBrand.CarBrand;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -30,19 +38,30 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * Created by Olja on 6/8/2018.
  */
 
-public class ShopDetailsActivity extends AppCompatActivity /*implements OnMapReadyCallback*/ {
+public class ShopDetailsActivity extends AppCompatActivity  {
 
     private GoogleMap mGoogleMap;
+    private ListView listAddresses;
+    private ListView carBrandsListView;
+
+    private TextView shopNameDetails;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_details);
+
+        shopNameDetails = (TextView) findViewById(R.id.shopNameDetails);
+        listAddresses = (ListView) findViewById(R.id.addresesListView);
+        carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -51,7 +70,7 @@ public class ShopDetailsActivity extends AppCompatActivity /*implements OnMapRea
         Intent intentThatStartedThisActivity = getIntent();
         if (intentThatStartedThisActivity.hasExtra("shopId")) {
             int id = intentThatStartedThisActivity.getIntExtra("shopId", -1);
-            new ShopDetailsActivity.GetShopByIdTask().execute(id);
+            new ShopDetailsActivity.GetShopByIdTask(this).execute(id);
 
 
         }
@@ -73,8 +92,10 @@ public class ShopDetailsActivity extends AppCompatActivity /*implements OnMapRea
     }
 
     public class GetShopByIdTask extends AsyncTask<Integer, Void, Shop> {
-
-
+        private Context mContext;
+        public GetShopByIdTask (Context context){
+            mContext = context;
+        }
         @Override
         protected Shop doInBackground(Integer... params) {
             try {
@@ -107,12 +128,41 @@ public class ShopDetailsActivity extends AppCompatActivity /*implements OnMapRea
         @Override
         protected void onPostExecute(Shop shop) {
 
-           // newsTitle.setText(list.getTitle());
-            //newsContent.setText(list.getLongDescription());
+
+            shopNameDetails.setText(shop.getName());
+            final List<String> fruits_list = new ArrayList<String>();
+            List<Address> addresses = shop.getAddresses();
+            for (Address address:addresses) {
+                String newAddress = address.getStreet()+ "\t" + address.getNumber() +"\t" + address.getCity().getName();
+                fruits_list.add(newAddress);
+            }
+
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
+                    (mContext,android.R.layout.simple_list_item_1, fruits_list);
+
+            listAddresses.setAdapter(arrayAdapter);
+
+
+
+            final List<String> car_brands_list = new ArrayList<String>();
+            for (CarBrand carBrand:shop.getCarBrands()) {
+                car_brands_list.add(carBrand.getName());
+            }
+            final ArrayAdapter<String> carBrandsListAdapter = new ArrayAdapter<String>
+                    (mContext,android.R.layout.simple_list_item_1, car_brands_list );
+
+            carBrandsListView.setAdapter(carBrandsListAdapter);
+
 
         }
     }
-
+ /*   private List<String> getAddressToShow(List<Address> addresses){
+        final List<String> fruits_list = new ArrayList<String>();
+        for (Address address:addresses) {
+            String newAddress = address.getStreet()+ "\t" + address.getNumber();
+            fruits_list.add(newAddress);
+        }
+    }*/
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         String response = null;

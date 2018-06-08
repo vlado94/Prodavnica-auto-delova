@@ -31,7 +31,6 @@ import java.util.Scanner;
 
 public class getFromLinkIntentService extends IntentService {
 
-
     private List<Country> listCountries;
     private List<City> listCities;
     private List<News> listNews;
