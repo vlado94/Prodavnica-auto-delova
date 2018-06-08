@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace CarPartsServer.Controllers
 {
@@ -30,7 +31,9 @@ namespace CarPartsServer.Controllers
             List<CarPart> retval = null;
             using (var db = new EfContext())
             {
-                retval = db.CarParts.ToList();
+                retval = db.CarParts.Include(x => x.CarBrand)
+                    .Include(x=>x.Shop)
+                    .ToList();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }

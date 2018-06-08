@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.example.olja.carpartshop.address.Address;
+import com.example.olja.carpartshop.carBrand.CarBrand;
+import com.example.olja.carpartshop.carPart.CarPart;
 import com.example.olja.carpartshop.city.City;
 import com.example.olja.carpartshop.country.Country;
 import com.example.olja.carpartshop.news.News;
+import com.example.olja.carpartshop.shop.Shop;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,6 +36,9 @@ public class getFromLinkIntentService extends IntentService {
     private List<City> listCities;
     private List<News> listNews;
     private List<Address> listAddresses;
+    private List<CarBrand> carBrands;
+    private List<Shop> shops;
+    private List<CarPart> carParts;
 
     public getFromLinkIntentService() {
         super("getFromLinkIntentService");
@@ -44,6 +50,9 @@ public class getFromLinkIntentService extends IntentService {
             getCountriesFromServer();
             getCitiesFromServer();
             getAddressesFromServer();
+            getCarBrandFromServer();
+            getShopsFromServer();
+            getCarPartsFromServer();
 
 
     }
@@ -76,9 +85,6 @@ public class getFromLinkIntentService extends IntentService {
         }
 
     }
-
-
-
 
 /* GetFromServer metode */
     private void getCountriesFromServer(){
@@ -149,6 +155,80 @@ public class getFromLinkIntentService extends IntentService {
             }
             String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
             listAddresses = getAddressesFromJsom(jsonWeatherResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getCarBrandFromServer(){
+        try {
+
+            Uri.Builder builder = new Uri.Builder();
+            builder.scheme("http");
+            builder.encodedAuthority(host);
+
+            builder.appendPath("CarBrand")
+                    .appendPath("GetAll");
+            String myUrl = builder.build().toString();
+            URL weatherQueryUrl = null;
+
+            try {
+                weatherQueryUrl = new URL(myUrl);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
+            carBrands = getCarBrandFromJsom(jsonWeatherResponse);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getShopsFromServer(){
+        try {
+
+            Uri.Builder builder = new Uri.Builder();
+            builder.scheme("http");
+            builder.encodedAuthority(host);
+
+            builder.appendPath("Shop")
+                    .appendPath("GetAll");
+            String myUrl = builder.build().toString();
+            URL weatherQueryUrl = null;
+
+            try {
+                weatherQueryUrl = new URL(myUrl);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
+            shops = getShopsFromJsom(jsonWeatherResponse);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getCarPartsFromServer(){
+        try {
+
+            Uri.Builder builder = new Uri.Builder();
+            builder.scheme("http");
+            builder.encodedAuthority(host);
+
+            builder.appendPath("CarPart")
+                    .appendPath("GetAll");
+            String myUrl = builder.build().toString();
+            URL weatherQueryUrl = null;
+
+            try {
+                weatherQueryUrl = new URL(myUrl);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
+            carParts = getCarPartsFromJsom(jsonWeatherResponse);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -156,7 +236,7 @@ public class getFromLinkIntentService extends IntentService {
     }
 
 
-/* GetFromJSON */
+    /* GetFromJSON */
     private List<Country> getCountriesFromJsom(String json){
         Gson gson = new Gson();
         Type listType = new TypeToken<ArrayList<Country>>(){}.getType();
@@ -181,8 +261,31 @@ public class getFromLinkIntentService extends IntentService {
 
         return addresses;
     }
+    private List<CarBrand> getCarBrandFromJsom(String json){
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<CarBrand>>(){}.getType();
+        List<CarBrand> carBrands =  gson.fromJson(json,listType);
 
 
+        return carBrands;
+    }
+
+    private List<Shop> getShopsFromJsom(String json){
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<Shop>>(){}.getType();
+        List<Shop> shops =  gson.fromJson(json,listType);
+
+
+        return shops;
+    }
+    private List<CarPart> getCarPartsFromJsom(String json){
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<CarPart>>(){}.getType();
+        List<CarPart> carParts =  gson.fromJson(json,listType);
+
+
+        return carParts;
+    }
 
 
 }

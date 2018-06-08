@@ -1,33 +1,28 @@
 package com.example.olja.carpartshop.news;
 
-import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
 
-import com.example.olja.carpartshop.shop.Shop;
-
-import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by Olja on 5/28/2018.
+ * Created by Olja on 6/8/2018.
  */
 
-public class News {
+public class NewsDTO {
 
 
     private int ID;
     private String Title;
     private String ShortDescription;
     private String LongDescription;
-    private Date PubishDate;
+    private String PubishDate;
     private boolean IsDeleted;
 
 
-    public News(){}
+    public NewsDTO(){}
 
 
-    public News(String shortDescription, String longDescription, Date pubishDate, String title, boolean isDeleted) {
+    public NewsDTO(String shortDescription, String longDescription, String pubishDate, String title, boolean isDeleted) {
         this.ShortDescription = shortDescription;
         this.LongDescription = longDescription;
         this.PubishDate = pubishDate;
@@ -37,7 +32,7 @@ public class News {
     }
 
     @Ignore
-    public News(int id, String shortDescription, String longDescription, String title, boolean isDeleted) {
+    public NewsDTO(int id, String shortDescription, String longDescription, String title, boolean isDeleted) {
         this.ID = id;
         this.ShortDescription = shortDescription;
         this.LongDescription = longDescription;
@@ -45,27 +40,12 @@ public class News {
         this.Title = title;
         this.IsDeleted = isDeleted;
     }
-    public News(int id, String shortDescription, String longDescription, Date pubishDate, String title) {
+    public NewsDTO(int id, String shortDescription, String longDescription, String pubishDate, String title) {
         this.ID = id;
         this.ShortDescription = shortDescription;
         this.LongDescription = longDescription;
         this.PubishDate = pubishDate;
         this.Title = title;
-    }
-
-    public News(NewsDTO dto) {
-        this.ID = dto.getID();
-        this.ShortDescription = dto.getShortDescription();
-        this.LongDescription = dto.getLongDescription();
-
-        String[] left = dto.getPubishDate().split("\\(");
-        String[] right =  left[1].split("\\)");
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(Long.parseLong(right[0]));
-        Date dateUtil = calendar.getTime();
-        this.PubishDate = dateUtil;
-        this.Title = dto.getTitle();
-        this.IsDeleted = dto.isDeleted();
     }
 
     public int getID() {
@@ -92,11 +72,11 @@ public class News {
         this.LongDescription = longDescription;
     }
 
-    public Date getPubishDate() {
+    public String getPubishDate() {
         return PubishDate;
     }
 
-    public void setPubishDate(Date updatedAt) {
+    public void setPubishDate(String updatedAt) {
         this.PubishDate = updatedAt;
     }
 
@@ -108,4 +88,11 @@ public class News {
         this.Title = title;
     }
 
+    public boolean isDeleted() {
+        return IsDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        IsDeleted = deleted;
+    }
 }

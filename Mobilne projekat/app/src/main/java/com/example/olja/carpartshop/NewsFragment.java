@@ -16,6 +16,7 @@ import android.widget.Button;
 
 import com.example.olja.carpartshop.news.News;
 import com.example.olja.carpartshop.news.NewsAdapter;
+import com.example.olja.carpartshop.news.NewsDTO;
 import com.example.olja.carpartshop.news.NewsDetailActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -67,11 +68,8 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHan
         newsAdapter = new NewsAdapter(this);
         mRecyclerView.setAdapter(newsAdapter);
 
-
-        new GetNewsTask().execute("Nebitno");
+        new GetNewsTask().execute("AsyncTaskGetNews");
         //List<Country> counties = retrieveCountries();
-
-
 
         return view;
     }
@@ -100,13 +98,9 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHan
                 }
                 String jsonWeatherResponse = getResponseFromHttpUrl(weatherQueryUrl);
                 return getNewsFromJsom(jsonWeatherResponse);
-
-
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
-
             return null;
         }
 
@@ -116,15 +110,22 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHan
             newsAdapter.setNews(list);
         }
     }
-
-
     private List<News> getNewsFromJsom(String json){
         Gson gson = new Gson();
-        Type listType = new TypeToken<ArrayList<News>>(){}.getType();
-        return  gson.fromJson(json,listType);
+        Type listType = new TypeToken<ArrayList<NewsDTO>>(){}.getType();
+        List<NewsDTO> newsDTOS =  gson.fromJson(json,listType);
+
+        return mappingNews(newsDTOS);
 
     }
-
+private List<News> mappingNews(List<NewsDTO> dtos){
+        List<News> retVal = new ArrayList<News>();
+    for (NewsDTO dto:dtos) {
+        News news =  new News(dto);
+        retVal.add(news);
+    }
+    return retVal;
+}
   /*  private List<Country> retrieveCountries(){
 
         LiveData<List<Country>> news = database.countryDao().loadAllCountries();
@@ -141,6 +142,36 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHan
     }*/
 
 
+  /*  private void addNews(){
+        Date date = new Date();
+        final News first = new News( "Vijest 1","dfssfsdfssdfsfsdfsfs",date,"Naslov1");
+        final News second = new News( "Vijest 2","dsdfsdfsfsfdfsasdaa",date,"Naslov1");
+        Executor.getInstance().diskIO().execute(new Runnable() {
+            // @Override
+            public void run() {
+                database.newsDao().insertNews(first);
+                database.newsDao().insertNews(second);
+                //finish();
+            }
+        });
+
+
+    final City city1 = new City("City1", 1);
+    Executor.getInstance().diskIO().execute(new Runnable() {
+        // @Override
+        public void run() {
+            try {
+            database.cityDao().insertCity(city1);
+            //database.newsDao().insertNews(second);
+            //finish();
+            }catch (Exception e){
+                e.printStackTrace();
+
+            }
+        }
+    });
+
+    }*/
   public static String getResponseFromHttpUrl(URL url) throws IOException {
       HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
       String response = null;

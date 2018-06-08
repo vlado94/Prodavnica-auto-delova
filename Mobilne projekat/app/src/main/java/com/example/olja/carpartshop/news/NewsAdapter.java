@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.example.olja.carpartshop.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +23,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
     private ArrayList<News> listData;
     private final NewsOnClickHandler mClickHandler;
 
-    /*** The interface that receives onClick messages.*/
     public interface NewsOnClickHandler {
         void onClick(int newsId);
     }
@@ -46,13 +47,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
         News weatherForThisDay = listData.get(position);
         holder.shortDescription.setText(weatherForThisDay.getShortDescription());
 
-        //String parsedDate = parse(weatherForThisDay.getPubishDate());
-
-       /* Date now = Calendar.getInstance().getTime();
-        if(weatherForThisDay.getPubishDate().compareTo(now) == 0){
-            holder.
-        }*/
-      //  holder.dateForNews.setText(parsedDate);
+        String parsedDate = parse(weatherForThisDay.getPubishDate());
+        holder.dateForNews.setText(parsedDate);
     }
 
     @Override
@@ -70,9 +66,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
     }
 
 
-  /*  public String parse(Date date){
-        return android.text.format.DateFormat.format("yyyy-MM-dd HH:mm",date).toString();
-    }*/
+    public String parse(Date date){
+       String retVal =  android.text.format.DateFormat.format("yyyy-MM-dd HH:mm",date).toString();
+
+        return retVal;
+    }
 
 
 /*View holder kao unutrasnja klasa*/
@@ -92,7 +90,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
-            mClickHandler.onClick(listData.get(adapterPosition).getId());
+            mClickHandler.onClick(listData.get(adapterPosition).getID());
         }
     }
 }
