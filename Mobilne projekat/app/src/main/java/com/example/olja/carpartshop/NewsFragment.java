@@ -37,7 +37,6 @@ import java.util.Scanner;
 
 public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHandler{
     private static final String TAG = "NewsFragment";
-    private String host = "192.168.137.38:52387";
     //private List<News> listNews;
 
 
@@ -84,7 +83,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHan
 
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("http");
-                builder.encodedAuthority(host);
+                builder.encodedAuthority(Constants.url);
 
                 builder.appendPath("News")
                         .appendPath("GetAll");

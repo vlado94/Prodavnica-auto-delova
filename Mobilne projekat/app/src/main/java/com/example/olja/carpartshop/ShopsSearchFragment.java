@@ -39,7 +39,6 @@ import java.util.Scanner;
 
 public class ShopsSearchFragment extends Fragment implements ShopAdapter.ShopOnClickHandler {
     private static final String TAG = "ShopsSearchFragment";
-    private String host = "192.168.137.38:52387";
 
     private RecyclerView shopsRecyclerView;
     private ShopAdapter shopAdapter;
@@ -72,7 +71,7 @@ public class ShopsSearchFragment extends Fragment implements ShopAdapter.ShopOnC
 
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("http");
-                builder.encodedAuthority(host);
+                builder.encodedAuthority(Constants.url);
 
                 builder.appendPath("Shop")
                         .appendPath("GetAll");

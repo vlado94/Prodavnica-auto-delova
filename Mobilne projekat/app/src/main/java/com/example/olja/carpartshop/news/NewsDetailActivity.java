@@ -35,7 +35,6 @@ public class NewsDetailActivity extends AppCompatActivity {
     private TextView newsTitle;
     //private TextView newsDate;
     private TextView newsContent;
-    private String host = "192.168.0.12:52387";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -136,5 +135,4 @@ public class NewsDetailActivity extends AppCompatActivity {
         return news;
 
     }
-
 }

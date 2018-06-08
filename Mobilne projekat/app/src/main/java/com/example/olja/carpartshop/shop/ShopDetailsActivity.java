@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.R;
 import com.example.olja.carpartshop.address.Address;
 import com.example.olja.carpartshop.carBrand.CarBrand;
@@ -47,7 +48,6 @@ import java.util.Scanner;
 
 public class ShopDetailsActivity extends AppCompatActivity  {
 
-    private String host = "192.168.137.38:52387";
     private GoogleMap mGoogleMap;
     private ListView listAddresses;
     private ListView carBrandsListView;
@@ -103,7 +103,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
                 int id = params[0];
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("http");
-                builder.encodedAuthority(host);
+                builder.encodedAuthority(Constants.url);
 
                 builder.appendPath("Shop")
                         .appendPath("Get")
