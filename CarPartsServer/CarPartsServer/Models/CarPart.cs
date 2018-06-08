@@ -8,7 +8,7 @@ namespace CarPartsServer.Models
     public class CarPart : Entity
     {
         public string Name { get; set; }
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
         public double Price { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
@@ -16,9 +16,11 @@ namespace CarPartsServer.Models
         public int VisitsNumber { get; set; }
         public DateTime PublishDate { get; set; }
         public int IpAddresses { get; set; }
+        
+        public int CarBrandID { get; set; }
+        public CarBrand CarBrand { get; set; }
 
-
-        public ICollection<Category> Categories { get; set; }
-        public ICollection<CarBrand> CarBrands { get; set; }
+        public int ShopID { get; set; }
+        public Shop Shop { get; set; }
     }
 }

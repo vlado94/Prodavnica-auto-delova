@@ -1,6 +1,7 @@
 ﻿using CarPartsServer.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,7 +31,7 @@ namespace CarPartsServer.Controllers
             List<Address> retval = null;
             using (var db = new EfContext())
             {
-                retval = db.Addresses.ToList();
+                retval = db.Addresses.Include(x=>x.City).ToList();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
