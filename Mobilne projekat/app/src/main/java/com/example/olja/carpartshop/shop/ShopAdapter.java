@@ -1,6 +1,13 @@
 package com.example.olja.carpartshop.shop;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.olja.carpartshop.MainActivity;
 import com.example.olja.carpartshop.R;
 import com.example.olja.carpartshop.ShopsSearchFragment;
 import com.example.olja.carpartshop.news.News;
@@ -24,13 +32,14 @@ import java.util.List;
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder> {
     private ArrayList<Shop> listData;
     private final ShopAdapter.ShopOnClickHandler mClickHandler;
-
+    private Context context;
     public interface ShopOnClickHandler {
         void onClick(int newsId);
     }
 
-    public ShopAdapter(ShopAdapter.ShopOnClickHandler clickHandler) {
+    public ShopAdapter(ShopAdapter.ShopOnClickHandler clickHandler,Context context2) {
         mClickHandler = clickHandler;
+        context = context2;
     }
 
     @Override
@@ -83,20 +92,27 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             iconCallShop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//ovdje treba implementirati poziv
-                    Toast.makeText(view.getContext(),
-                            "The favorite list would appear on clicking this icon",
-                            Toast.LENGTH_LONG).show();
+                    callPhoneNumber();
                 }
             });
             view.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
             mClickHandler.onClick(listData.get(adapterPosition).getID());
+        }
+    }
+
+    public void callPhoneNumber() {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "0653268080"));
+
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE}, 101);
+        } else {
+            context.startActivity(intent);
+
         }
     }
 }

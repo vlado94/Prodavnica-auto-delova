@@ -2,6 +2,7 @@ package com.example.olja.carpartshop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,7 @@ import com.example.olja.carpartshop.country.CountriesActivity;
 import com.example.olja.carpartshop.news.NewsAdapter;
 import com.example.olja.carpartshop.news.NewsDetailActivity;
 import com.example.olja.carpartshop.services.getFromLinkIntentService;
+import com.example.olja.carpartshop.shop.ShopAdapter;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
 
@@ -30,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     private SectionsStatePageAdapter  mSectionStateAdapter;
     private ViewPager mViewPager;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

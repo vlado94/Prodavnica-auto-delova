@@ -2,6 +2,7 @@ package com.example.olja.carpartshop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,17 +45,27 @@ public class ShopsSearchFragment extends Fragment implements ShopAdapter.ShopOnC
     private ShopAdapter shopAdapter;
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults)
+    {
+        if(requestCode == 101)
+        {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                shopAdapter.callPhoneNumber();
+            }
+        }
+    }
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shops_search_fragment, container, false);
-
-
 
         shopsRecyclerView =  view.findViewById(R.id.recyclerview_shops);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager((getActivity()), LinearLayoutManager.VERTICAL, false);
         shopsRecyclerView.setLayoutManager(layoutManager);
         shopsRecyclerView.setHasFixedSize(true);
-        shopAdapter = new ShopAdapter(this);
+        shopAdapter = new ShopAdapter(this,getActivity());
         shopsRecyclerView.setAdapter(shopAdapter);
 
         new ShopsSearchFragment.GetShopsTask().execute("AsyncTaskGetShops");
