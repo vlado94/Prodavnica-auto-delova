@@ -30,7 +30,7 @@ import java.util.Scanner;
 
 public class getFromLinkIntentService extends IntentService {
 
-    private String host = "192.168.0.12:52387";
+    private String host = "192.168.0.18:52387";
 
     private List<Country> listCountries;
     private List<City> listCities;

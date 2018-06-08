@@ -18,12 +18,23 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="backgroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="183" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="103" />
+                                                <entry key="scalingPercent" value="180" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,9 +44,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundImage" value="C:\Users\Vladimir Stanojevic\Desktop\autodelovi.png" />
-                                      <entry key="foregroundImage" value="C:\Users\Vladimir Stanojevic\Desktop\autodelovi.png" />
-                                      <entry key="outputName" value="ikonica" />
+                                      <entry key="backgroundImage" value="C:\Users\Vladimir Stanojevic\Desktop\backgroundImg2.jpg" />
+                                      <entry key="foregroundImage" value="C:\Users\Vladimir Stanojevic\Desktop\backgroundImg2.jpg" />
+                                      <entry key="outputName" value="defaultimggg" />
                                     </map>
                                   </option>
                                 </PersistentState>
