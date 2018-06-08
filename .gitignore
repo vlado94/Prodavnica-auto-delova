@@ -55,3 +55,6 @@ freeline/
 freeline_project_description.json
 
 .vs/
+
+.vs/config/applicationhost.config
+
