@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class Constants {
 
-    public static String url = "192.168.137.118:52387";
+    public static String url = "192.168.137.38:52387";
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

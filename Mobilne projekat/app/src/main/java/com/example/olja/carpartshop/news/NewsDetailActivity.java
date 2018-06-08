@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -76,7 +77,7 @@ public class NewsDetailActivity extends AppCompatActivity {
                 int id = params[0];
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("http");
-                builder.encodedAuthority(host);
+                builder.encodedAuthority(Constants.url);
 
                 builder.appendPath("News")
                         .appendPath("Get")
