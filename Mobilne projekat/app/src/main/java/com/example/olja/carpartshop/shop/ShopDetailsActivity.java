@@ -3,6 +3,7 @@ package com.example.olja.carpartshop.shop;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,9 +15,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.R;
@@ -53,6 +57,9 @@ public class ShopDetailsActivity extends AppCompatActivity  {
     private ListView carBrandsListView;
 
     private TextView shopNameDetails;
+    private ImageView viewCarPartsIcon;
+
+    private int shopId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +69,18 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         shopNameDetails = (TextView) findViewById(R.id.shopNameDetails);
         listAddresses = (ListView) findViewById(R.id.addresesListView);
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
+        viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
+        viewCarPartsIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//ovdje treba implementirati poziv
+
+                Class destinationActivity = ListCarPartsForShop.class;
+                Intent startChildActivityIntent = new Intent(getApplicationContext(), destinationActivity);
+                startChildActivityIntent.putExtra("shopId",shopId);
+                startActivity(startChildActivityIntent);
+            }
+        });
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -101,6 +120,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             try {
 
                 int id = params[0];
+                shopId = id;
                 Uri.Builder builder = new Uri.Builder();
                 builder.scheme("http");
                 builder.encodedAuthority(Constants.url);
@@ -127,8 +147,6 @@ public class ShopDetailsActivity extends AppCompatActivity  {
 
         @Override
         protected void onPostExecute(Shop shop) {
-
-
             shopNameDetails.setText(shop.getName());
             final List<String> fruits_list = new ArrayList<String>();
             List<Address> addresses = shop.getAddresses();
@@ -139,10 +157,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
 
             final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
                     (mContext,android.R.layout.simple_list_item_1, fruits_list);
-
             listAddresses.setAdapter(arrayAdapter);
-
-
 
             final List<String> car_brands_list = new ArrayList<String>();
             for (CarBrand carBrand:shop.getCarBrands()) {
@@ -150,19 +165,13 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             }
             final ArrayAdapter<String> carBrandsListAdapter = new ArrayAdapter<String>
                     (mContext,android.R.layout.simple_list_item_1, car_brands_list );
-
             carBrandsListView.setAdapter(carBrandsListAdapter);
 
 
         }
     }
- /*   private List<String> getAddressToShow(List<Address> addresses){
-        final List<String> fruits_list = new ArrayList<String>();
-        for (Address address:addresses) {
-            String newAddress = address.getStreet()+ "\t" + address.getNumber();
-            fruits_list.add(newAddress);
-        }
-    }*/
+
+
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         String response = null;

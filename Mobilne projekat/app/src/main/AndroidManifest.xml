@@ -35,6 +35,10 @@
         <activity
             android:name=".city.CitiesActivity"
             android:parentActivityName=".country.CountriesActivity"></activity>
+        <activity
+            android:name=".shop.ListCarPartsForShop"
+            android:parentActivityName=".shop.ShopDetailsActivity"></activity>
+
 
         <service
             android:name=".services.getFromLinkIntentService"

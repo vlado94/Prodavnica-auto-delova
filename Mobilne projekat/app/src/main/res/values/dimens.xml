@@ -4,7 +4,7 @@
     <dimen name="news_text_size">28dp</dimen>
 
     <!-- Icon Sizes -->
-
+    <dimen name="car_part_icon">120dp</dimen>
     <dimen name="list_icon">100dp</dimen>
     <dimen name="call_icon">70dp</dimen>
     <!-- List item Sizes -->

@@ -24,23 +24,55 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/map_container">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:background="@drawable/border_for_layout">
+
+
             <TextView
                 android:id="@+id/shopNameDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textSize="25sp"
+                android:layout_weight="0.3"
                 android:paddingTop="15dp"
+                android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
                 android:text="Auto delovi junior"/>
 
+              <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_weight="0.3"
+                  android:paddingTop="15dp"
+                  android:paddingBottom="15dp"
+                  android:paddingLeft="10dp"
+                  android:src="@mipmap/call_icon_round"
+                  />
 
+              <ImageView
+                  android:id="@+id/viewCarPartsIcon"
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:layout_weight="0.3"
+                  android:paddingTop="15dp"
+                  android:paddingBottom="15dp"
+                  android:paddingLeft="10dp"
+                  android:src="@mipmap/wheel2_round"
+                  />
+
+          </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingTop="30dp"
             android:id="@+id/information">
 
             <LinearLayout  android:layout_width="wrap_content"

@@ -51,5 +51,20 @@ namespace CarPartsServer.Controllers
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult FindCarParts(int id)
+        {
+            List<CarPart> retval = null;
+            using (var db = new EfContext())
+            {
+                retval = db.CarParts
+                    .Where(x => x.ShopID == id)
+                    .ToList();
+            }
+            return Json(retval, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }
