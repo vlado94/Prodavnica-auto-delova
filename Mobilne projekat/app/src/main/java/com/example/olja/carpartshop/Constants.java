@@ -1,27 +1,28 @@
 package com.example.olja.carpartshop;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Constants {
 
-<<<<<<< HEAD
-    public static String url = "192.168.137.43:52387";
-=======
-    public static String url = "192.168.137.118:52387";
->>>>>>> ecaccce1ba5a9110f183a3627c04600120504baa
+    public static String url = "192.168.0.11:52387";
+
+
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -74,6 +75,69 @@ public class Constants {
             e.printStackTrace();
         }
         return new ArrayList<T>();
+    }
+
+    public static void PostToServer(String controller,String methond, String data){
+        data = "{\"Email\":\"dsadasda\"," +
+                "\"Password\":\"dada\"}";
+
+
+        try {
+            Uri.Builder builder = new Uri.Builder();
+            builder.scheme("http");
+            builder.encodedAuthority(Constants.url);
+
+            builder.appendPath(controller)
+                    .appendPath(methond);
+            String myUrl = builder.build().toString();
+            URL url = new URL(myUrl);
+
+            final String finalData = data;
+            final URL finalUrl = url;
+            AsyncTask<Void, Void, String> asyncTask = new AsyncTask<Void, Void, String>() {
+
+                @Override
+                protected String doInBackground(Void... voids) {
+                    return getServerResponse(finalUrl, finalData);
+                };
+
+                @Override
+                protected void onPostExecute(String s) {
+                    super.onPostExecute(s);
+                }
+            }.execute();
+
+
+        }
+        catch (Exception all){
+            all.printStackTrace();
+        }
+    }
+
+
+    public static String getServerResponse(URL url, String finalData){
+        try {
+            byte[] postData = finalData.getBytes(StandardCharsets.UTF_8);
+            int postDataLength = postData.length;
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setInstanceFollowRedirects(false);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+            conn.setUseCaches(false);
+            try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
+                wr.write(postData);
+            }
+            catch (Exception witex){
+                witex.printStackTrace();
+            }
+        }
+        catch (Exception ex){
+            return "error";
+        }
+        return "ok";
     }
 
 }

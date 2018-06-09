@@ -14,6 +14,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.olja.carpartshop.country.CountriesActivity;
 import com.example.olja.carpartshop.news.NewsAdapter;
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setNavigationViewListener();
         setViewPager(6);
+        ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
 
         Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
        this.startService(intentToSyncImmediately);
@@ -114,6 +119,23 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private void setNavigationViewListener() {
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View r = navigationView.getHeaderView(0);
+        ImageView loginBtn = (ImageView) r.findViewById(R.id.loginbtn);
+        ImageView singUpBtn = (ImageView) r.findViewById(R.id.signupbtn);
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        singUpBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

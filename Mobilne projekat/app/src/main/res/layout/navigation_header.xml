@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="@color/colorPrimary">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/person"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Niste ulogovani."
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="100dp"
+        android:textColor="#ffffff"
+        />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="202dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/login"
+        android:id="@+id/loginbtn"
+        />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/signup"
+        android:id="@+id/signupbtn"
+        />
+
+</RelativeLayout>
