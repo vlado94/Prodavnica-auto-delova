@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.olja.carpartshop.country.CountriesActivity;
+import com.example.olja.carpartshop.user.User;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,7 +50,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             Toast.makeText(this, "Lozinke se ne poklapaju", Toast.LENGTH_SHORT).show();
             return;
         }
-        Constants.PostToServer("User","Save","test");
+        User user = new User(email, pass);
+
+        Constants.sendPost("User","Save",user);
 
     }
 }

@@ -6,9 +6,15 @@ import android.os.AsyncTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -77,67 +83,54 @@ public class Constants {
         return new ArrayList<T>();
     }
 
-    public static void PostToServer(String controller,String methond, String data){
-        data = "{\"Email\":\"dsadasda\"," +
-                "\"Password\":\"dada\"}";
 
 
-        try {
-            Uri.Builder builder = new Uri.Builder();
-            builder.scheme("http");
-            builder.encodedAuthority(Constants.url);
+    public static void sendPost(final String controller, final String methond, final Object obj) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("http://192.168.0.11:52387/"+controller+"/" + methond);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                    conn.setRequestProperty("Accept","application/json");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+                    //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
+                    Gson gson = new Gson();
+                    os.writeBytes(gson.toJson(obj));
+                    int responseCode = conn.getResponseCode();
 
-            builder.appendPath(controller)
-                    .appendPath(methond);
-            String myUrl = builder.build().toString();
-            URL url = new URL(myUrl);
+                    // get response
+                    BufferedReader bufferedReader = null;
+                    if (responseCode > 199 && responseCode < 300) {
+                        bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    } else {
+                        bufferedReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+                    }
 
-            final String finalData = data;
-            final URL finalUrl = url;
-            AsyncTask<Void, Void, String> asyncTask = new AsyncTask<Void, Void, String>() {
+                    // To receive the response
+                    StringBuilder content = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        content.append(line).append("\n");
+                    }
+                    String output = content.toString();
+                    bufferedReader.close();
+                    os.flush();
+                    os.close();
 
-                @Override
-                protected String doInBackground(Void... voids) {
-                    return getServerResponse(finalUrl, finalData);
-                };
 
-                @Override
-                protected void onPostExecute(String s) {
-                    super.onPostExecute(s);
+                    conn.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }.execute();
-
-
-        }
-        catch (Exception all){
-            all.printStackTrace();
-        }
-    }
-
-
-    public static String getServerResponse(URL url, String finalData){
-        try {
-            byte[] postData = finalData.getBytes(StandardCharsets.UTF_8);
-            int postDataLength = postData.length;
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
-            conn.setInstanceFollowRedirects(false);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("charset", "utf-8");
-            conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
-            conn.setUseCaches(false);
-            try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
-                wr.write(postData);
             }
-            catch (Exception witex){
-                witex.printStackTrace();
-            }
-        }
-        catch (Exception ex){
-            return "error";
-        }
-        return "ok";
+        });
+
+        thread.start();
     }
 
 }
