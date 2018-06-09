@@ -17,7 +17,11 @@ import java.util.Scanner;
 
 public class Constants {
 
+<<<<<<< HEAD
     public static String url = "192.168.137.43:52387";
+=======
+    public static String url = "192.168.137.118:52387";
+>>>>>>> ecaccce1ba5a9110f183a3627c04600120504baa
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

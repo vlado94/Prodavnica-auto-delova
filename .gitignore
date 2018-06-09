@@ -54,6 +54,8 @@ freeline.py
 freeline/
 freeline_project_description.json
 
-.vs/
-.idea/workspace.xml
-.vs/config/applicationhost.config
+Mobilne projekat/.idea/
+Mobilne projekat/app/.idea/
+CarPartsServer/.vs/
+CarPartsServer/.vs/CarPartsServer/v15/.suo
+CarPartsServer/.vs/config/applicationhost.config
