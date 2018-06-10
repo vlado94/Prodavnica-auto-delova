@@ -10,6 +10,7 @@ namespace CarPartsServer.Models
     {
         public string Email { get; set; }
         public string Password { get; set; }
+        public string FirebaseToken { get; set; }
 
         public int? ShopID { get; set; }
         public Shop Shop { get; set; }

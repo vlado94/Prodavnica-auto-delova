@@ -219,6 +219,12 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 User user = db.Users.FirstOrDefault(x => x.Email == userr.Email && x.Password == userr.Password);
+                if(user!=null && !string.IsNullOrEmpty(userr.FirebaseToken))
+                {
+                    user.FirebaseToken = userr.FirebaseToken;
+                    db.SaveChanges();
+                }
+                    
                 return Json(user, JsonRequestBehavior.AllowGet);
             }
         }

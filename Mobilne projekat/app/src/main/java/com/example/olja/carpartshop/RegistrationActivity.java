@@ -55,7 +55,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             Toast.makeText(this, "Lozinke se ne poklapaju", Toast.LENGTH_SHORT).show();
             return;
         }
-        User user = new User(email, pass);
+        User user = new User(email, pass, "");
 
         new RegistrationTask().execute(user);
     }

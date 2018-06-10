@@ -56,7 +56,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         String email = ((EditText) findViewById(R.id.log_email)).getText().toString();
         String pass = ((EditText) findViewById(R.id.log_pass)).getText().toString();
-        new LoginTask().execute(new User(email,pass));
+        String token = "";
+        SharedPreferences prefs = getSharedPreferences("appData", MODE_PRIVATE);
+        token = prefs.getString("firebaseToken", "");
+        new LoginTask().execute(new User(email,pass,token));
     }
 
 

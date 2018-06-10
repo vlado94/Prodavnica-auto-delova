@@ -4,14 +4,16 @@ public class User {
 
     private String Email;
     private String Password;
+    private String FirebaseToken;
 
     public User(){
 
     }
 
-    public User(String email, String password) {
+    public User(String email, String password, String firebaseToken) {
         Email = email;
         Password = password;
+        FirebaseToken = firebaseToken;
     }
 
     public String getEmail() {
@@ -28,5 +30,13 @@ public class User {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getFirebaseToken() {
+        return FirebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        FirebaseToken = firebaseToken;
     }
 }

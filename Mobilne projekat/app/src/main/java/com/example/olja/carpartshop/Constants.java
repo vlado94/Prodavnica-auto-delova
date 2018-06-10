@@ -30,7 +30,6 @@ public class Constants {
     public static String url = "192.168.0.11:52387";
     public static User loggedUser = null;
 
-
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         String response = null;
@@ -91,4 +90,5 @@ public class Constants {
     public static void setLoggedUser(User loggedUser) {
         Constants.loggedUser = loggedUser;
     }
+
 }
