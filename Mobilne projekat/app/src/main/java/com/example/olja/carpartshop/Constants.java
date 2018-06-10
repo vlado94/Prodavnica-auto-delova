@@ -1,27 +1,35 @@
 package com.example.olja.carpartshop;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 
+import com.example.olja.carpartshop.user.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Constants {
 
-<<<<<<< HEAD
-    public static String url = "192.168.137.43:52387";
-=======
-    public static String url = "192.168.137.118:52387";
->>>>>>> ecaccce1ba5a9110f183a3627c04600120504baa
+    public static String url = "192.168.0.11:52387";
+    public static User loggedUser = null;
+
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -76,4 +84,11 @@ public class Constants {
         return new ArrayList<T>();
     }
 
+    public static User getLoggedUser() {
+        return loggedUser;
+    }
+
+    public static void setLoggedUser(User loggedUser) {
+        Constants.loggedUser = loggedUser;
+    }
 }
