@@ -13,7 +13,7 @@ namespace CarPartsServer.Models
     
         */
         public string Phone { get; set; }
-        public ICollection<Address> Addresses { get; set; }
+        public Address Address { get; set; }
         public ICollection<CarBrand> CarBrands { get; set; }
     }
 }

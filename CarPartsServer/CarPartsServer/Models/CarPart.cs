@@ -15,7 +15,6 @@ namespace CarPartsServer.Models
         public int Quantity { get; set; }
         public int VisitsNumber { get; set; }
         public DateTime PublishDate { get; set; }
-        public int IpAddresses { get; set; }
         
         public int CarBrandID { get; set; }
         public CarBrand CarBrand { get; set; }

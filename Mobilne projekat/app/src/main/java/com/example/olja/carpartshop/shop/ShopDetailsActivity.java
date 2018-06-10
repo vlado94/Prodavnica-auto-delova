@@ -3,6 +3,7 @@ package com.example.olja.carpartshop.shop;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.location.Geocoder;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -53,10 +54,10 @@ import java.util.Scanner;
 public class ShopDetailsActivity extends AppCompatActivity  {
 
     private GoogleMap mGoogleMap;
-    private ListView listAddresses;
     private ListView carBrandsListView;
 
     private TextView shopNameDetails;
+    private TextView address;
     private ImageView viewCarPartsIcon;
 
     private int shopId;
@@ -67,7 +68,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         setContentView(R.layout.shop_details);
 
         shopNameDetails = (TextView) findViewById(R.id.shopNameDetails);
-        listAddresses = (ListView) findViewById(R.id.addresesListView);
+        address = (TextView) findViewById(R.id.address);
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
         viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
         viewCarPartsIcon.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +99,21 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                Geocoder coder= new Geocoder(getApplicationContext());
                 LatLng latLng = new LatLng(1.289545, 103.849972);
                 googleMap.addMarker(new MarkerOptions().position(latLng)
                         .title("Singapore"));
               //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+
+
+                string address = "Stavanger, Norway";
+
+                var locationService = new GoogleLocationService();
+                var point = locationService.GetLatLongFromAddress(address);
+
+                var latitude = point.Latitude;
+                var longitude = point.Longitude;
             }
 
 
@@ -148,16 +159,8 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(Shop shop) {
             shopNameDetails.setText(shop.getName());
-            final List<String> fruits_list = new ArrayList<String>();
-            List<Address> addresses = shop.getAddresses();
-            for (Address address:addresses) {
-                String newAddress = address.getStreet()+ "\t" + address.getNumber() +"\t" + address.getCity().getName();
-                fruits_list.add(newAddress);
-            }
-
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
-                    (mContext,android.R.layout.simple_list_item_1, fruits_list);
-            listAddresses.setAdapter(arrayAdapter);
+            String newAddress = shop.getAddress().getStreet()+ "\t" + shop.getAddress().getNumber() +"\t" + shop.getAddress().getCity().getName();
+            address.setText(newAddress);
 
             final List<String> car_brands_list = new ArrayList<String>();
             for (CarBrand carBrand:shop.getCarBrands()) {

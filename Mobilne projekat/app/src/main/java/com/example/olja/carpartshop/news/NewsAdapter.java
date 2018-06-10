@@ -45,7 +45,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
     @Override
     public void onBindViewHolder(CarPartViewHolder holder, int position) {
         News weatherForThisDay = listData.get(position);
-        holder.shortDescription.setText(weatherForThisDay.getShortDescription());
+        holder.titleNews.setText(weatherForThisDay.getTitle());
 
         String parsedDate = parse(weatherForThisDay.getPubishDate());
         holder.dateForNews.setText(parsedDate);
@@ -76,12 +76,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CarPartViewHol
 /*View holder kao unutrasnja klasa*/
     public class CarPartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public final TextView shortDescription;
+    public final TextView titleNews;
     public final TextView dateForNews;
 
         public CarPartViewHolder(View view) {
             super(view);
-            shortDescription = (TextView) view.findViewById(R.id.shortDescription);
+            titleNews = (TextView) view.findViewById(R.id.titleNews);
             dateForNews = (TextView) view.findViewById(R.id.dateForNews);
             view.setOnClickListener(this);
         }

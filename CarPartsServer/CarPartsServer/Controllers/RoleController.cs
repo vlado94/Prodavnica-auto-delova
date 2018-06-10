@@ -49,11 +49,6 @@ namespace CarPartsServer.Controllers
 
                         db.SaveChanges();
 
-
-                        db.Shops.Include(x => x.Addresses).First(x => x.ID == 1).Addresses.Add(db.Addresses.First(y => y.ID == 1));
-                        db.Shops.Include(x => x.Addresses).First(x => x.ID == 2).Addresses.Add(db.Addresses.First(y => y.ID == 1));
-
-                        db.SaveChanges();
                     }
                 }
 

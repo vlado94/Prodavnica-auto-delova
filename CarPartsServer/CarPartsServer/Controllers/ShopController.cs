@@ -21,7 +21,7 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 retval = db.Shops
-                    .Include(x=>x.Addresses.Select(y=>y.City))
+                    .Include(x=>x.Address.City)
                     .Include(x=>x.CarBrands)
                     .FirstOrDefault(x => x.ID == id);
             }
@@ -34,7 +34,7 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 retval = db.Shops
-                    .Include(x=>x.Addresses)
+                    .Include(x=>x.Address)
                     .Include(x=>x.CarBrands)
                     .ToList();
             }
