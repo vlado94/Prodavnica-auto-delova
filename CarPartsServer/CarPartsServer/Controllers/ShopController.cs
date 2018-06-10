@@ -48,6 +48,7 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 retval = db.Shops.Add(model);
+                db.SaveChanges();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }

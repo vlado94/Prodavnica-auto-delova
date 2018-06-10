@@ -2,6 +2,7 @@ package com.example.olja.carpartshop.user;
 
 public class User {
 
+    private int ID = 0;
     private String Email;
     private String Password;
     private String FirebaseToken;
@@ -38,5 +39,13 @@ public class User {
 
     public void setFirebaseToken(String firebaseToken) {
         FirebaseToken = firebaseToken;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }

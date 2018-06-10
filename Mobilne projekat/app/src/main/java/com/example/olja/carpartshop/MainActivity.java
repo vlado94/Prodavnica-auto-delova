@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         adapter.addFragment(new NewsFragment(), "NewsFragment");
         adapter.addFragment(new NotificationsFragment(), "NotificationsFragment");
         adapter.addFragment(new TermsOfUseFragment(), "TermsOfUseFragment");
+        adapter.addFragment(new CreateShopFragment(), "CreateShopFragment");
 
         viewPager.setAdapter(adapter);
     }
@@ -188,6 +189,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 setViewPager(8);
                 break;
             }
+            case R.id.addShop: {
+                setViewPager(9);
+                break;
+            }
         }
         //close navigation drawer
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -207,6 +212,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 tv.setText(loggedUser.getEmail());
                 Constants.setLoggedUser(loggedUser);
             }
+        }
+        else{
+            ((NavigationView)findViewById(R.id.nav_view)).getMenu().findItem(R.id.addShop).setVisible(false);
         }
 
     }
