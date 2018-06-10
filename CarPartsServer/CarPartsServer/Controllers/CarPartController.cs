@@ -38,6 +38,30 @@ namespace CarPartsServer.Controllers
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Search(string carPart, string carBrand, double? maxPrice, double? minPrice)
+        {
+            List<CarPart> retval = null;
+            using (var db = new EfContext())
+            {
+                var query = db.CarParts
+                    .Include(x => x.CarBrand);
+                if (!carBrand.Equals("") && !carBrand.Equals("Nije odabrano"))
+                    query = query.Where(x => x.CarBrand.Name.Equals(carBrand));
+
+                if (!carPart.Equals(""))
+                    query = query.Where(x => x.Name.Equals(carPart));
+
+                if (maxPrice != null && maxPrice.Value > 0)
+                    query = query.Where(x => x.Price < maxPrice);
+
+                if (minPrice != null && minPrice.Value > 0)
+                    query = query.Where(x => x.Price > minPrice);
+
+                retval = query.ToList();
+            }
+            return Json(retval, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult Save(CarPart model)
         {
