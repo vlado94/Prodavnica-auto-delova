@@ -31,7 +31,7 @@ import java.util.Set;
 
 public class Constants {
 
-    public static String url = "192.168.2.136:52387";
+    public static String url = "192.168.0.12:52387";
     public static User loggedUser = null;
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
