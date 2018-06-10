@@ -18,20 +18,21 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="100dp"
         android:textColor="#ffffff"
+        android:id="@+id/logged_user"
         />
 
     <android.support.v7.widget.AppCompatImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="202dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="190dp"
         android:layout_marginTop="100dp"
         android:src="@drawable/login"
         android:id="@+id/loginbtn"
         />
 
     <android.support.v7.widget.AppCompatImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:layout_marginLeft="240dp"
         android:layout_marginTop="100dp"
         android:src="@drawable/signup"

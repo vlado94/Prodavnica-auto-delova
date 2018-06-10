@@ -2,6 +2,7 @@ package com.example.olja.carpartshop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.olja.carpartshop.country.CountriesActivity;
@@ -24,6 +26,11 @@ import com.example.olja.carpartshop.news.NewsAdapter;
 import com.example.olja.carpartshop.news.NewsDetailActivity;
 import com.example.olja.carpartshop.services.getFromLinkIntentService;
 import com.example.olja.carpartshop.shop.ShopAdapter;
+import com.example.olja.carpartshop.user.User;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
 
@@ -59,8 +66,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
 
         Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
-       this.startService(intentToSyncImmediately);
+        this.startService(intentToSyncImmediately);
 
+        setLoggedUser();
     }
 
 
@@ -185,4 +193,22 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    private void setLoggedUser() {
+        View hv = ((NavigationView)findViewById(R.id.nav_view)).getHeaderView(0);
+
+        SharedPreferences prefs = getSharedPreferences("appData", MODE_PRIVATE);
+        String loggedUserJsonStr = prefs.getString("loggedUser", null);
+        if (loggedUserJsonStr != null) {
+            User loggedUser = new Gson().fromJson(loggedUserJsonStr, User.class);
+            if (loggedUser != null) {
+                TextView tv = hv.findViewById(R.id.logged_user);
+                tv.setText(loggedUser.getEmail());
+                Constants.setLoggedUser(loggedUser);
+            }
+        }
+
+    }
+
 }

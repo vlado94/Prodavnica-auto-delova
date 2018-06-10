@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Web.Security;
 
 namespace CarPartsServer.Controllers
 {
@@ -211,6 +212,15 @@ namespace CarPartsServer.Controllers
                 db.SaveChanges();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Login(User userr)
+        {
+            using (var db = new EfContext())
+            {
+                User user = db.Users.FirstOrDefault(x => x.Email == userr.Email && x.Password == userr.Password);
+                return Json(user, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

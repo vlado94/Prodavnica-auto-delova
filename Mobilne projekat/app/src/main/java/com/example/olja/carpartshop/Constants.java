@@ -3,6 +3,7 @@ package com.example.olja.carpartshop;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import com.example.olja.carpartshop.user.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,7 +28,7 @@ import java.util.Scanner;
 public class Constants {
 
     public static String url = "192.168.0.11:52387";
-
+    public static User loggedUser = null;
 
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
@@ -83,54 +84,11 @@ public class Constants {
         return new ArrayList<T>();
     }
 
-
-
-    public static void sendPost(final String controller, final String methond, final Object obj) {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL("http://192.168.0.11:52387/"+controller+"/" + methond);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(true);
-                    conn.setDoInput(true);
-                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-                    //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
-                    Gson gson = new Gson();
-                    os.writeBytes(gson.toJson(obj));
-                    int responseCode = conn.getResponseCode();
-
-                    // get response
-                    BufferedReader bufferedReader = null;
-                    if (responseCode > 199 && responseCode < 300) {
-                        bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    } else {
-                        bufferedReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-                    }
-
-                    // To receive the response
-                    StringBuilder content = new StringBuilder();
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        content.append(line).append("\n");
-                    }
-                    String output = content.toString();
-                    bufferedReader.close();
-                    os.flush();
-                    os.close();
-
-
-                    conn.disconnect();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        thread.start();
+    public static User getLoggedUser() {
+        return loggedUser;
     }
 
+    public static void setLoggedUser(User loggedUser) {
+        Constants.loggedUser = loggedUser;
+    }
 }
