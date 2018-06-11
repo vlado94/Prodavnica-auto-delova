@@ -59,7 +59,6 @@ public class ShopDetailsActivity extends AppCompatActivity  {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_details);
-
         shopNameDetails = (TextView) findViewById(R.id.shopNameDetails);
         addresesListView = (ListView) findViewById(R.id.addresesListView);
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
@@ -79,6 +78,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Detalji prodavnice");
         }
         Intent intentThatStartedThisActivity = getIntent();
         if (intentThatStartedThisActivity.hasExtra("shopId")) {
@@ -88,25 +88,28 @@ public class ShopDetailsActivity extends AppCompatActivity  {
 
         }
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.shop_map);
+        /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.shop_map);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 Geocoder coder= new Geocoder(getApplicationContext());
                 LatLng latLng = new LatLng(1.289545, 103.849972);
                 googleMap.addMarker(new MarkerOptions().position(latLng)
-                        .title("Singapore"));
+                        .title("Prodavnica"));
               //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
             }
 
 
-        });
+        });*/
 
     }
 
     public class GetShopByIdTask extends AsyncTask<Integer, Void, Shop> {
         private Context mContext;
+        private double latitude;
+        private  double longitude;
+
         public GetShopByIdTask (Context context){
             mContext = context;
         }
@@ -143,8 +146,6 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(Shop shop) {
             shopNameDetails.setText(shop.getName());
-            //String newAddress = shop.getAddress();
-            //address.setText(newAddress);
 
             final List<String> car_brands_list = new ArrayList<String>();
             for (CarBrand carBrand:shop.getCarBrands()) {
@@ -161,8 +162,21 @@ public class ShopDetailsActivity extends AppCompatActivity  {
                     (mContext,android.R.layout.simple_list_item_1, address_list );
             carBrandsListView.setAdapter(carBrandsListAdapter);
             addresesListView.setAdapter(addresListAdapter);
+            latitude = shop.getLatitude();
+            longitude = shop.getLatitude();
 
-
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.shop_map);
+            mapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    Geocoder coder= new Geocoder(getApplicationContext());
+                    LatLng latLng = new LatLng(latitude, longitude);
+                    googleMap.addMarker(new MarkerOptions().position(latLng)
+                            .title("Prodavnica"));
+                    //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+                }
+            });
         }
     }
 

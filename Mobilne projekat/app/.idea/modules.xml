@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Mobilne projekat.iml" filepath="$PROJECT_DIR$/../Mobilne projekat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" />
-      <module fileurl="file://C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\Mobilne projekat\app\app.iml" filepath="C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\Mobilne projekat\app\app.iml" />
     </modules>
   </component>
 </project>

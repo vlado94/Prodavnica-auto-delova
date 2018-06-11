@@ -44,6 +44,7 @@ public class ListCarPartsForShopActivity extends AppCompatActivity  implements C
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Prodavnice");
         }
 
 

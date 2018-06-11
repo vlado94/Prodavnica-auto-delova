@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using GoogleMaps.LocationServices;
+
 namespace CarPartsServer.Controllers
 {
     public class ShopController : Controller
@@ -77,7 +79,11 @@ namespace CarPartsServer.Controllers
                     }
                 }
 
-                if(model.UserId != null)
+                var locationService = new GoogleLocationService();
+                var point = locationService.GetLatLongFromAddress(model.Address);
+                model.Latitude = point.Latitude;
+                model.Longitude = point.Longitude;
+                if (model.UserId != null)
                 {
                     User u = db.Users.FirstOrDefault(x => x.ID == model.UserId);
                     u.Shop = model;

@@ -63,6 +63,7 @@ public class CarPartInformationsActivity  extends AppCompatActivity {
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Detalji proizvoda");
         }
 
         Intent intentThatStartedThisActivity = getIntent();
