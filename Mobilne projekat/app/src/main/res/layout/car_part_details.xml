@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/car_part_details_icon"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:orientation="vertical"
         android:paddingLeft="30dp"
         android:paddingRight="30dp">
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="28sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:textAlignment="center"
         android:text="NAZIV PROIZVODA"
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/secondary_text"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="italic"
         android:textAlignment="center"
         android:text="Neki kratak opis "
@@ -54,14 +54,14 @@
         app:layout_constraintTop_toBottomOf="@id/car_part_details_short_desc"
         android:orientation="horizontal"
         app:layout_constraintRight_toRightOf="parent"
-        android:paddingTop="30dp">
+        android:paddingTop="20dp">
         <TextView
             android:id="@+id/car_part_details_price"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textStyle="bold|italic"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="35sp"
+            android:textSize="30sp"
             android:textAlignment="center"
             android:text="134 RSD"
 
@@ -74,54 +74,156 @@
             android:src="@mipmap/price3_round"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/car_part_details_labelLongDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
+
+
+    <View
+        android:id="@+id/car_part_details_separator1"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentRight="true"
         app:layout_constraintTop_toBottomOf="@id/car_part_details_prices"
-        android:text="Detaljan opis"
-        android:textStyle="bold"
-        android:textSize="25sp"/>
+        android:layout_marginTop="20dp"
+        android:background="#FFDDDDDD" />
 
 
     <ScrollView
         android:id="@+id/car_part_details_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/car_part_details_labelLongDesc"
-        app:layout_constraintLeft_toLeftOf="parent">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        app:layout_constraintTop_toBottomOf="@id/car_part_details_separator1"
+        app:layout_constraintBottom_toBottomOf="parent"
+android:scrollbars="vertical">
 
+        <!--app:layout_constraintTop_toBottomOf="@id/car_part_details_separator1"-->
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/car_part_details_constraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
 
-            android:text="Detdsgsgdsalsgdsgdsjan gsdgdsgopisgsgs"
-            android:textSize="25sp"/>
-
-    </ScrollView>
-
-    <!--
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/car_part_details_scroll"
+        android:id="@+id/car_part_details_layoutName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/car_part_details_constraint"
+        android:paddingTop="20dp"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/car_part_details_labelShop"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Prodavnica :"
             android:textStyle="bold"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
         <TextView
-            android:id="@+id/car_part_details_nameOfShop"
-            android:layout_width="match_parent"
+            android:id="@+id/car_part_details_shopName"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Prodavnica br1"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
+
+
     </LinearLayout>
-    -->
+
+    <LinearLayout
+        android:id="@+id/car_part_details_layoutQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/car_part_details_layoutName"
+        app:layout_constraintLeft_toLeftOf="@id/car_part_details_constraint"
+        android:paddingTop="20dp"
+
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/car_part_details_labelQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kolicina na stanju :"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/car_part_details_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 13"
+            android:textSize="20sp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/car_part_details_layoutCarBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/car_part_details_layoutQuantity"
+        app:layout_constraintLeft_toLeftOf="@id/car_part_details_constraint"
+        android:paddingTop="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/car_part_details_labelCarBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brend :"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/car_part_details_carBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Mercedes"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/car_part_details_layoutButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/car_part_details_layoutCarBrand"
+        app:layout_constraintRight_toRightOf="@id/car_part_details_constraint"
+        android:paddingTop="20dp"
+        android:orientation="horizontal">
+        <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/notify_round"
+       />
+        <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/call_icon_round"
+
+
+        />
+    </LinearLayout>
+
+
+
+   <TextView
+        android:id="@+id/car_part_details_labelLongDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/car_part_details_layoutButtons"
+        android:paddingTop="20dp"
+        android:text="Detaljan opis :"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+
+    <TextView
+        android:id="@+id/car_part_details_longDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/car_part_details_labelLongDesc"
+        android:paddingTop="20dp"
+        android:text="Ddsadassdasdaesdadsadsdaaaaaaaaaaaaaaaaaaaaaddddddddddddddddsdsadadsaddsasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaatalsdadasdadsasasdsdajdsadaandsad opis :"
+        android:textSize="20sp"/>
+
+</android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 
 
     <android.support.constraint.Guideline

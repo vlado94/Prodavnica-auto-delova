@@ -23,7 +23,10 @@ namespace CarPartsServer.Controllers
             {
                 db.CarParts.FirstOrDefault(x => x.ID == id).VisitsNumber++;
                 db.SaveChanges();
-                retval = db.CarParts.FirstOrDefault(x => x.ID == id);
+                retval = db.CarParts
+                    .Include(x=>x.Shop)
+                    .Include(x=>x.CarBrand)
+                    .FirstOrDefault(x => x.ID == id);
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
