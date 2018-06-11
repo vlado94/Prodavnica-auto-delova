@@ -6,6 +6,7 @@ public class User {
     private String Email;
     private String Password;
     private String FirebaseToken;
+    private int ShopID = 0;
 
     public User(){
 
@@ -47,5 +48,13 @@ public class User {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public int getShopID() {
+        return ShopID;
+    }
+
+    public void setShopID(int shopID) {
+        ShopID = shopID;
     }
 }

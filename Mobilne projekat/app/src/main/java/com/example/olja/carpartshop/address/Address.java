@@ -27,6 +27,10 @@ public class Address {
 
     }
 
+    public Address(int ID) {
+        this.ID = ID;
+    }
+
     public Address(int ID, String street, int number, int cityId, com.example.olja.carpartshop.city.City city, boolean isDeleted) {
         this.ID = ID;
         Street = street;

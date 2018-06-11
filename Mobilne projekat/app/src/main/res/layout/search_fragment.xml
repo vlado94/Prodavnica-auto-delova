@@ -4,13 +4,42 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/carPart"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="25sp"
+        android:hint="Deo"
+        android:inputType="text" />
+
+    <Spinner
+        android:id="@+id/carBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/carBrandsList"
+        android:layout_marginTop="40dp"/>
+
+
+    <EditText
+        android:id="@+id/maxPrice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cena od din "
+        android:layout_marginTop="80dp"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/minPrice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cena do din"
+        android:layout_marginTop="120dp"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:text="Pretraga"
-        android:layout_marginTop="40dp"
-        android:id="@+id/textTitle6"/>
+        android:layout_marginTop="160dp" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,10 +18,13 @@ namespace CarPartsServer.Models
         public DateTime PublishDate { get; set; }
         public int IpAddresses { get; set; }
         
-        public int CarBrandID { get; set; }
+        public int? CarBrandID { get; set; }
         public CarBrand CarBrand { get; set; }
 
-        public int ShopID { get; set; }
+        public int? ShopID { get; set; }
         public Shop Shop { get; set; }
+
+        [NotMapped]
+        public int? UserID { get; set; }
     }
 }

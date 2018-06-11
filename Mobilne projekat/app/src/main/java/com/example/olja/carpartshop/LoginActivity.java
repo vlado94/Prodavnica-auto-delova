@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 SharedPreferences.Editor editor = getSharedPreferences("appData", MODE_PRIVATE).edit();
                 editor.putString("loggedUser", jsonObject.toString());
                 editor.apply();
-
+                Constants.hasShop = false;
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }

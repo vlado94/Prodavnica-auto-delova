@@ -32,6 +32,8 @@ public class CarPart {
     private int ShopID;
     private Shop shop;
 
+    private int UserID = 0;
+
     private boolean IsDeleted;
 
     public  CarPart(){
@@ -165,4 +167,11 @@ public class CarPart {
         return IsDeleted;
     }
 
+    public int getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(int userID) {
+        UserID = userID;
+    }
 }

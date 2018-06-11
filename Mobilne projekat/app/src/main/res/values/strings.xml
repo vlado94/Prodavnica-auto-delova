@@ -9,4 +9,14 @@
 
     <string name="pref_location_default" translatable="false">Mountain View, CA 94043</string>
     <string name="title_activity_shop_maps">Map</string>
+
+    <string-array name="carBrandsList">
+        <item>Nije odabrano</item>
+        <item>Opel</item>
+        <item>Volkswagen</item>
+        <item>Citroen</item>
+        <item>Peugeot</item>
+        <item>Mini</item>
+    </string-array>
+
 </resources>

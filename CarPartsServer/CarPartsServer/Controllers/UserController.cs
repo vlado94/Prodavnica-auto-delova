@@ -22,19 +22,58 @@ namespace CarPartsServer.Controllers
 
                     db.News.Add(new News
                     {
-                        Title = "Vijest 1",
-                        PubishDate = new DateTime(2018,2,12),
-                        ShortDescription = "Opis neki",
-                        LongDescription = "Opis opis opis opis dugi dugi dugi"
+                        Title = "Uskoro nove kazne za preko 2,0 promila i nasilničku vožnju",
+                        PubishDate = new DateTime(2018, 2, 12),
+                        ShortDescription = "Najnovije izmene Zakona o bezbednosti saobraćaja donose i novčanu kaznu za nasilničku vožnju, u koju spada i vožnja sa više od 2,0 promila alkohola u krvi. Dakle, do sada se za nasilničku vožnju nije izricala i novčana kazna.",
+                        LongDescription = "Pogledajmo kolike će uskoro biti kazne. " +
+                            "Šta je to nasilnička vožnja ? " +
+                            "1)  kada dva ili više puta prođete kroz crveno na semaforu za manje od 10 minuta " +
+                            "2)  kada pretičete kolonu vozila pri čemu prelazite ili se krećete po punoj liniji " +
+                            "3)  kada vozite u naselju brzinom koja je za više od 90 km / h veća od dozvoljene ili van naselja brzinom koja je za više od 100 km / h veća od dozvoljene " +
+                            "4)  kada vozite sa više od 2,0 promila alkohola u krvi "
                     });
 
                     db.News.Add(new News
                     {
-                        Title = "Vijest 2",
+                        Title = "Mađari ne priznaju potvrdu o produženju važenja saobraćajnih dozvola",
                         PubishDate = new DateTime(2018, 12, 07),
-                        ShortDescription = "Opis neki neki ",
-                        LongDescription = "Opisfsafa opis opis faasf opis dugi dugi dugi"
+                        ShortDescription = "Mađarska granična policija ne priznaje potvrdu kojom se produžava važenje saobraćajne dozvole na kojoj piše da je istekla",
+                        LongDescription = "Već smo pisali o tom problemu kada je Crna Gora u pitanju, ali su nam iz tamošnje policije dali zvanično objašnjenje da nikakvih problema nema. " +
+                            "Što se tiče glasina da su neki vozači imali probleme na granici sa drugim državama, " +
+                            "ispostavilo se da je problem ipak realan.Javilo nam se više vozača koji nisu mogli da uđu u Mađarsku. " +
+
+                            "Sada se i zvanično saznaje da je naša policija svesna tog problema.Nažalost, " +
+                            "niko nije i zvanično upozorio vozače na taj problem. " +
+
+                            "Takođe se nezvanično saznaje da je mađarska granična policija dobila nalog da ne priznaje te potvrde, " +
+                            "te da nije reč o hiru pojedinih graničara. " +
+
+                            "Navodno, " +
+                            "naša policija radi sa mađarskom na rešavanju tog problema.Do tada,  " +
+                            "ukoliko imate potvrdu o produženju saobraćajne,  " +
+                            "odustanite od puta u Mađarsku, " +
+                            "a videćemo da li i sa drugim zemljama postoje slični problemi."
                     });
+
+                    db.News.Add(new News
+                    {
+                        Title = "Da li se isplati sipati benzin od 98/100 oktana?",
+                        ShortDescription = "Sipao sam benzin od 100 oktana i auto mi sad ide kao mećava!",
+                        PubishDate = new DateTime(2018, 3, 4),
+                        LongDescription = "A da li verujete da visokooktanski benzin stvarno tako deluje na automobil? Priča nije crno-bela, pa moramo da se potrudimo da objašnjavamo što jednostavnije kako ne bismo samo uneli dodatnu konfuziju." +
+                        "Zablude u vezi oktana " +
+
+                        "Prvo da razjasnimo čestu zabludu - viši oktanski broj nam ne govori da je neko gorivo „jače“, " +
+                        "čistije ili kvalitetnije.Ne znači ni da ima veću energetsku vrednost, " +
+                        "pa da zbog toga automobil može da razvije veću snagu. " +
+
+                        "Šta je to oktanski broj ? " +
+
+                        "Oktanski broj nam govori koliki pritisak benzin može da izdrži pre nego što se(nekontrolisano) zapali,  " +
+                        "odnosno „detonira“. Drugim rečima, " +
+                        "oktanski broj označava otpornost benzina na samozapaljenje kada smeša benzina i vazduha počne da se sabija u cilindru dok se klip kreće na gore.Ova smeša ne sme da se zapali „samoinicijativno“ pre nego što svećica baci varnicu."
+                    });
+
 
                     db.SaveChanges();
 
@@ -49,37 +88,35 @@ namespace CarPartsServer.Controllers
                         });
                     }
                     db.SaveChanges();
-                }
-                List<string> cities = new List<string> { "Beograd", "Novi Sad", "Sabac", "Sarajevo", "Mostar", "Podgorica", "Budva", "Kotor" };
-                AddCity(cities.ElementAt(0), 1);
-                AddCity(cities.ElementAt(1), 1);
-                AddCity(cities.ElementAt(2), 1);
-                AddCity(cities.ElementAt(3), 2);
-                AddCity(cities.ElementAt(4), 2);
-                AddCity(cities.ElementAt(5), 3);
-                AddCity(cities.ElementAt(6), 3);
-                AddCity(cities.ElementAt(7), 3);
 
-                db.CarBrands.Add(new CarBrand()
-                {
-                    IsDeleted = false,
-                    Name = "Ford",
-                });
-                db.CarBrands.Add(new CarBrand()
-                {
-                    IsDeleted = false,
-                    Name = "Audi",
-                });
-                db.CarBrands.Add(new CarBrand()
-                {
-                    IsDeleted = false,
-                    Name = "Mercedes",
-                });
-                db.SaveChanges();
+                    List<string> cities = new List<string> { "Beograd", "Novi Sad", "Sabac", "Sarajevo", "Mostar", "Podgorica", "Budva", "Kotor" };
+                    AddCity(cities.ElementAt(0), 1);
+                    AddCity(cities.ElementAt(1), 1);
+                    AddCity(cities.ElementAt(2), 1);
+                    AddCity(cities.ElementAt(3), 2);
+                    AddCity(cities.ElementAt(4), 2);
+                    AddCity(cities.ElementAt(5), 3);
+                    AddCity(cities.ElementAt(6), 3);
+                    AddCity(cities.ElementAt(7), 3);
+
+                    db.CarBrands.Add(new CarBrand()
+                    {
+                        IsDeleted = false,
+                        Name = "Ford",
+                    });
+                    db.CarBrands.Add(new CarBrand()
+                    {
+                        IsDeleted = false,
+                        Name = "Audi",
+                    });
+                    db.CarBrands.Add(new CarBrand()
+                    {
+                        IsDeleted = false,
+                        Name = "Mercedes",
+                    });
+                    db.SaveChanges();
 
 
-                if (db.Addresses.FirstOrDefault(x => x.Number.Equals(11)) == null)
-                {
 
                     Address ad = new Address
                     {
@@ -205,6 +242,8 @@ namespace CarPartsServer.Controllers
         [HttpPost]
         public ActionResult Save(User model)
         {
+            if (model.ShopID == 0)
+                model.ShopID = null;
             User retval = null;
             using (var db = new EfContext())
             {
