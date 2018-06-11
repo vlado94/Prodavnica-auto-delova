@@ -33,6 +33,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     private ArrayList<Shop> listData;
     private final ShopAdapter.ShopOnClickHandler mClickHandler;
     private Context context;
+    private String phone = "";
     public interface ShopOnClickHandler {
         void onClick(int newsId);
     }
@@ -92,7 +93,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             iconCallShop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    callPhoneNumber();
+                    callPhoneNumber(shopPhone.getText().toString());
                 }
             });
             view.setOnClickListener(this);
@@ -105,8 +106,10 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         }
     }
 
-    public void callPhoneNumber() {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "0653268080"));
+    public void callPhoneNumber(String shopPhone) {
+        if(!shopPhone.equals(""))
+            phone = shopPhone;
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone));
 
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.CALL_PHONE}, 101);

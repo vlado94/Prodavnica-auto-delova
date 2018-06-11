@@ -14,8 +14,12 @@ namespace CarPartsServer.Models
     
         */
         public string Phone { get; set; }
+<<<<<<< HEAD
         public string Address { get; set; }
         public ICollection<Address> Addresses { get; set; }
+=======
+        public Address Address { get; set; }
+>>>>>>> d1e36b76efeb05019c821a567f634c8fbb524efe
         public ICollection<CarBrand> CarBrands { get; set; }
 
 

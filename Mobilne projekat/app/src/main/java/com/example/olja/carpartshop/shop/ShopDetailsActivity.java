@@ -2,25 +2,20 @@ package com.example.olja.carpartshop.shop;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
-import android.media.Image;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.R;
@@ -28,7 +23,6 @@ import com.example.olja.carpartshop.address.Address;
 import com.example.olja.carpartshop.carBrand.CarBrand;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -53,10 +47,10 @@ import java.util.Scanner;
 public class ShopDetailsActivity extends AppCompatActivity  {
 
     private GoogleMap mGoogleMap;
-    private ListView listAddresses;
     private ListView carBrandsListView;
 
     private TextView shopNameDetails;
+    private TextView address;
     private ImageView viewCarPartsIcon;
 
     private int shopId;
@@ -67,7 +61,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         setContentView(R.layout.shop_details);
 
         shopNameDetails = (TextView) findViewById(R.id.shopNameDetails);
-        listAddresses = (ListView) findViewById(R.id.addresesListView);
+        address = (TextView) findViewById(R.id.address);
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
         viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
         viewCarPartsIcon.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +69,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             public void onClick(View v) {
 //ovdje treba implementirati poziv
 
-                Class destinationActivity = ListCarPartsForShop.class;
+                Class destinationActivity = ListCarPartsForShopActivity.class;
                 Intent startChildActivityIntent = new Intent(getApplicationContext(), destinationActivity);
                 startChildActivityIntent.putExtra("shopId",shopId);
                 startActivity(startChildActivityIntent);
@@ -98,6 +92,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                Geocoder coder= new Geocoder(getApplicationContext());
                 LatLng latLng = new LatLng(1.289545, 103.849972);
                 googleMap.addMarker(new MarkerOptions().position(latLng)
                         .title("Singapore"));
@@ -148,16 +143,8 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(Shop shop) {
             shopNameDetails.setText(shop.getName());
-            final List<String> fruits_list = new ArrayList<String>();
-            List<Address> addresses = shop.getAddresses();
-            for (Address address:addresses) {
-                String newAddress = address.getStreet()+ "\t" + address.getNumber() +"\t" + address.getCity().getName();
-                fruits_list.add(newAddress);
-            }
-
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
-                    (mContext,android.R.layout.simple_list_item_1, fruits_list);
-            listAddresses.setAdapter(arrayAdapter);
+            String newAddress = shop.getAddress().getStreet()+ "\t" + shop.getAddress().getNumber() +"\t" + shop.getAddress().getCity().getName();
+            address.setText(newAddress);
 
             final List<String> car_brands_list = new ArrayList<String>();
             for (CarBrand carBrand:shop.getCarBrands()) {

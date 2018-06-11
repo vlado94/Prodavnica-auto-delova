@@ -10,4 +10,8 @@
 
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
+
+
+    <color name= "color_price">#ec1717</color>
+    <color name= "gold">#ecb017</color>
 </resources>

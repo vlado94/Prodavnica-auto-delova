@@ -25,7 +25,6 @@ public class CarPart {
     private int quantity;
     private int visitsNumber;
     private Date publishDate;
-    private int ipAddresses;
     private int CarBrandID;
     private CarBrand CarBrand;
 
@@ -48,7 +47,6 @@ public class CarPart {
         this.quantity = quantity;
         this.visitsNumber = visitsNumber;
         this.publishDate = publishDate;
-        this.ipAddresses = ipAddresses;
         CarBrandID = carBrandID;
         CarBrand = carBrand;
         ShopID = shopID;
@@ -118,14 +116,6 @@ public class CarPart {
 
     public void setPublishDate(Date publishDate) {
         this.publishDate = publishDate;
-    }
-
-    public int getIpAddresses() {
-        return ipAddresses;
-    }
-
-    public void setIpAddresses(int ipAddresses) {
-        this.ipAddresses = ipAddresses;
     }
 
     public int getCarBrandID() {
