@@ -18,6 +18,10 @@ public class Shop {
 
     private String Address;
 
+    private double Longitude;
+
+    private double Latitude;
+
     private List<CarBrand> CarBrands;
     private boolean IsDeleted;
     private int UserId = 0;
@@ -78,5 +82,29 @@ public class Shop {
 
     public void setAddress(String address) {
         Address = address;
+    }
+
+    public double getLongitude() {
+        return Longitude;
+    }
+
+    public double getLatitude() {
+        return Latitude;
+    }
+
+    public boolean isDeleted() {
+        return IsDeleted;
+    }
+
+    public void setLongitude(double longitude) {
+        Longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        Latitude = latitude;
+    }
+
+    public void setDeleted(boolean deleted) {
+        IsDeleted = deleted;
     }
 }

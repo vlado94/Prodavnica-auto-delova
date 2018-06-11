@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Naslovna");
+
         setNavigationViewListener();
         setViewPager(0);
         ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
@@ -67,9 +69,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         SectionsStatePageAdapter adapter = new SectionsStatePageAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment(), "HomeFragment");
         adapter.addFragment(new SearchFragment(), "SearchFragment");
-        adapter.addFragment(new DetailSearchFragment(), "DetailSearchFragment");
         adapter.addFragment(new ShopsSearchFragment(), "ShopsSearchFragment");
-        adapter.addFragment(new MostRecentFragment(), "MostRecentFragment");
         adapter.addFragment(new MostPopularFragment(), "MostPopularFragment");
         adapter.addFragment(new NewsFragment(), "NewsFragment");
         adapter.addFragment(new NotificationsFragment(), "NotificationsFragment");
@@ -153,40 +153,32 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 setViewPager(1);
                 break;
             }
-            case R.id.detailSearch: {
+            case R.id.shopsSearch: {
                 setViewPager(2);
                 break;
             }
-            case R.id.shopsSearch: {
+            case R.id.mostPopular: {
                 setViewPager(3);
                 break;
             }
-            case R.id.mostRecent: {
+            case R.id.news: {
                 setViewPager(4);
                 break;
             }
-            case R.id.mostPopular: {
+            case R.id.notifications: {
                 setViewPager(5);
                 break;
             }
-            case R.id.news: {
+            case R.id.termsOfUse: {
                 setViewPager(6);
                 break;
             }
-            case R.id.notifications: {
+            case R.id.addShop: {
                 setViewPager(7);
                 break;
             }
-            case R.id.termsOfUse: {
-                setViewPager(8);
-                break;
-            }
-            case R.id.addShop: {
-                setViewPager(9);
-                break;
-            }
             case R.id.myShop: {
-                setViewPager(10);
+                setViewPager(8);
                 break;
             }
         }

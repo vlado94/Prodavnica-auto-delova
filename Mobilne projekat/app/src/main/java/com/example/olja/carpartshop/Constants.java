@@ -31,7 +31,9 @@ import java.util.Set;
 
 public class Constants {
 
+
     public static String url = "192.168.2.239:52387";
+
     public static User loggedUser = null;
     public static boolean hasShop = false;
 

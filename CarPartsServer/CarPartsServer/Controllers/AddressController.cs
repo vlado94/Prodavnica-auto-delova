@@ -43,16 +43,6 @@ namespace CarPartsServer.Controllers
             Address retval = null;
             using (var db = new EfContext())
             {
-                /*
-                var address = "75 Ninth Avenue 2nd and 4th Floors New York, NY 10011";
-                var locationService = new GoogleLocationService();
-                var point = locationService.GetLatLongFromAddress(address);
-
-                var latitude = point.Latitude;
-
-                var longitude = point.Longitude;
-                */
-
                 retval = db.Addresses.Add(model);
             }
             return Json(retval, JsonRequestBehavior.AllowGet);

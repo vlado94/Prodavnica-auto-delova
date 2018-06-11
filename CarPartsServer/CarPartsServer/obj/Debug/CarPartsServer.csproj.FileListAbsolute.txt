@@ -131,3 +131,4 @@ C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarParts
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Http.xml
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Http.WebHost.xml
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.csproj.CopyComplete
+C:\Users\Vladimir Stanojevic\Desktop\GitPMA\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.csprojResolveAssemblyReference.cache

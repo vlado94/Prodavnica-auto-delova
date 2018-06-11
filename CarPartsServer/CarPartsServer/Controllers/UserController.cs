@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.Web.Security;
+using GoogleMaps.LocationServices;
 
 namespace CarPartsServer.Controllers
 {
@@ -22,7 +23,7 @@ namespace CarPartsServer.Controllers
 
                     db.News.Add(new News
                     {
-                        Title = "Nove kazne za preko 2,0 promila",
+                        Title = "Alkohol",
                         PubishDate = new DateTime(2018, 2, 12),
                         ShortDescription = "Najnovije izmene Zakona o bezbednosti saobraćaja donose i novčanu kaznu za nasilničku vožnju, u koju spada i vožnja sa više od 2,0 promila alkohola u krvi. Dakle, do sada se za nasilničku vožnju nije izricala i novčana kazna.",
                         LongDescription = "Pogledajmo kolike će uskoro biti kazne. " +
@@ -35,7 +36,7 @@ namespace CarPartsServer.Controllers
 
                     db.News.Add(new News
                     {
-                        Title = "Saobraćajnu dozvola",
+                        Title = "Saobraćajna dozvola",
                         PubishDate = new DateTime(2018, 12, 07),
                         ShortDescription = "Mađarska granična policija ne priznaje potvrdu kojom se produžava važenje saobraćajne dozvole na kojoj piše da je istekla",
                         LongDescription = "Već smo pisali o tom problemu kada je Crna Gora u pitanju, ali su nam iz tamošnje policije dali zvanično objašnjenje da nikakvih problema nema. " +
@@ -57,7 +58,7 @@ namespace CarPartsServer.Controllers
 
                     db.News.Add(new News
                     {
-                        Title = "Benzin od 98/100 oktana?",
+                        Title = "Benzin jeftiniji?",
                         ShortDescription = "Sipao sam benzin od 100 oktana i auto mi sad ide kao mećava!",
                         PubishDate = new DateTime(2018, 3, 4),
                         LongDescription = "A da li verujete da visokooktanski benzin stvarno tako deluje na automobil? Priča nije crno-bela, pa moramo da se potrudimo da objašnjavamo što jednostavnije kako ne bismo samo uneli dodatnu konfuziju." +
@@ -77,21 +78,7 @@ namespace CarPartsServer.Controllers
 
                     db.SaveChanges();
 
-                    List<string> countries = new List<string> { "Srbija", "Bosna i Hercegovina", "Crna Gora" };
 
-                    for (int i = 0; i < countries.Count; i++)
-                    {
-                        db.Countries.Add(new Country
-                        {
-                            IsDeleted = false,
-                            Name = countries.ElementAt(i)
-                        });
-                    }
-                    db.SaveChanges();
-
-                    List<string> cities = new List<string> { "Beograd", "Novi Sad" };
-                    AddCity(cities.ElementAt(0), 1);
-                    AddCity(cities.ElementAt(1), 1);
 
                     db.CarBrands.Add(new CarBrand()
                     {
@@ -104,7 +91,6 @@ namespace CarPartsServer.Controllers
                         IsDeleted = false,
                         Name = "Volkswagen",
                     });
-
 
                     db.CarBrands.Add(new CarBrand()
                     {
@@ -123,37 +109,44 @@ namespace CarPartsServer.Controllers
                     });
                     db.SaveChanges();
 
-                    string[] streets = { "Bulevar oslobodjenja", "Puškinova", "Gogoljeva" };
-
-                   
-                    
-                   
-
                     Shop s1 = new Shop
                     {
                         Name = "Auto biznis",
                         Phone = "0653268080",
-                        Address = "Karadjordjeva s44",
+                        Address = "44, Karadjordjeva, Novi Sad,Srbija",
                         CarBrands = db.CarBrands.ToList()
                     };
+
+                    var locationService = new GoogleLocationService();
+                    var point = locationService.GetLatLongFromAddress(s1.Address);
+                    s1.Latitude = point.Latitude;
+                    s1.Longitude = point.Longitude;
+
                     db.Shops.Add(s1);
 
                     Shop s2 = new Shop
                     {
                         Name = "Auto centar vdv",
                         Phone = "0653268080",
-                        Address ="Jovana Jovanovica 3",
+                        Address = "44, Gogoljeva, Novi Sad,Srbija",
                         CarBrands = db.CarBrands.ToList()
                     };
+                    point = locationService.GetLatLongFromAddress(s2.Address);
+                    s2.Latitude = point.Latitude;
+                    s2.Longitude = point.Longitude;
                     db.Shops.Add(s2);
 
                     Shop s3 = new Shop
                     {
                         Name = "Slavija auto",
                         Phone = "0653268080",
-                        Address = "Petra Petrovica 5",
+                        Address = "20, Gogoljeva, Beograd,Srbija",
                         CarBrands = db.CarBrands.ToList()
                     };
+                    point = locationService.GetLatLongFromAddress(s3.Address);
+                    s3.Latitude = point.Latitude;
+                    s3.Longitude = point.Longitude;
+
                     db.Shops.Add(s3);
 
                     db.SaveChanges();
@@ -298,18 +291,6 @@ namespace CarPartsServer.Controllers
                         Shop = db.Shops.First(),
                     });
 
-
-
-
-
-
-
-
-
-
-
-
-
                     db.CarParts.Add(new CarPart()
                     {
                         Name = "Letva volana",
@@ -321,7 +302,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 3,
                         Price = 32,
                         CarBrand = db.CarBrands.First(),
-                        Shop = db.Shops.First(),
+                        Shop = db.Shops.ToList().ElementAt(2)
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -335,7 +316,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
-                        Shop = db.Shops.First(),
+                        Shop = db.Shops.ToList().ElementAt(2)
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -349,7 +330,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
-                        Shop = db.Shops.First(),
+                        Shop = db.Shops.ToList().ElementAt(2)
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -363,7 +344,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 22,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
-                        Shop = db.Shops.First(),
+                        Shop = db.Shops.ToList().ElementAt(2),
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -495,7 +476,7 @@ namespace CarPartsServer.Controllers
             }
         }
 
-        private void AddCity(string city,int countryID)
+        private void AddCity(string city, int countryID)
         {
             using (var db = new EfContext())
             {
@@ -508,17 +489,18 @@ namespace CarPartsServer.Controllers
                 db.SaveChanges();
             }
         }
-        public ActionResult Index() { 
+        public ActionResult Index()
+        {
             return View();
         }
-        
+
         public ActionResult Get(int id)
         {
 
             if (id == 99)
                 DataScript();
             User retval = null;
-            using(var db = new EfContext())
+            using (var db = new EfContext())
             {
                 retval = db.Users.FirstOrDefault(x => x.ID == id);
             }
@@ -554,12 +536,12 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 User user = db.Users.FirstOrDefault(x => x.Email == userr.Email && x.Password == userr.Password);
-                if(user!=null && !string.IsNullOrEmpty(userr.FirebaseToken))
+                if (user != null && !string.IsNullOrEmpty(userr.FirebaseToken))
                 {
                     user.FirebaseToken = userr.FirebaseToken;
                     db.SaveChanges();
                 }
-                    
+
                 return Json(user, JsonRequestBehavior.AllowGet);
             }
         }

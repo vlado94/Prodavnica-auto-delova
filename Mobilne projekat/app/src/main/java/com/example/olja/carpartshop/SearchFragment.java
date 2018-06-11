@@ -42,6 +42,7 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.search_fragment, container, false);
+        getActivity().setTitle("Pretraga proizvoda");
 
         Button button = (Button) view.findViewById(R.id.searchBtn);
         button.setOnClickListener(new View.OnClickListener() {

@@ -59,6 +59,7 @@ public class ShopsSearchFragment extends Fragment implements ShopAdapter.ShopOnC
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.shops_search_fragment, container, false);
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle("Prodavnice");
 
         shopsRecyclerView =  view.findViewById(R.id.recyclerview_shops);
         LinearLayoutManager layoutManager

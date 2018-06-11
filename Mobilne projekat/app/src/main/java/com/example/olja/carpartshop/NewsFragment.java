@@ -62,6 +62,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsOnClickHan
             }
         });
 */
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle("Vesti");
 
         mRecyclerView =  view.findViewById(R.id.recyclerview_forecast);
         LinearLayoutManager layoutManager
