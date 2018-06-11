@@ -102,7 +102,10 @@ namespace CarPartsServer.Controllers
         public ActionResult Save(CarPart model)
         {
             model.PublishDate = DateTime.Now;
-
+            if (!string.IsNullOrEmpty(model.Image64))
+            {
+                model.Image = Convert.FromBase64String(model.Image64);
+            }
             CarPart retval = null;
             using (var db = new EfContext())
             {

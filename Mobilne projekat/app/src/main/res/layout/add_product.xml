@@ -17,6 +17,24 @@
                 android:layout_margin="20dp"
                 android:layout_marginTop="5dp"/>
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="0dp"
+                android:src="@drawable/noimg"
+                android:id="@+id/image_to_upload"
+                />
+
+            <Button
+                android:id="@+id/cp_choose_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Izaberi sliku"
+                android:layout_margin="20dp"
+                android:layout_marginTop="1dp"/>
+
             <Spinner
                 android:id="@+id/cp_brand"
                 android:layout_width="match_parent"

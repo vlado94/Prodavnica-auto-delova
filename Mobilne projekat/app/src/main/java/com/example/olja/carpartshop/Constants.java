@@ -31,9 +31,11 @@ import java.util.Set;
 
 public class Constants {
 
-    public static String url = "192.168.0.12:52387";
+    public static String url = "192.168.0.11:52387";
     public static User loggedUser = null;
     public static boolean hasShop = false;
+    public static int currentCarPart = 0;
+
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -127,5 +129,6 @@ public class Constants {
     public static void setLoggedUser(User loggedUser) {
         Constants.loggedUser = loggedUser;
     }
+
 
 }

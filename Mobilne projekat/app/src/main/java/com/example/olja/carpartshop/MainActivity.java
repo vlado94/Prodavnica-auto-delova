@@ -1,5 +1,6 @@
 package com.example.olja.carpartshop;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         adapter.addFragment(new CreateShopFragment(), "CreateShopFragment");
         adapter.addFragment(new MyShopFragment(), "MyShopFragment");
         adapter.addFragment(new AddProductFragment(), "AddProductFragment");
-
         viewPager.setAdapter(adapter);
     }
 

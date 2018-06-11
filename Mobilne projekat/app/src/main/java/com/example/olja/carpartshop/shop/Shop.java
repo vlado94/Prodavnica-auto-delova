@@ -2,6 +2,7 @@ package com.example.olja.carpartshop.shop;
 
 import com.example.olja.carpartshop.address.Address;
 import com.example.olja.carpartshop.carBrand.CarBrand;
+import com.example.olja.carpartshop.carPart.CarPart;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class Shop {
     private String Address;
 
     private List<CarBrand> CarBrands;
+    private List<CarPart> CarParts;
+
     private boolean IsDeleted;
     private int UserId = 0;
 
@@ -78,5 +81,13 @@ public class Shop {
 
     public void setAddress(String address) {
         Address = address;
+    }
+
+    public List<CarPart> getCarParts() {
+        return CarParts;
+    }
+
+    public void setCarParts(List<CarPart> carParts) {
+        CarParts = carParts;
     }
 }
