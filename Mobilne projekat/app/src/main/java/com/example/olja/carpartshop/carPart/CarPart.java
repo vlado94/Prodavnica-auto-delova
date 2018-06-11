@@ -29,7 +29,7 @@ public class CarPart {
     private CarBrand CarBrand;
 
     private int ShopID;
-    private Shop shop;
+    private Shop Shop;
 
     private int UserID = 0;
 
@@ -50,7 +50,7 @@ public class CarPart {
         CarBrandID = carBrandID;
         CarBrand = carBrand;
         ShopID = shopID;
-        this.shop = shop;
+        this.Shop = shop;
         IsDeleted = isDeleted;
     }
 
@@ -143,11 +143,11 @@ public class CarPart {
     }
 
     public Shop getShop() {
-        return shop;
+        return Shop;
     }
 
     public void setShop(Shop shop) {
-        this.shop = shop;
+        this.Shop = shop;
     }
 
     public void setIsDeleted(boolean isDeleted){

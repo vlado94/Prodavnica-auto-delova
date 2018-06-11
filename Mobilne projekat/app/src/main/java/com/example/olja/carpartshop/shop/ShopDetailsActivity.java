@@ -50,7 +50,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
     private ListView carBrandsListView;
 
     private TextView shopNameDetails;
-    private TextView address;
+    private ListView addresesListView;
     private ImageView viewCarPartsIcon;
 
     private int shopId;
@@ -61,7 +61,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         setContentView(R.layout.shop_details);
 
         shopNameDetails = (TextView) findViewById(R.id.shopNameDetails);
-        address = (TextView) findViewById(R.id.address);
+        addresesListView = (ListView) findViewById(R.id.addresesListView);
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
         viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
         viewCarPartsIcon.setOnClickListener(new View.OnClickListener() {
@@ -143,8 +143,8 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(Shop shop) {
             shopNameDetails.setText(shop.getName());
-            String newAddress = shop.getAddress().getStreet()+ "\t" + shop.getAddress().getNumber() +"\t" + shop.getAddress().getCity().getName();
-            address.setText(newAddress);
+            //String newAddress = shop.getAddress();
+            //address.setText(newAddress);
 
             final List<String> car_brands_list = new ArrayList<String>();
             for (CarBrand carBrand:shop.getCarBrands()) {
@@ -152,7 +152,15 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             }
             final ArrayAdapter<String> carBrandsListAdapter = new ArrayAdapter<String>
                     (mContext,android.R.layout.simple_list_item_1, car_brands_list );
+
+
+            final List<String> address_list = new ArrayList<String>();
+            address_list.add(shop.getAddress());
+
+            final ArrayAdapter<String> addresListAdapter = new ArrayAdapter<String>
+                    (mContext,android.R.layout.simple_list_item_1, address_list );
             carBrandsListView.setAdapter(carBrandsListAdapter);
+            addresesListView.setAdapter(addresListAdapter);
 
 
         }

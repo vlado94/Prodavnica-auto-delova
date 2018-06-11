@@ -125,24 +125,15 @@ namespace CarPartsServer.Controllers
 
                     string[] streets = { "Bulevar oslobodjenja", "Puškinova", "Gogoljeva" };
 
-                    for(int i=0;i<streets.Length;i++)
-                    {
-                        Address ad = new Address
-                        {
-                            Number = 10,
-                            Street = streets[i],
-                            City = db.Cities.FirstOrDefault(x => x.ID == 2)
-                        };
-                        db.Addresses.Add(ad);
-                    }
+                   
                     
-                    db.SaveChanges();
+                   
 
                     Shop s1 = new Shop
                     {
                         Name = "Auto biznis",
                         Phone = "0653268080",
-                        Address = db.Addresses.ToList()[0],
+                        Address = "Karadjordjeva s44",
                         CarBrands = db.CarBrands.ToList()
                     };
                     db.Shops.Add(s1);
@@ -151,7 +142,7 @@ namespace CarPartsServer.Controllers
                     {
                         Name = "Auto centar vdv",
                         Phone = "0653268080",
-                        Address = db.Addresses.ToList()[1],
+                        Address ="Jovana Jovanovica 3",
                         CarBrands = db.CarBrands.ToList()
                     };
                     db.Shops.Add(s2);
@@ -160,7 +151,7 @@ namespace CarPartsServer.Controllers
                     {
                         Name = "Slavija auto",
                         Phone = "0653268080",
-                        Address = db.Addresses.ToList()[2],
+                        Address = "Petra Petrovica 5",
                         CarBrands = db.CarBrands.ToList()
                     };
                     db.Shops.Add(s3);
