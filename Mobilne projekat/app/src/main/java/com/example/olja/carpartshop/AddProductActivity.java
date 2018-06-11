@@ -11,11 +11,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -49,7 +51,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by Nebojsa on 6/11/2018.
  */
 
-public class AddProductFragment extends Fragment implements View.OnClickListener{
+public class AddProductActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "AddProductFragment";
     private static final int STORAGE_PERMISION_CODE = 2342;
     private static final int PICK_IMAGE_REQUEST = 22;
@@ -68,40 +70,41 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
     private Uri filePath;
     private Bitmap bitmap;
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_product, container, false);
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        setContentView(R.layout.add_product);
 
-        partName = view.findViewById(R.id.cp_name);
-        partBrand = view.findViewById(R.id.cp_brand);
-        partPrice = view.findViewById(R.id.cp_price);
-        partQuantity = view.findViewById(R.id.cp_quantity);
-        partShortDesc = view.findViewById(R.id.cp_short_desc);
-        partLongDesc = view.findViewById(R.id.cp_long_desc);
-        partSubmit = view.findViewById(R.id.cp_submit);
-        imageToUpload = view.findViewById(R.id.image_to_upload);
+        partName = findViewById(R.id.cp_name);
+        partBrand = findViewById(R.id.cp_brand);
+        partPrice = findViewById(R.id.cp_price);
+        partQuantity = findViewById(R.id.cp_quantity);
+        partShortDesc = findViewById(R.id.cp_short_desc);
+        partLongDesc = findViewById(R.id.cp_long_desc);
+        partSubmit = findViewById(R.id.cp_submit);
+        imageToUpload = findViewById(R.id.image_to_upload);
 
-        chooseImgBtn = view.findViewById(R.id.cp_choose_img);
+        chooseImgBtn = findViewById(R.id.cp_choose_img);
         partSubmit.setOnClickListener(this);
         chooseImgBtn.setOnClickListener(this);
         requestStoragePermission();
 
-        return  view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if(Constants.currentCarPart != 0)
-            Toast.makeText(this.getActivity(), "IZmena", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "IZmena", Toast.LENGTH_LONG).show();
         else
-            Toast.makeText(this.getActivity(), "Dodavanje", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Dodavanje", Toast.LENGTH_LONG).show();
     }
 
     private void requestStoragePermission(){
-        if(this.getActivity().checkSelfPermission(READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+        if(this.checkSelfPermission(READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
             return;
-        getActivity().requestPermissions(new String[]{READ_EXTERNAL_STORAGE}, STORAGE_PERMISION_CODE);
+        requestPermissions(new String[]{READ_EXTERNAL_STORAGE}, STORAGE_PERMISION_CODE);
     }
 
     @Override
@@ -109,10 +112,10 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == STORAGE_PERMISION_CODE){
             if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this.getActivity(), "Permision granted", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Permision granted", Toast.LENGTH_LONG).show();
             }
             else{
-                Toast.makeText(this.getActivity(), "Permision not granted", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Permision not granted", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -132,7 +135,7 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             filePath = data.getData();
             try{
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 bitmap = Bitmap.createScaledBitmap(bitmap, 600, 540, false);
 
                 imageToUpload.setImageBitmap(bitmap);
@@ -170,9 +173,9 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
                     carPart.setImage64(img64);
                 }
 
-                new AddProductFragment.PostCarPartTask().execute(carPart);
+                new AddProductActivity.PostCarPartTask().execute(carPart);
             } else
-                Toast.makeText(AddProductFragment.this.getActivity(), "Greska.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddProductActivity.this, "Greska.", Toast.LENGTH_SHORT).show();
         }
 
         if(view == chooseImgBtn)
@@ -200,11 +203,11 @@ public class AddProductFragment extends Fragment implements View.OnClickListener
             super.onPostExecute(jsonObject);
             if(jsonObject != null) {
                 Constants.hasShop = true;
-                Toast.makeText(AddProductFragment.this.getActivity(), "Uspesno dodat deo", Toast.LENGTH_SHORT).show();
-                getActivity().recreate();
+                Toast.makeText(AddProductActivity.this, "Uspesno dodat deo", Toast.LENGTH_SHORT).show();
+                recreate();
             }
             else {
-                Toast.makeText(AddProductFragment.this.getActivity(), "Greska.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddProductActivity.this, "Greska.", Toast.LENGTH_SHORT).show();
             }
         }
     }

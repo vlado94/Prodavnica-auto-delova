@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         adapter.addFragment(new TermsOfUseFragment(), "TermsOfUseFragment");
         adapter.addFragment(new CreateShopFragment(), "CreateShopFragment");
         adapter.addFragment(new MyShopFragment(), "MyShopFragment");
-        adapter.addFragment(new AddProductFragment(), "AddProductFragment");
         viewPager.setAdapter(adapter);
     }
 

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.olja.carpartshop.AddProductActivity;
 import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.MainActivity;
 import com.example.olja.carpartshop.R;
@@ -131,7 +132,8 @@ public class MyShopCarPartAdapter extends RecyclerView.Adapter<MyShopCarPartAdap
         public void edit(int id) {
             Constants.currentCarPart = id;
             MainActivity activity = (MainActivity) contextAdapter;
-            activity.setViewPager(11);
+            Intent intent = new Intent(activity, AddProductActivity.class);
+            activity.startActivity(intent);
         }
     }
 }
