@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,10 +50,10 @@ public class SearchFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String carPart = ((EditText) view.findViewById(R.id.carPart)).getText().toString();
+                String carPart = ((TextInputEditText) view.findViewById(R.id.carPartValue)).getText().toString();
                 String carBrand = ((Spinner) view.findViewById(R.id.carBrand)).getSelectedItem().toString();
-                String maxPrice = ((EditText) view.findViewById(R.id.maxPrice)).getText().toString();
-                String minPrice = ((EditText) view.findViewById(R.id.minPrice)).getText().toString();
+                String maxPrice = ((TextInputEditText) view.findViewById(R.id.maxPriceValue)).getText().toString();
+                String minPrice = ((TextInputEditText) view.findViewById(R.id.minPriceValue)).getText().toString();
 
                 HashMap<String, String> parameters = new HashMap<String, String>();
                 parameters.put("carPart", carPart);

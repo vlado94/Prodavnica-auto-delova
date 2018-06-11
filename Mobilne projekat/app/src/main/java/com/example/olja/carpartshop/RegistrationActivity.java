@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -47,10 +48,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        String name = ((EditText)findViewById(R.id.reg_name)).getText().toString();
-        String email = ((EditText)findViewById(R.id.reg_email)).getText().toString();
-        String pass = ((EditText)findViewById(R.id.reg_password)).getText().toString();
-        String pass2 = ((EditText)findViewById(R.id.reg_password2)).getText().toString();
+        String name = ((TextInputEditText)findViewById(R.id.reg_name_value)).getText().toString();
+        String email = ((TextInputEditText)findViewById(R.id.reg_email_value)).getText().toString();
+        String pass = ((TextInputEditText)findViewById(R.id.reg_password_value)).getText().toString();
+        String pass2 = ((TextInputEditText)findViewById(R.id.reg_password2_value)).getText().toString();
         if(!pass.equals(pass2)){
             Toast.makeText(this, "Lozinke se ne poklapaju", Toast.LENGTH_SHORT).show();
             return;

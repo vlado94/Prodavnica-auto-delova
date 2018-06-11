@@ -22,6 +22,8 @@ import com.example.olja.carpartshop.ShopsSearchFragment;
 import com.example.olja.carpartshop.news.News;
 import com.example.olja.carpartshop.news.NewsAdapter;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,9 +59,14 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     @Override
     public void onBindViewHolder(ShopAdapter.ShopViewHolder holder, int position) {
         Shop shop = listData.get(position);
+        String address = shop.getAddress().split(",")[2];
 
         holder.shopName.setText(shop.getName());
-        holder.shopPhone.setText(shop.getPhone());
+
+
+        //holder.shopPhone.setText( shop.getAddress().split(",")[1] + " " + shop.getAddress().split(",")[0]);
+        holder.shopPhone.setText(shop.getAddress().split(",")[2] + ","+shop.getAddress().split(",")[1] + " " + shop.getAddress().split(",")[0]);
+
         //String parsedDate = parse(shop.getPubishDate());
 
     }
@@ -83,13 +90,15 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         public final TextView shopName;
         public final TextView shopPhone;
         public final ImageView iconCallShop;
+        //public final TextView city;
 
         public ShopViewHolder(final View view) {
             super(view);
             shopName = (TextView) view.findViewById(R.id.shopName);
             shopPhone = (TextView) view.findViewById(R.id.shopPhone);
             iconCallShop = (ImageView) view.findViewById(R.id.callShop);
-
+            //city = (TextView) view.findViewById(R.id.city);
+           // city = (TextView) view.findViewById(R.id.city);
             iconCallShop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
