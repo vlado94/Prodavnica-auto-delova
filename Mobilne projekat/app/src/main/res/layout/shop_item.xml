@@ -7,10 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingBottom="@dimen/list_item_padding_vertical"
+    android:paddingBottom="10dp"
     android:paddingLeft="@dimen/list_item_padding_horizontal"
     android:paddingRight="@dimen/list_item_padding_horizontal"
-    android:paddingTop="@dimen/list_item_padding_vertical"
+    android:paddingTop="10dp"
     android:background="@drawable/border_for_layout">
 
     <!--<ImageView
@@ -31,13 +31,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         android:textSize="25sp"
+        android:textStyle="bold"
         android:text="Today, April 03"/>
 
 
     <ImageView
         android:id="@+id/callShop"
-        android:layout_width="@dimen/call_icon"
-        android:layout_height="@dimen/call_icon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginLeft="@dimen/list_item_short_des_left_margin"
         android:layout_marginStart="@dimen/list_item_short_des_start_margin"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
@@ -51,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/list_item_short_des_left_margin"
+        android:textStyle="italic"
         android:layout_marginStart="@dimen/list_item_short_des_start_margin"
 
         app:layout_constraintTop_toBottomOf="@id/shopName"
@@ -58,6 +60,20 @@
 
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/secondary_text" />
+
+  <!--<TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/list_item_short_des_left_margin"
+        android:textStyle="italic"
+        android:layout_marginStart="@dimen/list_item_short_des_start_margin"
+
+        app:layout_constraintTop_toBottomOf="@id/shopPhone"
+        android:textSize="20sp"
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/secondary_text" />-->
     <!-- android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
 
     app:layout_constraintLeft_toLeftOf="parent"

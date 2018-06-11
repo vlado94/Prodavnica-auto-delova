@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -54,8 +55,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        String email = ((EditText) findViewById(R.id.log_email)).getText().toString();
-        String pass = ((EditText) findViewById(R.id.log_pass)).getText().toString();
+        String email = ((TextInputEditText) findViewById(R.id.log_email_value)).getText().toString();
+        String pass = ((TextInputEditText) findViewById(R.id.log_pass_value)).getText().toString();
         String token = "";
         SharedPreferences prefs = getSharedPreferences("appData", MODE_PRIVATE);
         token = prefs.getString("firebaseToken", "");
