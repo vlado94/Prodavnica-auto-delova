@@ -46,6 +46,15 @@ namespace CarPartsServer.Controllers
                 retval = db.Shops
                     .Include(x => x.CarBrands)
                     .FirstOrDefault(x => x.ID == shopId);
+                
+                List<CarPart> carparts = db.CarParts.Where(x => x.ShopID == shopId).ToList();
+                foreach (var c in carparts)
+                {
+                    c.Shop = null;
+                    c.ShopID = null;
+                }
+                if(carparts.Count() > 0)
+                    retval.CarParts = carparts;
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }

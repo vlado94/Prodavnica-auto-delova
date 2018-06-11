@@ -27,5 +27,8 @@ namespace CarPartsServer.Models
         [NotMapped]
         public int? UserId { get; set; }
 
+        [NotMapped]
+        public List<CarPart> CarParts { get; set; }
+
     }
 }

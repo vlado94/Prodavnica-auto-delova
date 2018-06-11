@@ -37,6 +37,9 @@ public class CarPart implements Parcelable {
 
     private boolean IsDeleted;
 
+    private byte[] Image;
+    private String Image64;
+
     public  CarPart(){
 
     }
@@ -212,4 +215,21 @@ public class CarPart implements Parcelable {
     public void setUserID(int userID) {
         UserID = userID;
     }
+
+    public byte[] getImage() {
+        return Image;
+    }
+
+    public void setImage(byte[] image) {
+        this.Image = image;
+    }
+
+    public String getImage64() {
+        return Image64;
+    }
+
+    public void setImage64(String image64) {
+        Image64 = image64;
+    }
 }
+

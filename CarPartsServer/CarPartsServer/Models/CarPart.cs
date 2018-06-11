@@ -23,7 +23,11 @@ namespace CarPartsServer.Models
         public int? ShopID { get; set; }
         public Shop Shop { get; set; }
 
+        public byte[] Image { get; set; }
+
         [NotMapped]
         public int? UserID { get; set; }
+        [NotMapped]
+        public String Image64 { get; set; }
     }
 }
