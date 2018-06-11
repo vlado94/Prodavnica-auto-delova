@@ -9,17 +9,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.ScrollingMovementMethod;
-import android.widget.ArrayAdapter;
+
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.R;
-import com.example.olja.carpartshop.carBrand.CarBrand;
-import com.example.olja.carpartshop.shop.Shop;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -115,9 +111,6 @@ public class CarPartInformationsActivity  extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(CarPart carPart) {
-           // shopNameDetails.setText(shop.getName());
-            //String newAddress = shop.getAddress();
-            //address.setText(newAddress);
             longDesc.setText(carPart.getLongDescription());
             //icon.set
             name.setText(carPart.getName());
@@ -127,11 +120,8 @@ public class CarPartInformationsActivity  extends AppCompatActivity {
             quantity.setText(String.valueOf(carPart.getQuantity()));
             carBrand.setText(carPart.getCarBrand().getName());
 
-
-
         }
     }
-
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

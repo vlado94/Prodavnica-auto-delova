@@ -1,9 +1,11 @@
 package com.example.olja.carpartshop;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.olja.carpartshop.carPart.CarPart;
 import com.example.olja.carpartshop.database.DataAccess;
+import com.example.olja.carpartshop.shop.ListCarPartsForShopActivity;
+import com.example.olja.carpartshop.shop.ShopDetailsActivity;
 import com.example.olja.carpartshop.user.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -79,7 +83,13 @@ public class SearchFragment extends Fragment {
             if(jsonObject != null) {
                 result = new Gson().fromJson(jsonObject.toString(), new TypeToken<ArrayList<CarPart>>(){}.getType());
                 //TODO Olja, ovaj rezultat prikazi u fragmentu za prikaz proizvoda :*
-
+                Context context = getActivity();
+                Class destinationActivity = ListCarPartsForShopActivity.class;
+                Intent startChildActivityIntent = new Intent(context, destinationActivity);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) result);
+                startChildActivityIntent.putExtras(bundle);
+                startActivity(startChildActivityIntent);
             }
             else {
                 Toast.makeText(SearchFragment.this.getActivity(), "Nema rezultata sa tim parametrima", Toast.LENGTH_SHORT).show();

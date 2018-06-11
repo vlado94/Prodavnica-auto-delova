@@ -2,6 +2,8 @@ package com.example.olja.carpartshop.carPart;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.example.olja.carpartshop.carBrand.CarBrand;
 import com.example.olja.carpartshop.shop.Shop;
@@ -13,7 +15,7 @@ import java.util.Date;
  * Created by Olja on 5/29/2018.
  */
 
-public class CarPart {
+public class CarPart implements Parcelable {
 
 
     private int ID;
@@ -53,6 +55,52 @@ public class CarPart {
         this.Shop = shop;
         IsDeleted = isDeleted;
     }
+
+    public CarPart(Parcel in) {
+        ID = in.readInt();
+        Name = in.readString();
+        Price = in.readDouble();
+        ShortDescription = in.readString();
+        LongDescription = in.readString();
+        quantity = in.readInt();
+         visitsNumber = in.readInt();
+        //PublishDate = in.read
+        CarBrandID = in.readInt();
+        ShopID = in.readInt();
+
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(ID);
+        dest.writeString(Name);
+        dest.writeDouble(Price);
+        dest.writeString(ShortDescription);
+        dest.writeString(LongDescription);
+        dest.writeInt(quantity);
+        dest.writeInt(visitsNumber);
+        dest.writeInt(CarBrandID);
+        dest.writeInt(ShopID);
+
+    }
+
+
+    public static final Parcelable.Creator<CarPart> CREATOR = new Parcelable.Creator<CarPart>()
+    {
+        public CarPart createFromParcel(Parcel in)
+        {
+            return new CarPart(in);
+        }
+        public CarPart[] newArray(int size)
+        {
+            return new CarPart[size];
+        }
+    };
+
 
     public int getID() {
         return ID;

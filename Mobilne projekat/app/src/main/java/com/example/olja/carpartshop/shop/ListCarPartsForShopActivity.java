@@ -60,6 +60,11 @@ public class ListCarPartsForShopActivity extends AppCompatActivity  implements C
         if (intentThatStartedThisActivity.hasExtra("shopId")) {
             int id = intentThatStartedThisActivity.getIntExtra("shopId", -1);
             new ListCarPartsForShopActivity.GetCarPartsForShopTask().execute(id);
+        }else {
+
+            Bundle bundle = getIntent().getExtras();
+            List<CarPart> carParts = bundle.getParcelableArrayList("data");
+            cartPartAdapter.setCarParts(carParts);
         }
 
     }
