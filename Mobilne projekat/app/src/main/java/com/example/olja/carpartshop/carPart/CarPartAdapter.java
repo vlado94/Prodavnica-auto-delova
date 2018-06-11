@@ -1,6 +1,13 @@
 package com.example.olja.carpartshop.carPart;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,13 +31,15 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
 
     private ArrayList<CarPart> listData;
     private final CarPartAdapter.CarPartOnClickHandler mClickHandler;
+    private Context contextAdapter;
 
     public interface CarPartOnClickHandler {
         void onClick(int newsId);
     }
 
-    public CarPartAdapter(CarPartAdapter.CarPartOnClickHandler clickHandler) {
+    public CarPartAdapter(CarPartAdapter.CarPartOnClickHandler clickHandler,Context context2) {
         mClickHandler = clickHandler;
+        contextAdapter = context2;
     }
 
     @Override
@@ -48,9 +57,9 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
     public void onBindViewHolder(CarPartAdapter.CarPartViewHolder holder, int position) {
         CarPart carPart = listData.get(position);
 
-       holder.carPartName.setText(carPart.getName());
-        //holder.shopPhone.setText(shop.getPhone());
-        //String parsedDate = parse(shop.getPubishDate());
+        holder.carPartName.setText(carPart.getName());
+        holder.carPartPrice.setText(String.valueOf(carPart.getPrice() + " RSD"));
+        holder.carPartId = carPart.getID();
 
     }
 
@@ -71,24 +80,34 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
     /*unutrasnja klasa*/
     public class CarPartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final TextView carPartName;
-       /* public final TextView shopPhone;
-        public final ImageView iconCallShop;*/
+        public final TextView carPartPrice;
+        public final ImageView carPartIcon;
+        public final ImageView callCarPartIcon;
+        public final ImageView infoCarPartIcon;
+        public int carPartId;
 
         public CarPartViewHolder(final View view) {
             super(view);
             carPartName = (TextView) view.findViewById(R.id.carPartName);
-            /*shopPhone = (TextView) view.findViewById(R.id.shopPhone);
-            iconCallShop = (ImageView) view.findViewById(R.id.callShop);
+            carPartPrice= (TextView) view.findViewById(R.id.carPartPrice);
+            carPartIcon= (ImageView) view.findViewById(R.id.car_part_icon);
+            callCarPartIcon= (ImageView) view.findViewById(R.id.callCarPartIcon);
+            infoCarPartIcon= (ImageView) view.findViewById(R.id.infoCarPartIcon);
 
-            iconCallShop.setOnClickListener(new View.OnClickListener() {
+            callCarPartIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//ovdje treba implementirati poziv
-                    Toast.makeText(view.getContext(),
-                            "The favorite list would appear on clicking this icon",
-                            Toast.LENGTH_LONG).show();
+                    callPhoneNumber();
                 }
-            });*/
+            });
+
+            infoCarPartIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openInformation(carPartId);
+                }
+            });
+
             view.setOnClickListener(this);
         }
 
@@ -97,6 +116,24 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
         public void onClick(View view) {
             int adapterPosition = getAdapterPosition();
             mClickHandler.onClick(listData.get(adapterPosition).getID());
+        }
+
+        private void openInformation(int id){
+            Class destinationActivity = CarPartInformationsActivity.class;
+            Intent startChildActivityIntent = new Intent((Activity) contextAdapter,destinationActivity);
+            startChildActivityIntent.putExtra("carPartId",carPartId);
+            contextAdapter.startActivity(startChildActivityIntent);
+        }
+
+        public void callPhoneNumber() {
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "0653268080"));
+
+            if (ContextCompat.checkSelfPermission(contextAdapter, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions((Activity) contextAdapter, new String[]{Manifest.permission.CALL_PHONE}, 101);
+            } else {
+                contextAdapter.startActivity(intent);
+
+            }
         }
     }
 }

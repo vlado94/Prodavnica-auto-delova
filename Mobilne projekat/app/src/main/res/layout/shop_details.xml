@@ -11,11 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="vertical">
-    <fragment
-        android:id="@+id/shop_map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <fragment
+            android:id="@+id/shop_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 
@@ -25,11 +25,11 @@
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/map_container">
 
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:background="@drawable/border_for_layout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/border_for_layout">
 
 
             <TextView
@@ -44,28 +44,28 @@
                 android:paddingLeft="15dp"
                 android:text="Auto delovi junior"/>
 
-              <ImageView
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:layout_weight="0.3"
-                  android:paddingTop="15dp"
-                  android:paddingBottom="15dp"
-                  android:paddingLeft="10dp"
-                  android:src="@mipmap/call_icon_round"
-                  />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:src="@mipmap/call_icon_round"
+                />
 
-              <ImageView
-                  android:id="@+id/viewCarPartsIcon"
-                  android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
-                  android:layout_weight="0.3"
-                  android:paddingTop="15dp"
-                  android:paddingBottom="15dp"
-                  android:paddingLeft="10dp"
-                  android:src="@mipmap/wheel2_round"
-                  />
+            <ImageView
+                android:id="@+id/viewCarPartsIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:src="@mipmap/wheel2_round"
+                />
 
-          </LinearLayout>
+        </LinearLayout>
 
 
         <LinearLayout
@@ -80,15 +80,14 @@
                 android:layout_weight="0.5"
                 android:orientation="vertical"
                 android:id="@+id/addressInformation">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="20sp"
-                android:paddingTop="10dp"
-                android:paddingLeft="15dp"
-                android:text="Adrese :"/>
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="15dp"
+                    android:text="Adrese :"/>
 
             <TextView android:id="@+id/address"
                 android:layout_width="wrap_content"

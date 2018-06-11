@@ -16,50 +16,69 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-    <ImageView
-        android:id="@+id/car_part_icon"
-        android:layout_width="@dimen/car_part_icon"
-        android:layout_height="@dimen/car_part_icon"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        android:src="@mipmap/wheels_foreground"
-        android:layout_weight="0.3"
-        />
-<android.support.constraint.ConstraintLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_weight="0.7"
-    app:layout_constraintLeft_toRightOf="@+id/weather_icon"
-    app:layout_constraintBottom_toTopOf="@+id/guideline"
-    android:background="@color/colorAccent">
-    <TextView
-        android:id="@+id/carPartName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:textSize="25sp"
-        android:text="Today, April 03"
-        android:background="@color/colorPrimary"
-        />
+        <ImageView
+            android:id="@+id/car_part_icon"
+            android:layout_width="@dimen/car_part_icon"
+            android:layout_height="@dimen/car_part_icon"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            android:src="@mipmap/wheels_foreground"
+            android:layout_weight="0.3"
+            />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            app:layout_constraintRight_toRightOf="@+id/guideline"
+            app:layout_constraintLeft_toRightOf="@+id/weather_icon"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            >
+            <TextView
+                android:id="@+id/carPartName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:text="Today, April 03"/>
 
 
-    <ImageView
-        android:id="@+id/callIcon"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:src="@mipmap/call_icon"
-        app:layout_constraintTop_toBottomOf="@id/callIcon"
-        />
 
-    <ImageView
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:src="@mipmap/details"
-        app:layout_constraintTop_toBottomOf="@id/carPartName"
-        app:layout_constraintLeft_toRightOf="@id/callIcon"
-        />
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/carPartPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textStyle="bold|italic"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carPartName"
+                android:textSize="30sp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textColor="@color/color_price"
+                android:text="Today, April 03"/>
+
+
+            <ImageView
+                android:id="@+id/callCarPartIcon"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@mipmap/call_icon"
+                app:layout_constraintTop_toBottomOf="@id/carPartPrice"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/infoCarPartIcon"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@mipmap/details"
+                app:layout_constraintTop_toBottomOf="@id/carPartPrice"
+                app:layout_constraintRight_toLeftOf="@id/callCarPartIcon"
+                />
+        </android.support.constraint.ConstraintLayout>
     </LinearLayout>
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

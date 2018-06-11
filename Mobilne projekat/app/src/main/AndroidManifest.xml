@@ -41,9 +41,13 @@
             android:name=".city.CitiesActivity"
             android:parentActivityName=".country.CountriesActivity"></activity>
         <activity
-            android:name=".shop.ListCarPartsForShop"
+            android:name=".shop.ListCarPartsForShopActivity"
             android:parentActivityName=".shop.ShopDetailsActivity"></activity>
 
+
+        <activity
+            android:name=".carPart.CarPartInformationsActivity"
+            android:parentActivityName=".shop.ListCarPartsForShopActivity"></activity>
         <service
             android:name=".services.getFromLinkIntentService"
             android:exported="false" />
