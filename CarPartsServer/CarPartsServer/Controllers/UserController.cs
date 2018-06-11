@@ -167,7 +167,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Zadnje gume 16",
+                        Name = "Gume 16",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -181,7 +181,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Aluminijumske felne 16",
+                        Name = "Alufelne 16",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -195,7 +195,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Celicne felne 16",
+                        Name = "Alufelne 16",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -209,7 +209,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Celicne felne 18",
+                        Name = "Alufelne 18",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -237,7 +237,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Zadnje gume 16",
+                        Name = "Gume 19",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -251,7 +251,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Aluminijumske felne 16",
+                        Name = "Alufelne 16",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -265,7 +265,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Celicne felne 16",
+                        Name = "Alufelne 15",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -279,7 +279,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Celicne felne 18",
+                        Name = "Alufelne 18",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -307,7 +307,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Zadnje gume 16",
+                        Name = "Retrovizor",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -363,7 +363,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Aluminijumske felne 16",
+                        Name = "Alufelne 16",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -377,7 +377,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Celicne felne 16",
+                        Name = "Felne 16",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -391,7 +391,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Celicne felne 18",
+                        Name = "Felne 18",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -405,7 +405,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Celicne felne 18",
+                        Name = "Felne 18",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
@@ -419,7 +419,7 @@ namespace CarPartsServer.Controllers
 
                     db.CarParts.Add(new CarPart()
                     {
-                        Name = "Celicne felne 18",
+                        Name = "Felne 15",
                         IsDeleted = false,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
