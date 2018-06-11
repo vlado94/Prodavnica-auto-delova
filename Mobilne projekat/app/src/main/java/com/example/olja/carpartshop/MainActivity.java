@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,20 +18,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.olja.carpartshop.country.CountriesActivity;
-import com.example.olja.carpartshop.news.NewsAdapter;
-import com.example.olja.carpartshop.news.NewsDetailActivity;
 import com.example.olja.carpartshop.services.getFromLinkIntentService;
-import com.example.olja.carpartshop.shop.ShopAdapter;
 import com.example.olja.carpartshop.user.User;
 import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
 
@@ -63,8 +54,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Naslovna");
+
         setNavigationViewListener();
-        setViewPager(6);
+        setViewPager(0);
         ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
 
         Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
@@ -78,9 +71,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         SectionsStatePageAdapter adapter = new SectionsStatePageAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment(), "HomeFragment");
         adapter.addFragment(new SearchFragment(), "SearchFragment");
-        adapter.addFragment(new DetailSearchFragment(), "DetailSearchFragment");
         adapter.addFragment(new ShopsSearchFragment(), "ShopsSearchFragment");
-        adapter.addFragment(new MostRecentFragment(), "MostRecentFragment");
         adapter.addFragment(new MostPopularFragment(), "MostPopularFragment");
         adapter.addFragment(new NewsFragment(), "NewsFragment");
         adapter.addFragment(new NotificationsFragment(), "NotificationsFragment");
@@ -164,40 +155,32 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 setViewPager(1);
                 break;
             }
-            case R.id.detailSearch: {
+            case R.id.shopsSearch: {
                 setViewPager(2);
                 break;
             }
-            case R.id.shopsSearch: {
+            case R.id.mostPopular: {
                 setViewPager(3);
                 break;
             }
-            case R.id.mostRecent: {
+            case R.id.news: {
                 setViewPager(4);
                 break;
             }
-            case R.id.mostPopular: {
+            case R.id.notifications: {
                 setViewPager(5);
                 break;
             }
-            case R.id.news: {
+            case R.id.termsOfUse: {
                 setViewPager(6);
                 break;
             }
-            case R.id.notifications: {
+            case R.id.addShop: {
                 setViewPager(7);
                 break;
             }
-            case R.id.termsOfUse: {
-                setViewPager(8);
-                break;
-            }
-            case R.id.addShop: {
-                setViewPager(9);
-                break;
-            }
             case R.id.myShop: {
-                setViewPager(10);
+                setViewPager(8);
                 break;
             }
         }

@@ -15,6 +15,10 @@ namespace CarPartsServer.Models
         */
         public string Phone { get; set; }
 
+        public double Longitude { get; set; }
+
+        public double Latitude { get; set; }
+
         public string Address { get; set; }
 
         public ICollection<CarBrand> CarBrands { get; set; }

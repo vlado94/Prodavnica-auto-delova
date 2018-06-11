@@ -11,21 +11,13 @@
         android:icon="@mipmap/baseline_search_black_24dp"
         android:title="Pretraga proizvoda" />
 
-    <item android:id="@+id/detailSearch"
-        android:icon="@mipmap/baseline_image_search_black_24dp"
-        android:title="Detaljna pretraga" />
-
     <item android:id="@+id/shopsSearch"
         android:icon="@mipmap/baseline_location_searching_black_24dp"
-        android:title="Pretraga prodavaca" />
+        android:title="Prodavnice" />
 </group>
 <group
     android:id="@+id/menu_bottom"
     android:checkableBehavior="single">
-    <item android:id="@+id/mostRecent"
-        android:icon="@mipmap/baseline_query_builder_black_24dp"
-        android:title="Najnovije" />
-
     <item android:id="@+id/mostPopular"
         android:icon="@mipmap/baseline_playlist_add_check_black_24dp"
         android:title="Najtraženije" />

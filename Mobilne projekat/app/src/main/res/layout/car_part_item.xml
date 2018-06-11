@@ -18,8 +18,8 @@
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/car_part_icon"
-            android:layout_width="@dimen/car_part_icon"
-            android:layout_height="@dimen/car_part_icon"
+            android:layout_width="@dimen/list_icon"
+            android:layout_height="@dimen/list_icon"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline"
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="28sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:text="Today, April 03"/>
@@ -54,10 +54,10 @@
                 android:textStyle="bold|italic"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/carPartName"
-                android:textSize="30sp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:textColor="@color/color_price"
+                android:textSize="28sp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textColor="@color/gold"
                 android:text="Today, April 03"/>
 
 
@@ -65,7 +65,7 @@
                 android:id="@+id/callCarPartIcon"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:src="@mipmap/call_icon"
+                android:src="@mipmap/call_icon_round"
                 app:layout_constraintTop_toBottomOf="@id/carPartPrice"
                 app:layout_constraintRight_toRightOf="parent"
                 />
@@ -74,7 +74,7 @@
                 android:id="@+id/infoCarPartIcon"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:src="@mipmap/details"
+                android:src="@mipmap/info_round"
                 app:layout_constraintTop_toBottomOf="@id/carPartPrice"
                 app:layout_constraintRight_toLeftOf="@id/callCarPartIcon"
                 />
