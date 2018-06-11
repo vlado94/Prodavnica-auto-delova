@@ -3,7 +3,6 @@ package com.example.olja.carpartshop;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,20 +16,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.olja.carpartshop.country.CountriesActivity;
-import com.example.olja.carpartshop.news.NewsAdapter;
-import com.example.olja.carpartshop.news.NewsDetailActivity;
 import com.example.olja.carpartshop.services.getFromLinkIntentService;
-import com.example.olja.carpartshop.shop.ShopAdapter;
 import com.example.olja.carpartshop.user.User;
 import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener {
 
@@ -62,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setNavigationViewListener();
-        setViewPager(6);
+        setViewPager(0);
         ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
 
         Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
@@ -86,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         adapter.addFragment(new CreateShopFragment(), "CreateShopFragment");
         adapter.addFragment(new MyShopFragment(), "MyShopFragment");
         adapter.addFragment(new AddProductFragment(), "AddProductFragment");
-
         viewPager.setAdapter(adapter);
     }
 
