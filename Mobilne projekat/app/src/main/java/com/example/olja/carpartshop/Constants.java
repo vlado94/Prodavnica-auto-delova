@@ -33,6 +33,7 @@ public class Constants {
 
     public static String url = "192.168.0.12:52387";
     public static User loggedUser = null;
+    public static boolean hasShop = false;
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

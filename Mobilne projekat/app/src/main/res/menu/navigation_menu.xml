@@ -42,5 +42,14 @@
         android:icon="@mipmap/baseline_list_alt_black_24dp"
         android:title="Uslovi korišćenja" />
 </group>
+<group>
+    <item android:id="@+id/addShop"
+          android:icon="@mipmap/plus"
+          android:title="Kreiraj prodavnicu" />
+    <item android:id="@+id/myShop"
+        android:icon="@mipmap/baseline_home_black_24dp"
+        android:visible="false"
+        android:title="Moja Prodavnica" />
+</group>
 
 </menu>

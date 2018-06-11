@@ -11,6 +11,9 @@ namespace CarPartsServer.Models
         public string Street { get; set; }
         public int Number { get; set; }
 
+        //public decimal Lat { get; set; }
+        //public decimal Long { get; set; }
+
         public int? CityID { get; set; }
         public City City { get; set; }
 

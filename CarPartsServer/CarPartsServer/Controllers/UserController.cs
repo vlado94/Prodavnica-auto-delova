@@ -22,7 +22,7 @@ namespace CarPartsServer.Controllers
 
                     db.News.Add(new News
                     {
-                        Title = "Uskoro nove kazne za preko 2,0 promila i nasilničku vožnju",
+                        Title = "Nove kazne za preko 2,0 promila",
                         PubishDate = new DateTime(2018, 2, 12),
                         ShortDescription = "Najnovije izmene Zakona o bezbednosti saobraćaja donose i novčanu kaznu za nasilničku vožnju, u koju spada i vožnja sa više od 2,0 promila alkohola u krvi. Dakle, do sada se za nasilničku vožnju nije izricala i novčana kazna.",
                         LongDescription = "Pogledajmo kolike će uskoro biti kazne. " +
@@ -35,7 +35,7 @@ namespace CarPartsServer.Controllers
 
                     db.News.Add(new News
                     {
-                        Title = "Mađari ne priznaju potvrdu o produženju važenja saobraćajnih dozvola",
+                        Title = "Saobraćajnu dozvola",
                         PubishDate = new DateTime(2018, 12, 07),
                         ShortDescription = "Mađarska granična policija ne priznaje potvrdu kojom se produžava važenje saobraćajne dozvole na kojoj piše da je istekla",
                         LongDescription = "Već smo pisali o tom problemu kada je Crna Gora u pitanju, ali su nam iz tamošnje policije dali zvanično objašnjenje da nikakvih problema nema. " +
@@ -57,7 +57,7 @@ namespace CarPartsServer.Controllers
 
                     db.News.Add(new News
                     {
-                        Title = "Da li se isplati sipati benzin od 98/100 oktana?",
+                        Title = "Benzin od 98/100 oktana?",
                         ShortDescription = "Sipao sam benzin od 100 oktana i auto mi sad ide kao mećava!",
                         PubishDate = new DateTime(2018, 3, 4),
                         LongDescription = "A da li verujete da visokooktanski benzin stvarno tako deluje na automobil? Priča nije crno-bela, pa moramo da se potrudimo da objašnjavamo što jednostavnije kako ne bismo samo uneli dodatnu konfuziju." +
@@ -89,72 +89,79 @@ namespace CarPartsServer.Controllers
                     }
                     db.SaveChanges();
 
-                    List<string> cities = new List<string> { "Beograd", "Novi Sad", "Sabac", "Sarajevo", "Mostar", "Podgorica", "Budva", "Kotor" };
+                    List<string> cities = new List<string> { "Beograd", "Novi Sad" };
                     AddCity(cities.ElementAt(0), 1);
                     AddCity(cities.ElementAt(1), 1);
-                    AddCity(cities.ElementAt(2), 1);
-                    AddCity(cities.ElementAt(3), 2);
-                    AddCity(cities.ElementAt(4), 2);
-                    AddCity(cities.ElementAt(5), 3);
-                    AddCity(cities.ElementAt(6), 3);
-                    AddCity(cities.ElementAt(7), 3);
 
                     db.CarBrands.Add(new CarBrand()
                     {
                         IsDeleted = false,
-                        Name = "Ford",
+                        Name = "Opel",
+                    });
+
+                    db.CarBrands.Add(new CarBrand()
+                    {
+                        IsDeleted = false,
+                        Name = "Volkswagen",
+                    });
+
+
+                    db.CarBrands.Add(new CarBrand()
+                    {
+                        IsDeleted = false,
+                        Name = "Citroen",
                     });
                     db.CarBrands.Add(new CarBrand()
                     {
                         IsDeleted = false,
-                        Name = "Audi",
+                        Name = "Peugeot",
                     });
                     db.CarBrands.Add(new CarBrand()
                     {
                         IsDeleted = false,
-                        Name = "Mercedes",
+                        Name = "Mini",
                     });
                     db.SaveChanges();
 
+                    string[] streets = { "Bulevar oslobodjenja", "Puškinova", "Gogoljeva" };
 
-
-                    Address ad = new Address
-                    {
-                        Number = 11,
-                        City = db.Cities.FirstOrDefault(x => x.ID == 1)
-                    };
-                    db.Addresses.Add(ad);
-                    db.SaveChanges();
+                   
+                    
+                   
 
                     Shop s1 = new Shop
                     {
-                        Name = "shop1",
-                        Phone = "35232532",
-                        Addresses = db.Addresses.ToList(),
+                        Name = "Auto biznis",
+                        Phone = "0653268080",
+                        Address = "Karadjordjeva s44",
                         CarBrands = db.CarBrands.ToList()
                     };
                     db.Shops.Add(s1);
 
                     Shop s2 = new Shop
                     {
-                        Name = "shop2",
-                        Phone = "35232532",
-                        Addresses = db.Addresses.ToList(),
+                        Name = "Auto centar vdv",
+                        Phone = "0653268080",
+                        Address ="Jovana Jovanovica 3",
                         CarBrands = db.CarBrands.ToList()
                     };
                     db.Shops.Add(s2);
 
+                    Shop s3 = new Shop
+                    {
+                        Name = "Slavija auto",
+                        Phone = "0653268080",
+                        Address = "Petra Petrovica 5",
+                        CarBrands = db.CarBrands.ToList()
+                    };
+                    db.Shops.Add(s3);
+
                     db.SaveChanges();
-
-
-                    db.Shops.Include(x => x.Addresses).First(x => x.ID == 1).Addresses.Add(db.Addresses.First(y => y.ID == 1));
-                    db.Shops.Include(x => x.Addresses).First(x => x.ID == 2).Addresses.Add(db.Addresses.First(y => y.ID == 1));
 
                     db.CarParts.Add(new CarPart()
                     {
                         Name = "Letva volana",
                         IsDeleted = false,
-                        IpAddresses = 3232,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
                         LongDescription = "dsafdsa s fas fas saf safasf as fas\ndsadasdasdas",
@@ -169,10 +176,23 @@ namespace CarPartsServer.Controllers
                     {
                         Name = "Zadnje gume 16",
                         IsDeleted = false,
-                        IpAddresses = 32323,
                         PublishDate = DateTime.Now,
                         VisitsNumber = 3,
-                        LongDescription = "dsafdsa s fas fas saf safasf as fas\ndsadasdasdas",
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 0,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Aluminijumske felne 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
                         ShortDescription = "dsdasdasfa",
                         Quantity = 2,
                         Price = 132,
@@ -180,25 +200,301 @@ namespace CarPartsServer.Controllers
                         Shop = db.Shops.First(),
                     });
 
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Celicne felne 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 2,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Celicne felne 18",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 0,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Letva volana",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "dsafdsa s fas fas saf safasf as fas\ndsadasdasdas",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 3,
+                        Price = 32,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Zadnje gume 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 2,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Aluminijumske felne 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 2,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Celicne felne 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 2,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Celicne felne 18",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 0,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Letva volana",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "dsafdsa s fas fas saf safasf as fas\ndsadasdasdas",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 3,
+                        Price = 32,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Zadnje gume 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 2,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Zadnje gume 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 2,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Zadnje gume 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 22,
+                        Price = 132,
+                        CarBrand = db.CarBrands.First(),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Zadnje gume 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 12,
+                        Price = 132,
+                        CarBrand = db.CarBrands.ToList().ElementAt(1),
+                        Shop = db.Shops.First(),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Aluminijumske felne 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 2,
+                        Price = 132,
+                        CarBrand = db.CarBrands.ToList().ElementAt(1),
+                        Shop = db.Shops.ToList().ElementAt(1),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Celicne felne 16",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 2,
+                        Price = 132,
+                        CarBrand = db.CarBrands.ToList().ElementAt(1),
+                        Shop = db.Shops.ToList().ElementAt(1),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Celicne felne 18",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 11,
+                        Price = 132,
+                        CarBrand = db.CarBrands.ToList().ElementAt(1),
+                        Shop = db.Shops.ToList().ElementAt(1),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Celicne felne 18",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 3,
+                        Price = 132,
+                        CarBrand = db.CarBrands.ToList().ElementAt(1),
+                        Shop = db.Shops.ToList().ElementAt(1),
+                    });
+
+                    db.CarParts.Add(new CarPart()
+                    {
+                        Name = "Celicne felne 18",
+                        IsDeleted = false,
+                        PublishDate = DateTime.Now,
+                        VisitsNumber = 3,
+                        LongDescription = "Felne su ORGINAL u ekstra stanju Sa gumam Pireli 245 / 40R18 letnje",
+                        ShortDescription = "dsdasdasfa",
+                        Quantity = 5,
+                        Price = 132,
+                        CarBrand = db.CarBrands.ToList().ElementAt(1),
+                        Shop = db.Shops.ToList().ElementAt(1),
+                    });
+
+
+
                     db.Users.Add(new User()
                     {
                         IsDeleted = false,
-                        Email = "Pera",
-                        Shop = db.Shops.First(),
-                        Password = "Pera123"
+                        Email = "olja.miljatovic@yahoo.com",
+                        Shop = db.Shops.ToList()[0],
+                        Password = "111"
                     });
                     db.Users.Add(new User()
                     {
                         IsDeleted = false,
-                        Email = "Mika",
-                        Shop = db.Shops.First(),
-                        Password = "Mika123"
+                        Email = "vladimir94@gmail.com",
+                        Shop = db.Shops.ToList()[1],
+                        Password = "111"
+                    });
+
+                    db.Users.Add(new User()
+                    {
+                        IsDeleted = false,
+                        Email = "nebojsa.basaric@gmail.com",
+                        Shop = db.Shops.ToList()[2],
+                        Password = "111"
+                    });
+
+                    db.Users.Add(new User()
+                    {
+                        IsDeleted = false,
+                        Email = "111@gmail.com",
+                        Password = "111"
+                    });
+
+
+                    db.Users.Add(new User()
+                    {
+                        IsDeleted = false,
+                        Email = "222@gmail.com",
+                        Password = "111"
                     });
                     db.SaveChanges();
 
                 }
             }
         }
+
         private void AddCity(string city,int countryID)
         {
             using (var db = new EfContext())
@@ -242,6 +538,8 @@ namespace CarPartsServer.Controllers
         [HttpPost]
         public ActionResult Save(User model)
         {
+            if (model.ShopID == 0)
+                model.ShopID = null;
             User retval = null;
             using (var db = new EfContext())
             {

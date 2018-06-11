@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,14 @@ namespace CarPartsServer.Models
     
         */
         public string Phone { get; set; }
-        public ICollection<Address> Addresses { get; set; }
+
+        public string Address { get; set; }
+
         public ICollection<CarBrand> CarBrands { get; set; }
+
+
+        [NotMapped]
+        public int? UserId { get; set; }
+
     }
 }

@@ -25,12 +25,13 @@ public class CarPart {
     private int quantity;
     private int visitsNumber;
     private Date publishDate;
-    private int ipAddresses;
     private int CarBrandID;
     private CarBrand CarBrand;
 
     private int ShopID;
     private Shop shop;
+
+    private int UserID = 0;
 
     private boolean IsDeleted;
 
@@ -46,7 +47,6 @@ public class CarPart {
         this.quantity = quantity;
         this.visitsNumber = visitsNumber;
         this.publishDate = publishDate;
-        this.ipAddresses = ipAddresses;
         CarBrandID = carBrandID;
         CarBrand = carBrand;
         ShopID = shopID;
@@ -118,14 +118,6 @@ public class CarPart {
         this.publishDate = publishDate;
     }
 
-    public int getIpAddresses() {
-        return ipAddresses;
-    }
-
-    public void setIpAddresses(int ipAddresses) {
-        this.ipAddresses = ipAddresses;
-    }
-
     public int getCarBrandID() {
         return CarBrandID;
     }
@@ -165,4 +157,11 @@ public class CarPart {
         return IsDeleted;
     }
 
+    public int getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(int userID) {
+        UserID = userID;
+    }
 }

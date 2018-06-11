@@ -52,7 +52,7 @@ public class ShopsSearchFragment extends Fragment implements ShopAdapter.ShopOnC
         {
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
-                shopAdapter.callPhoneNumber();
+                shopAdapter.callPhoneNumber("");
             }
         }
     }

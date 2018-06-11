@@ -21,6 +21,10 @@ public class CarBrand {
 
     }
 
+    public CarBrand(int ID) {
+        this.ID = ID;
+    }
+
     public CarBrand(int ID, String name, boolean isDeleted) {
         this.ID = ID;
         this.Name = name;

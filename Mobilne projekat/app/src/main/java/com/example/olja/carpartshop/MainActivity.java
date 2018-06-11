@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         adapter.addFragment(new NewsFragment(), "NewsFragment");
         adapter.addFragment(new NotificationsFragment(), "NotificationsFragment");
         adapter.addFragment(new TermsOfUseFragment(), "TermsOfUseFragment");
+        adapter.addFragment(new CreateShopFragment(), "CreateShopFragment");
+        adapter.addFragment(new MyShopFragment(), "MyShopFragment");
+        adapter.addFragment(new AddProductFragment(), "AddProductFragment");
 
         viewPager.setAdapter(adapter);
     }
@@ -188,6 +191,14 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 setViewPager(8);
                 break;
             }
+            case R.id.addShop: {
+                setViewPager(9);
+                break;
+            }
+            case R.id.myShop: {
+                setViewPager(10);
+                break;
+            }
         }
         //close navigation drawer
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -206,8 +217,21 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 TextView tv = hv.findViewById(R.id.logged_user);
                 tv.setText(loggedUser.getEmail());
                 Constants.setLoggedUser(loggedUser);
+
+                if(Constants.hasShop || loggedUser.getShopID() != 0){
+                    ((NavigationView)findViewById(R.id.nav_view)).getMenu().findItem(R.id.addShop).setVisible(false);
+                    ((NavigationView)findViewById(R.id.nav_view)).getMenu().findItem(R.id.myShop).setVisible(true);
+                }
+                else{
+                    ((NavigationView)findViewById(R.id.nav_view)).getMenu().findItem(R.id.addShop).setVisible(true);
+                    ((NavigationView)findViewById(R.id.nav_view)).getMenu().findItem(R.id.myShop).setVisible(false);
+                }
             }
         }
+        else{
+            ((NavigationView)findViewById(R.id.nav_view)).getMenu().findItem(R.id.addShop).setVisible(false);
+        }
+
 
     }
 

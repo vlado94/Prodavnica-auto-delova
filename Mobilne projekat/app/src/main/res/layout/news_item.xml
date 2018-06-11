@@ -23,7 +23,7 @@
         android:src="@mipmap/hot_news_foreground"/>
 
     <TextView
-        android:id="@+id/shortDescription"
+        android:id="@+id/titleNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/list_item_short_des_left_margin"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/secondary_text"
-        app:layout_constraintLeft_toLeftOf="@+id/shortDescription"
+        app:layout_constraintLeft_toLeftOf="@+id/titleNews"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         android:textSize="20sp"
         android:text="Rainy"/>

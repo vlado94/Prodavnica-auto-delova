@@ -15,9 +15,12 @@ public class Shop {
     private String Name;
     //private Image image;
     private String Phone;
-    private List<Address> Addresses;
+
+    private String Address;
+
     private List<CarBrand> CarBrands;
     private boolean IsDeleted;
+    private int UserId = 0;
 
     public int getID() {
         return ID;
@@ -43,13 +46,7 @@ public class Shop {
         Phone = phone;
     }
 
-    public List<Address> getAddresses() {
-        return Addresses;
-    }
 
-    public void setAddresses(List<Address> addresses) {
-        Addresses = addresses;
-    }
 
     public List<CarBrand> getCarBrands() {
         return CarBrands;
@@ -65,5 +62,21 @@ public class Shop {
 
     public void setIsDeleted(boolean deleted) {
         IsDeleted = deleted;
+    }
+
+    public int getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int userId) {
+        UserId = userId;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        Address = address;
     }
 }

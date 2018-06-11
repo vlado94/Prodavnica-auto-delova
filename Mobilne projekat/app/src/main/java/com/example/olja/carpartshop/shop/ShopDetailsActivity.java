@@ -2,6 +2,7 @@ package com.example.olja.carpartshop.shop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,10 +47,10 @@ import java.util.Scanner;
 public class ShopDetailsActivity extends AppCompatActivity  {
 
     private GoogleMap mGoogleMap;
-    private ListView listAddresses;
     private ListView carBrandsListView;
 
     private TextView shopNameDetails;
+    private ListView addresesListView;
     private ImageView viewCarPartsIcon;
 
     private int shopId;
@@ -60,7 +61,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         setContentView(R.layout.shop_details);
 
         shopNameDetails = (TextView) findViewById(R.id.shopNameDetails);
-        listAddresses = (ListView) findViewById(R.id.addresesListView);
+        addresesListView = (ListView) findViewById(R.id.addresesListView);
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
         viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
         viewCarPartsIcon.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +92,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
+                Geocoder coder= new Geocoder(getApplicationContext());
                 LatLng latLng = new LatLng(1.289545, 103.849972);
                 googleMap.addMarker(new MarkerOptions().position(latLng)
                         .title("Singapore"));
@@ -141,16 +143,8 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(Shop shop) {
             shopNameDetails.setText(shop.getName());
-            final List<String> fruits_list = new ArrayList<String>();
-            List<Address> addresses = shop.getAddresses();
-            for (Address address:addresses) {
-                String newAddress = address.getStreet()+ "\t" + address.getNumber() +"\t" + address.getCity().getName();
-                fruits_list.add(newAddress);
-            }
-
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
-                    (mContext,android.R.layout.simple_list_item_1, fruits_list);
-            listAddresses.setAdapter(arrayAdapter);
+            //String newAddress = shop.getAddress();
+            //address.setText(newAddress);
 
             final List<String> car_brands_list = new ArrayList<String>();
             for (CarBrand carBrand:shop.getCarBrands()) {
@@ -158,7 +152,15 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             }
             final ArrayAdapter<String> carBrandsListAdapter = new ArrayAdapter<String>
                     (mContext,android.R.layout.simple_list_item_1, car_brands_list );
+
+
+            final List<String> address_list = new ArrayList<String>();
+            address_list.add(shop.getAddress());
+
+            final ArrayAdapter<String> addresListAdapter = new ArrayAdapter<String>
+                    (mContext,android.R.layout.simple_list_item_1, address_list );
             carBrandsListView.setAdapter(carBrandsListAdapter);
+            addresesListView.setAdapter(addresListAdapter);
 
 
         }

@@ -68,7 +68,7 @@ public class DataAccess {
         return retVal;
     }
 
-    public static JSONObject sendGet(final String controller, final String method){
+    public static JSONObject sendGet(final String controller, final String method, HashMap<String, String> parameters){
         JSONObject retVal = null;
         try {
 
@@ -79,6 +79,14 @@ public class DataAccess {
 
             builder.appendPath(controller)
                     .appendPath(method);
+
+
+            Set set = parameters.entrySet();
+            Iterator iterator = set.iterator();
+            while (iterator.hasNext()) {
+                Map.Entry mentry = (Map.Entry) iterator.next();
+                builder.appendQueryParameter(mentry.getKey().toString(), mentry.getValue().toString());
+            }
 
             String myUrl = builder.build().toString();
             URL query = null;
