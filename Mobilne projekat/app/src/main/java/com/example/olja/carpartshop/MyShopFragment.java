@@ -53,7 +53,8 @@ public class MyShopFragment extends android.support.v4.app.Fragment  implements 
             @Override
             public void onClick(View view) {
                 Constants.currentCarPart = 0;
-                ((MainActivity)MyShopFragment.this.getActivity()).setViewPager(11);
+                Intent intent = new Intent(getActivity(), AddProductActivity.class);
+                startActivity(intent);
             }
         });
 

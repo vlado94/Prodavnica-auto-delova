@@ -56,8 +56,15 @@
 
         <activity
             android:name=".carPart.CarPartInformationsActivity"
+
             android:parentActivityName=".shop.ListCarPartsForShopActivity"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop"
+
+            android:parentActivityName=".shop.ListCarPartsForShopActivity"></activity>
+        <activity
+            android:name=".AddProductActivity"
+            android:parentActivityName=".MainActivity"></activity>
+
         <service
             android:name=".services.getFromLinkIntentService"
             android:exported="false" />
