@@ -84,7 +84,7 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 var query = db.CarParts
-                    .Include(x => x.CarBrand);
+                    .Include(x => x.CarBrand)
                     .Include(x => x.Shop);
                 if (!carBrand.Equals("") && !carBrand.Equals("Marka auta"))
                 if (!carBrand.Equals("") && !carBrand.Equals("Nije odabrano"))

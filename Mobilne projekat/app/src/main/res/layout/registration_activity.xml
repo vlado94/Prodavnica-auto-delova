@@ -13,9 +13,8 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="50dp"
-    android:paddingBottom="16dp">
-
-
+    android:paddingBottom="16dp"
+    android:id="@+id/registration_layout">
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/reg_name"

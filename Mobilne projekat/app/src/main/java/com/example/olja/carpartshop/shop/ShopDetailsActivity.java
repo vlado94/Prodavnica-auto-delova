@@ -4,11 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
 import android.content.SharedPreferences;
-=======
 import android.content.pm.PackageManager;
->>>>>>> f2127f686180924cd587e32cf9fce3e3ff977e1e
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
