@@ -64,6 +64,7 @@ public class ListCarPartsForShopActivity extends AppCompatActivity  implements C
         cartPartAdapter = new CarPartAdapter(this,this);
         carPartRecyclerView.setAdapter(cartPartAdapter);
 
+        getSupportActionBar().setTitle("Prodavnica auto delova");
 
         Intent intentThatStartedThisActivity = getIntent();
         if (intentThatStartedThisActivity.hasExtra("shopId")) {

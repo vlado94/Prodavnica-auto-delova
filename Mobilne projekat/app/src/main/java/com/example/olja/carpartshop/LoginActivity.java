@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.login_layout);
+        getSupportActionBar().setTitle("Prodavnica auto delova");
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {

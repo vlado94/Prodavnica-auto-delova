@@ -82,6 +82,7 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
         carBrand = (TextView) findViewById(R.id.car_part_details_carBrand);
         notifyImg = (ImageView) findViewById(R.id.notifiy_img);
         callImg = (ImageView) findViewById(R.id.car_part_details_callIcon);
+        getSupportActionBar().setTitle("Prodavnica auto delova");
 
 
         notifyImg.setOnClickListener(this);

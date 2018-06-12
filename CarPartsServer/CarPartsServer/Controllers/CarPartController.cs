@@ -94,10 +94,10 @@ namespace CarPartsServer.Controllers
                     query = query.Where(x => x.Name.ToLower().Contains(carPart.ToLower()));
 
                 if (maxPrice != null && maxPrice.Value > 0)
-                    query = query.Where(x => x.Price < maxPrice);
+                    query = query.Where(x => x.Price > maxPrice);
 
                 if (minPrice != null && minPrice.Value > 0)
-                    query = query.Where(x => x.Price > minPrice);
+                    query = query.Where(x => x.Price < minPrice);
 
                 if(orderpart.Equals("Datum silazno"))
                 {

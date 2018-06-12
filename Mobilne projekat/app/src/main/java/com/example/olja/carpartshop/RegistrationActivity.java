@@ -32,6 +32,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_activity);
+        getSupportActionBar().setTitle("Prodavnica auto delova");
 
         layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.registration_layout);
         ActionBar actionBar = this.getSupportActionBar();

@@ -10,20 +10,20 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="126dp"
-        android:layout_height="115dp"
+        android:layout_width="match_parent"
         android:src="@mipmap/hot_news_foreground"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/newsTitle"
-        android:layout_width="333dp"
+        android:layout_width="match_parent"
         android:layout_height="92dp"
         android:layout_marginLeft="40dp"
         android:text="This is default text."
         android:textSize="20sp"
-        app:layout_constraintLeft_toRightOf="@+id/icon"
+        app:layout_constraintTop_toBottomOf="@+id/icon"
         app:layout_constraintRight_toRightOf="parent"
         tools:background="#020913" />
 

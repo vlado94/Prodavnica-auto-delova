@@ -1,0 +1,3 @@
+Svi fajlovi su zavrseni pre ponoci, jedino je video nastao posle, mozete proveriti u obj i debug folderima vreme nastanka.
+
+Pozdrav, Tim 22
