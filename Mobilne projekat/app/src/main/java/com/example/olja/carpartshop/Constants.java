@@ -33,6 +33,7 @@ public class Constants {
 
 
     public static String url = "192.168.2.136:52387";
+
     public static User loggedUser = null;
     public static boolean hasShop = false;
     public static int currentCarPart = 0;

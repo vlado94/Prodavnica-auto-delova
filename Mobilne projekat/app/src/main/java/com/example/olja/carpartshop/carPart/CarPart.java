@@ -24,7 +24,7 @@ public class CarPart implements Parcelable {
     private double Price;
     private String ShortDescription;
     private String LongDescription;
-    private int quantity;
+    private int Quantity;
     private int visitsNumber;
     private Date publishDate;
     private int CarBrandID;
@@ -49,7 +49,7 @@ public class CarPart implements Parcelable {
         Price = price;
         ShortDescription = shortDescription;
         LongDescription = longDescription;
-        this.quantity = quantity;
+        this.Quantity = quantity;
         this.visitsNumber = visitsNumber;
         this.publishDate = publishDate;
         CarBrandID = carBrandID;
@@ -65,7 +65,7 @@ public class CarPart implements Parcelable {
         Price = in.readDouble();
         ShortDescription = in.readString();
         LongDescription = in.readString();
-        quantity = in.readInt();
+        Quantity = in.readInt();
          visitsNumber = in.readInt();
         //PublishDate = in.read
         CarBrandID = in.readInt();
@@ -84,7 +84,7 @@ public class CarPart implements Parcelable {
         dest.writeDouble(Price);
         dest.writeString(ShortDescription);
         dest.writeString(LongDescription);
-        dest.writeInt(quantity);
+        dest.writeInt(Quantity);
         dest.writeInt(visitsNumber);
         dest.writeInt(CarBrandID);
         dest.writeInt(ShopID);
@@ -146,11 +146,11 @@ public class CarPart implements Parcelable {
     }
 
     public int getQuantity() {
-        return quantity;
+        return Quantity;
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.Quantity = quantity;
     }
 
     public int getVisitsNumber() {

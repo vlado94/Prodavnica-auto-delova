@@ -41,12 +41,14 @@ public class ListCarPartsForShopActivity extends AppCompatActivity  implements C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.car_parts_for_shop);
 
+/*
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("Prodavnice");
         }
 
+*/
 
         carPartRecyclerView =  findViewById(R.id.carPartRecyclerView);
         LinearLayoutManager layoutManager

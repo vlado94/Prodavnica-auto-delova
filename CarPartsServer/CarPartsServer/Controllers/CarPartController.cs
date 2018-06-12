@@ -5,6 +5,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.Net;
+using System.Web.Script.Serialization;
+using System.Text;
+using System.IO;
 
 namespace CarPartsServer.Controllers
 {
@@ -85,7 +89,7 @@ namespace CarPartsServer.Controllers
                     query = query.Where(x => x.CarBrand.Name.Equals(carBrand));
 
                 if (!carPart.Equals(""))
-                    query = query.Where(x => x.Name.Equals(carPart));
+                    query = query.Where(x => x.Name.ToLower().Contains(carPart.ToLower()));
 
                 if (maxPrice != null && maxPrice.Value > 0)
                     query = query.Where(x => x.Price < maxPrice);
@@ -101,29 +105,28 @@ namespace CarPartsServer.Controllers
         [HttpPost]
         public ActionResult Save(CarPart model)
         {
-            model.PublishDate = DateTime.Now;
-            if (!string.IsNullOrEmpty(model.Image64))
-            {
-                model.Image = Convert.FromBase64String(model.Image64);
-            }
+            
             CarPart retval = null;
             using (var db = new EfContext())
             {
+                model.PublishDate = DateTime.Now;
+                if (!string.IsNullOrEmpty(model.Image64))
+                {
+                    model.Image = Convert.FromBase64String(model.Image64);
+                }
+
                 if (model.CarBrandID == 0)
                     model.CarBrandID = null;
                 if (model.ShopID == 0)
                     model.ShopID = null;
+                if (model.CarBrand == null)
+                    model.CarBrand = db.CarBrands.FirstOrDefault();
                 CarBrand cb = db.CarBrands.FirstOrDefault(x => x.Name.Equals(model.CarBrand.Name));
                 model.CarBrand = cb;
                 User user = db.Users.Include(x => x.Shop).FirstOrDefault(x => x.ID == model.UserID);
                 if(user != null)
-                {
                     model.Shop = user.Shop;
-                }
-
-
-                retval = db.CarParts.Add(model);
-                db.SaveChanges();
+                
 
                 if (model.ID == 0)
                 {
@@ -135,16 +138,18 @@ namespace CarPartsServer.Controllers
                 {
                     CarPart cpedit = db.CarParts
                         .FirstOrDefault(x => x.ID == model.ID);
-                    cpedit.LongDescription = cpedit.LongDescription;
-                    cpedit.Name = cpedit.Name;
-                    cpedit.Price = cpedit.Price;
-                    cpedit.ShortDescription = cpedit.ShortDescription;
-                    db.SaveChanges();
+                    cpedit.LongDescription = model.LongDescription;
+                    cpedit.Name = model.Name;
+                    cpedit.Price = model.Price;
+                    cpedit.ShortDescription = model.ShortDescription;
+                    cpedit.Image = model.Image;
                     if (cpedit.Quantity == 0 && model.Quantity != 0)
                     {
                         SendNotification(cpedit.ID);
                     }
+                    retval = cpedit;
                 }
+                db.SaveChanges();
 
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
@@ -164,22 +169,86 @@ namespace CarPartsServer.Controllers
             return Json(null, JsonRequestBehavior.AllowGet);
         }
 
-        private void SendNotification(int carPartID)
+        [HttpGet]
+        public void SendNotification(int carPartID)
         {
             using (var db = new EfContext())
             {
+                CarPart cp = db.CarParts.FirstOrDefault(x => x.ID == carPartID);
+                List<User> users = new List<User>();
                 List<Notification> notification = db.Notifications.Where(x => x.PartID == carPartID).ToList();
                 foreach(Notification n in notification)
                 {
-                    //Basara ovde dodaj svoj kod za notifikacije
-
-
-
-
+                    List<User> usersTmp = db.Users.Where(x => x.ID == n.UserID).ToList();
+                    users.AddRange(usersTmp);
                     db.Notifications.First(x => x.ID == n.ID).IsDeleted = true;
                 }
+                List<string> tokens = new List<string>();
+                foreach(User u in users)
+                {
+                    if(!string.IsNullOrEmpty(u.FirebaseToken))
+                    {
+                        tokens.Add(u.FirebaseToken);
+                    }
+                }
+                NotifyPhones(tokens, "Proizvod je na stanju", "Proizvod " + cp.Name + ", na koji ste se pretplatili je sada ponovo na stanju.");
+
                 db.SaveChanges();
             }
         }
+
+
+        private static void NotifyPhones(List<string> tokens, string messageSubject, string messageText)
+        {
+            if (tokens == null || tokens.Count == 0)
+                return;
+            try
+            {
+                string serverId = "AIzaSyAWk2-pa84RrfMfKwKrzje6s9KxxHFYkXM";
+                string senderId = "1068719150645";
+
+                WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+                tRequest.Method = "post";
+                tRequest.ContentType = "application/json";
+                var data = new
+                {
+                    registration_ids = tokens.ToArray<string>(),
+                    notification = new
+                    {
+                        body = messageText,
+                        tag = "GEA",
+                        title = messageSubject,
+                        sound = "Enabled"
+                    }
+                };
+                var serializer = new JavaScriptSerializer();
+                var json = serializer.Serialize(data);
+                Byte[] byteArray = Encoding.UTF8.GetBytes(json);
+                tRequest.Headers.Add(string.Format("Authorization: key={0}", serverId));
+                tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
+                tRequest.ContentLength = byteArray.Length;
+                using (Stream dataStream = tRequest.GetRequestStream())
+                {
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+                    using (WebResponse tResponse = tRequest.GetResponse())
+                    {
+                        using (Stream dataStreamResponse = tResponse.GetResponseStream())
+                        {
+                            using (StreamReader tReader = new StreamReader(dataStreamResponse))
+                            {
+                                String sResponseFromServer = tReader.ReadToEnd();
+                                string str = sResponseFromServer;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string str = ex.Message;
+            }
+        }
+
+
     }
 }

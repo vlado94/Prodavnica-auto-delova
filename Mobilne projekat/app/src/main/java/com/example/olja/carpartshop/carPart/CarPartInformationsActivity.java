@@ -10,14 +10,21 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.olja.carpartshop.AddProductActivity;
 import com.example.olja.carpartshop.Constants;
+import com.example.olja.carpartshop.MainActivity;
 import com.example.olja.carpartshop.R;
+import com.example.olja.carpartshop.database.DataAccess;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +34,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,7 +42,7 @@ import java.util.Scanner;
  * Created by Olja on 6/11/2018.
  */
 
-public class CarPartInformationsActivity  extends AppCompatActivity {
+public class CarPartInformationsActivity  extends AppCompatActivity implements View.OnClickListener {
 
     private TextView longDesc;
     private ImageView icon;
@@ -44,6 +52,8 @@ public class CarPartInformationsActivity  extends AppCompatActivity {
     private TextView shopName;
     private TextView quantity;
     private TextView carBrand;
+    private ImageView notifyImg;
+    private int id = 0;
 
 
     @Override
@@ -58,7 +68,9 @@ public class CarPartInformationsActivity  extends AppCompatActivity {
         shopName = (TextView) findViewById(R.id.car_part_details_shopName);
         quantity = (TextView) findViewById(R.id.car_part_details_quantity);
         carBrand = (TextView) findViewById(R.id.car_part_details_carBrand);
+        notifyImg = (ImageView) findViewById(R.id.notifiy_img);
 
+        notifyImg.setOnClickListener(this);
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -68,12 +80,44 @@ public class CarPartInformationsActivity  extends AppCompatActivity {
 
         Intent intentThatStartedThisActivity = getIntent();
         if (intentThatStartedThisActivity.hasExtra("carPartId")) {
-            int id = intentThatStartedThisActivity.getIntExtra("carPartId", -1);
+            id = intentThatStartedThisActivity.getIntExtra("carPartId", -1);
 
             new CarPartInformationsActivity.GetCarPartByIdTask(this).execute(id);
         }
 
+        if(Constants.getLoggedUser().getID() == 0)
+            notifyImg.setVisibility(View.INVISIBLE);
+
     }
+
+    @Override
+    public void onClick(View view) {
+        HashMap<String, String> parameters = new HashMap<String, String>();
+        parameters.put("userID", Integer.toString(Constants.getLoggedUser().getID()));
+        parameters.put("productID", Integer.toString(id));
+        new PrepareToNotifyTask().execute(parameters);
+    }
+
+
+    public class PrepareToNotifyTask extends AsyncTask<HashMap, Void, JSONObject> {
+
+        @Override
+        protected JSONObject doInBackground(HashMap... part) {
+            JSONObject json = DataAccess.sendGet("CarPart", "PrepareToNotify", part[0]);
+            return  json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            super.onPostExecute(jsonObject);
+            Toast.makeText(CarPartInformationsActivity.this, "Bicete obavesteni kada ovaj deo bude na stanju.", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+
+
+
     public class GetCarPartByIdTask extends AsyncTask<Integer, Void, CarPart> {
 
         private Context mContext;
