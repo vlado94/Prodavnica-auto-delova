@@ -47,7 +47,6 @@ public class MostPopularFragment extends Fragment implements CarPartAdapter.CarP
         carPartRecyclerView.setHasFixedSize(true);
         cartPartAdapter = new CarPartAdapter(this,getContext());
         carPartRecyclerView.setAdapter(cartPartAdapter);
-        ((MainActivity)getActivity()).getSupportActionBar().setTitle("Najpopularniji delovi");
         new MostPopularFragment.GetCarPartsByPopularity().execute("AsyncTaskGetShops");
         return  view;
     }

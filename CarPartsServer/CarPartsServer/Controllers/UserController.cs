@@ -45,16 +45,7 @@ namespace CarPartsServer.Controllers
                             "ispostavilo se da je problem ipak realan.Javilo nam se više vozača koji nisu mogli da uđu u Mađarsku. " +
 
                             "Sada se i zvanično saznaje da je naša policija svesna tog problema.Nažalost, " +
-                            "niko nije i zvanično upozorio vozače na taj problem. " +
-
-                            "Takođe se nezvanično saznaje da je mađarska granična policija dobila nalog da ne priznaje te potvrde, " +
-                            "te da nije reč o hiru pojedinih graničara. " +
-
-                            "Navodno, " +
-                            "naša policija radi sa mađarskom na rešavanju tog problema.Do tada,  " +
-                            "ukoliko imate potvrdu o produženju saobraćajne,  " +
-                            "odustanite od puta u Mađarsku, " +
-                            "a videćemo da li i sa drugim zemljama postoje slični problemi."
+                            "niko nije i zvanično upozorio vozače na taj problem. "
                     });
 
                     db.News.Add(new News
@@ -67,14 +58,8 @@ namespace CarPartsServer.Controllers
 
                         "Prvo da razjasnimo čestu zabludu - viši oktanski broj nam ne govori da je neko gorivo „jače“, " +
                         "čistije ili kvalitetnije.Ne znači ni da ima veću energetsku vrednost, " +
-                        "pa da zbog toga automobil može da razvije veću snagu. " +
-
-                        "Šta je to oktanski broj ? " +
-
-                        "Oktanski broj nam govori koliki pritisak benzin može da izdrži pre nego što se(nekontrolisano) zapali,  " +
-                        "odnosno „detonira“. Drugim rečima, " +
-                        "oktanski broj označava otpornost benzina na samozapaljenje kada smeša benzina i vazduha počne da se sabija u cilindru dok se klip kreće na gore.Ova smeša ne sme da se zapali „samoinicijativno“ pre nego što svećica baci varnicu."
-                    });
+                        "pa da zbog toga automobil može da razvije veću snagu. "
+                     });
 
 
                     db.SaveChanges();

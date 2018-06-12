@@ -54,7 +54,6 @@ public class HomeFragment extends Fragment implements CarPartAdapter.CarPartOnCl
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.car_parts_for_shop, container, false);
 
-        ((MainActivity)getActivity()).getSupportActionBar().setTitle("Prodavnica delova");
         carPartRecyclerView =  view.findViewById(R.id.carPartRecyclerView);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

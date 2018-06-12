@@ -18,6 +18,7 @@ public class MostRecentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.most_recent_fragment, container, false);
 
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle("Vesti");
         return  view;
     }
 

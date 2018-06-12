@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Naslovna");
+        getSupportActionBar().setTitle("Prodavnica auto delova");
 
         setNavigationViewListener();
         setViewPager(0);

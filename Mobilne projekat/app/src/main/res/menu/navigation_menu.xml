@@ -18,7 +18,7 @@
         android:title="Prodavnice" />
 
     <item android:id="@+id/search_shop"
-        android:icon="@mipmap/baseline_home_black_24dp"
+        android:icon="@mipmap/baseline_search_black_24dp"
         android:title="Pretraga prodavnica" />
 </group>
 <group

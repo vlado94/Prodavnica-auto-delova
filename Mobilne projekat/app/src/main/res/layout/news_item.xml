@@ -31,7 +31,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintLeft_toRightOf="@+id/weather_icon"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:text="Today, April 03"/>
 
     <TextView
@@ -42,7 +42,7 @@
         android:textColor="@color/secondary_text"
         app:layout_constraintLeft_toLeftOf="@+id/titleNews"
         app:layout_constraintTop_toTopOf="@+id/guideline"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:text="Rainy"/>
 
     <android.support.constraint.Guideline

@@ -52,6 +52,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 String carPart = ((TextInputEditText) view.findViewById(R.id.carPartValue)).getText().toString();
                 String carBrand = ((Spinner) view.findViewById(R.id.carBrand)).getSelectedItem().toString();
+                String orderpart = ((Spinner) view.findViewById(R.id.orderpart)).getSelectedItem().toString();
                 String maxPrice = ((TextInputEditText) view.findViewById(R.id.maxPriceValue)).getText().toString();
                 String minPrice = ((TextInputEditText) view.findViewById(R.id.minPriceValue)).getText().toString();
 
@@ -60,6 +61,7 @@ public class SearchFragment extends Fragment {
                 parameters.put("carBrand", carBrand);
                 parameters.put("maxPrice", maxPrice);
                 parameters.put("minPrice", minPrice);
+                parameters.put("orderpart", orderpart);
 
                 new CarPartSearchTask().execute(parameters);
                 int a = 3;

@@ -78,7 +78,7 @@ namespace CarPartsServer.Controllers
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Search(string carPart, string carBrand, double? maxPrice, double? minPrice)
+        public ActionResult Search(string carPart, string carBrand, double? maxPrice, double? minPrice, string orderpart)
         {
             List<CarPart> retval = null;
             using (var db = new EfContext())
@@ -98,6 +98,23 @@ namespace CarPartsServer.Controllers
 
                 if (minPrice != null && minPrice.Value > 0)
                     query = query.Where(x => x.Price > minPrice);
+
+                if(orderpart.Equals("Datum silazno"))
+                {
+                    query = query.OrderByDescending(x => x.PublishDate);
+                }
+                else if (orderpart.Equals("Datum uzlazno"))
+                {
+                    query = query.OrderBy(x => x.PublishDate);
+                }
+                else if (orderpart.Equals("Cena silazno"))
+                {
+                    query = query.OrderByDescending(x => x.Price);
+                }
+                else if (orderpart.Equals("Cena uzlazno"))
+                {
+                    query = query.OrderBy(x => x.Price);
+                }
 
                 retval = query.ToList();
             }

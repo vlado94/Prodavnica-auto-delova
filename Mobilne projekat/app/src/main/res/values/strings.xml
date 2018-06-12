@@ -19,4 +19,11 @@
         <item>Mini</item>
     </string-array>
 
+    <string-array name="order_parts">
+        <item>Datum silazno</item>
+        <item>Datum uzlazno</item>
+        <item>Cena silazno</item>
+        <item>Cena uzlazno</item>
+    </string-array>
+
 </resources>
