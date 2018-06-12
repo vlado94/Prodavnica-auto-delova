@@ -89,7 +89,7 @@ namespace CarPartsServer.Controllers
                     query = query.Where(x => x.CarBrand.Name.Equals(carBrand));
 
                 if (!carPart.Equals(""))
-                    query = query.Where(x => x.Name.Equals(carPart));
+                    query = query.Where(x => x.Name.ToLower().Contains(carPart.ToLower()));
 
                 if (maxPrice != null && maxPrice.Value > 0)
                     query = query.Where(x => x.Price < maxPrice);
