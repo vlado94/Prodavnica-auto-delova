@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -64,8 +65,23 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         this.startService(intentToSyncImmediately);
 
         setLoggedUser();
+        defaultSetup();
     }
 
+    private void defaultSetup() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String str = sp.getString("defaultbackground", "temp");
+        if(str.equals("greenback")) {
+            mDrawerLayout.setBackgroundResource(R.drawable.greenback);
+        }
+        else if(str.equals("whitepic")) {
+            mDrawerLayout.setBackgroundResource(R.drawable.whitepic);
+        } else {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("defaultbackground", "whitepic");
+            editor.apply();
+        }
+    }
 
     private void setupViewPager(ViewPager viewPager){
         SectionsStatePageAdapter adapter = new SectionsStatePageAdapter(getSupportFragmentManager());
@@ -86,6 +102,12 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     }
 
     @Override
+    protected void onResume() {
+        defaultSetup();
+        super.onResume();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.main, menu);
@@ -96,9 +118,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.countries){
+        if(id == R.id.settingsfragment1){
             Context context = MainActivity.this;
-            Class destinationActivity = CountriesActivity.class;
+            Class destinationActivity = SettingsActivity.class;
             Intent startChildActivityIntent = new Intent(context, destinationActivity);
             startActivity(startChildActivityIntent);
         }

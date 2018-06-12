@@ -3,15 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/main_icon"
-        android:orderInCategory="1"
-        app:showAsAction="always"
-        android:icon="@mipmap/ikonica"
-        android:title="ikonica"/>
-
-    <item
-        android:id="@+id/countries"
+        android:id="@+id/settingsfragment1"
         android:orderInCategory="2"
-        android:title="Drzave"
+        android:title="Podešavanja"
         app:showAsAction="never"/>
 </menu>

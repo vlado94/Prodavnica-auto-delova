@@ -77,30 +77,35 @@ namespace CarPartsServer.Controllers
             Shop retval = null;
             using (var db = new EfContext())
             {
-                if (model.CarBrands != null)
-                {
-                    List<CarBrand> brands = model.CarBrands.ToList();
-                    model.CarBrands.Clear();
-                    foreach (CarBrand a in brands)
-                    {
-                        CarBrand fromDb = db.CarBrands.FirstOrDefault(x => x.ID == a.ID);
-                        model.CarBrands.Add(fromDb);
-                    }
-                }
-
                 var locationService = new GoogleLocationService();
                 var point = locationService.GetLatLongFromAddress(model.Address);
-                model.Latitude = point.Latitude;
-                model.Longitude = point.Longitude;
-                if (model.UserId != null)
+                if (point != null)
                 {
-                    User u = db.Users.FirstOrDefault(x => x.ID == model.UserId);
-                    u.Shop = model;
+                    model.Latitude = point.Latitude;
+                    model.Longitude = point.Longitude;
+                    if (model.UserId != null)
+                    {
+                        User u = db.Users.FirstOrDefault(x => x.ID == model.UserId);
+                        u.Shop = model;
+                    }
+
+                    if (model.CarBrands != null)
+                    {
+                        List<CarBrand> brands = model.CarBrands.ToList();
+                        model.CarBrands.Clear();
+                        foreach (CarBrand a in brands)
+                        {
+                            CarBrand fromDb = db.CarBrands.FirstOrDefault(x => x.ID == a.ID);
+                            model.CarBrands.Add(fromDb);
+                        }
+                    }
+
+
+
+
+                    retval = db.Shops.Add(model);
+                    db.SaveChanges();
                 }
-
-
-                retval = db.Shops.Add(model);
-                db.SaveChanges();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
