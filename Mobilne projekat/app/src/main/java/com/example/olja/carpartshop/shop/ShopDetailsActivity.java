@@ -65,16 +65,6 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
         viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
 
-
-
-    /*    ActionBar actionBar = this.getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Detalji prodavnice");
-        }
-*/
-
-
         if(savedInstanceState != null){
             shopId = savedInstanceState.getInt("shopId");
         }else {
@@ -82,9 +72,6 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             if (intentThatStartedThisActivity.hasExtra("shopId")) {
                 int id = intentThatStartedThisActivity.getIntExtra("shopId", -1);
                 shopId = id;
-
-
-
             }
         }
 
@@ -135,7 +122,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("fa", "fsfafas");
+
     }
 
     @Override

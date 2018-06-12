@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\csc.exe
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\csc.exe.config
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\csc.rsp
@@ -61,75 +60,7 @@ C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarParts
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Net.Http.Formatting.xml
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Http.xml
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Http.WebHost.xml
-C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.csprojAssemblyReference.cache
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.csproj.CoreCompileInputs.cache
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.csproj.CopyComplete
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.dll
 C:\Users\Olja\Desktop\Git android\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.pdb
-=======
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\csc.exe
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\csc.exe.config
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\csc.rsp
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\csi.exe
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\csi.rsp
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\System.AppContext.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\vbc.exe
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\vbc.exe.config
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\vbc.rsp
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\VBCSCompiler.exe
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\CarPartsServer.dll.config
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\CarPartsServer.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\CarPartsServer.pdb
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\Antlr3.Runtime.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\EntityFramework.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\EntityFramework.SqlServer.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\GoogleMaps.LocationServices.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\Newtonsoft.Json.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Net.Http.Formatting.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Helpers.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Http.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Http.WebHost.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Mvc.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Optimization.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Razor.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.WebPages.Deployment.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.WebPages.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.WebPages.Razor.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\WebGrease.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\Antlr3.Runtime.pdb
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\EntityFramework.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\EntityFramework.SqlServer.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Helpers.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Mvc.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Optimization.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Razor.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.WebPages.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.WebPages.Deployment.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.WebPages.Razor.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\Newtonsoft.Json.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Net.Http.Formatting.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Http.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\bin\System.Web.Http.WebHost.xml
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.csproj.CoreCompileInputs.cache
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.dll
-C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.pdb
->>>>>>> 1fb2d95d4fb1da5aa3073954724bdf1734883b7f

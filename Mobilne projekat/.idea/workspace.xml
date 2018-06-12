@@ -32,20 +32,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ShopDetailsActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShopDetailsActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="215" column="124" lean-forward="false" selection-start-line="215" selection-start-column="116" selection-end-line="215" selection-end-column="124" />
+            <state relative-caret-position="-252">
+              <caret line="65" column="75" lean-forward="true" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="75" />
               <folding>
-                <element signature="e#4568#4569#0" expanded="true" />
-                <element signature="e#4599#4600#0" expanded="true" />
-                <element signature="e#4647#4648#0" expanded="true" />
-                <element signature="e#4680#4681#0" expanded="true" />
-                <element signature="e#4728#4729#0" expanded="true" />
-                <element signature="e#4761#4762#0" expanded="true" />
-                <element signature="e#7232#7832#0" expanded="true" />
-                <element signature="e#7831#7832#0" expanded="true" />
+                <element signature="e#4315#4316#0" expanded="true" />
+                <element signature="e#4346#4347#0" expanded="true" />
+                <element signature="e#4394#4395#0" expanded="true" />
+                <element signature="e#4427#4428#0" expanded="true" />
+                <element signature="e#4475#4476#0" expanded="true" />
+                <element signature="e#4508#4509#0" expanded="true" />
+                <element signature="e#6979#7579#0" expanded="true" />
+                <element signature="e#7578#7579#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,14 +100,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider editor-type-id="android-manifest">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="74" column="102" lean-forward="true" selection-start-line="74" selection-start-column="102" selection-end-line="74" selection-end-column="102" />
+            <state relative-caret-position="1554">
+              <caret line="74" column="102" lean-forward="false" selection-start-line="74" selection-start-column="102" selection-end-line="74" selection-end-column="102" />
               <folding />
             </state>
           </provider>
@@ -2149,9 +2149,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ListCarPartsForShopActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/shops_search_fragment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java" />
       </list>
     </option>
   </component>
@@ -2390,7 +2390,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528768448628" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528769144974" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2438,7 +2438,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528768448628" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528769144974" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2621,7 +2621,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528768448629" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1528769144975" />
       </method>
     </configuration>
     <list size="1">
@@ -2663,7 +2663,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2409" y="-8" width="2418" height="1318" extended-state="7" />
+    <frame x="-2409" y="-8" width="2418" height="1318" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2762,84 +2762,72 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>129</line>
+          <line>116</line>
           <properties />
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>83</line>
+          <line>73</line>
           <properties />
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>168</line>
+          <line>155</line>
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>142</line>
+          <line>129</line>
           <properties />
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>147</line>
+          <line>134</line>
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>152</line>
+          <line>139</line>
           <properties />
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>137</line>
-          <properties />
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>96</line>
+          <line>83</line>
           <properties />
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>90</line>
+          <line>77</line>
           <properties />
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>81</line>
+          <line>71</line>
           <properties />
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>69</line>
-          <properties />
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>77</line>
+          <line>67</line>
           <properties />
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java</url>
-          <line>78</line>
+          <line>68</line>
           <properties />
           <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="60" />
+      <option name="time" value="61" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
@@ -3294,23 +3282,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="215" column="124" lean-forward="false" selection-start-line="215" selection-start-column="116" selection-end-line="215" selection-end-column="124" />
-          <folding>
-            <element signature="e#4568#4569#0" expanded="true" />
-            <element signature="e#4599#4600#0" expanded="true" />
-            <element signature="e#4647#4648#0" expanded="true" />
-            <element signature="e#4680#4681#0" expanded="true" />
-            <element signature="e#4728#4729#0" expanded="true" />
-            <element signature="e#4761#4762#0" expanded="true" />
-            <element signature="e#7232#7832#0" expanded="true" />
-            <element signature="e#7831#7832#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/shops_search_fragment.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3338,9 +3309,26 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="74" column="102" lean-forward="true" selection-start-line="74" selection-start-column="102" selection-end-line="74" selection-end-column="102" />
+        <state relative-caret-position="1554">
+          <caret line="74" column="102" lean-forward="false" selection-start-line="74" selection-start-column="102" selection-end-line="74" selection-end-column="102" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/olja/carpartshop/shop/ShopDetailsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-252">
+          <caret line="65" column="75" lean-forward="true" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="75" />
+          <folding>
+            <element signature="e#4315#4316#0" expanded="true" />
+            <element signature="e#4346#4347#0" expanded="true" />
+            <element signature="e#4394#4395#0" expanded="true" />
+            <element signature="e#4427#4428#0" expanded="true" />
+            <element signature="e#4475#4476#0" expanded="true" />
+            <element signature="e#4508#4509#0" expanded="true" />
+            <element signature="e#6979#7579#0" expanded="true" />
+            <element signature="e#7578#7579#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
