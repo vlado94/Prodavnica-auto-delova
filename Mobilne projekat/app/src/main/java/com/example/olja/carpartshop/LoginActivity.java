@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.ActionBar;
@@ -32,10 +33,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     Button submitBtn = null;
 
+    private android.support.constraint.ConstraintLayout layout;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+        layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.shop_details_layout);
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -44,8 +48,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         submitBtn = (Button)findViewById(R.id.log_submit);
         submitBtn.setOnClickListener(this);
 
+        defaultSetup();
     }
 
+
+    @Override
+    protected void onResume() {
+        defaultSetup();
+        super.onResume();
+
+    }
+
+    private void defaultSetup() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String str = sp.getString("defaultbackground", "temp");
+        if(str.equals("greenback")) {
+            layout.setBackgroundResource(R.drawable.greenback);
+        }
+        else if(str.equals("whitepic")) {
+            layout.setBackgroundResource(R.drawable.whitepic);
+        } else {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("defaultbackground", "whitepic");
+            editor.apply();
+            layout.setBackgroundResource(R.drawable.whitepic);
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

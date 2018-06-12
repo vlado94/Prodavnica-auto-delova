@@ -11,7 +11,7 @@
     <string name="title_activity_shop_maps">Map</string>
 
     <string-array name="carBrandsList">
-        <item>Nije odabrano</item>
+        <item>Marka auta</item>
         <item>Opel</item>
         <item>Volkswagen</item>
         <item>Citroen</item>

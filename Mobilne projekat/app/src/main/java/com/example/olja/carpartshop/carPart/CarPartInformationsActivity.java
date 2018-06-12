@@ -4,11 +4,13 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -62,9 +64,13 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
     private int id = 0;
     private String phoneNumber;
 
+    private android.support.constraint.ConstraintLayout layout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
+        layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.shop_details_layout);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.car_part_details);
         longDesc = (TextView) findViewById(R.id.car_part_details_longDesc);
@@ -105,6 +111,31 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
         if(Constants.getLoggedUser() == null || Constants.getLoggedUser().getID() == 0 )
             notifyImg.setVisibility(View.INVISIBLE);
 
+        defaultSetup();
+    }
+
+
+    @Override
+    protected void onResume() {
+        defaultSetup();
+        super.onResume();
+
+    }
+
+    private void defaultSetup() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String str = sp.getString("defaultbackground", "temp");
+        if(str.equals("greenback")) {
+            layout.setBackgroundResource(R.drawable.greenback);
+        }
+        else if(str.equals("whitepic")) {
+            layout.setBackgroundResource(R.drawable.whitepic);
+        } else {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("defaultbackground", "whitepic");
+            editor.apply();
+            layout.setBackgroundResource(R.drawable.whitepic);
+        }
     }
 
     @Override

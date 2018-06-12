@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         setNavigationViewListener();
         setFragment(new HomeFragment());
-        ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
+        ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(0).setChecked(true);
 
         //Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
         //this.startService(intentToSyncImmediately);
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("defaultbackground", "whitepic");
             editor.apply();
+            mDrawerLayout.setBackgroundResource(R.drawable.whitepic);
         }
     }
 

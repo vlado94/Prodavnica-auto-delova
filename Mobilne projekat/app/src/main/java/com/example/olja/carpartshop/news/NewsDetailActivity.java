@@ -1,9 +1,11 @@
 package com.example.olja.carpartshop.news;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
@@ -36,6 +38,7 @@ public class NewsDetailActivity extends AppCompatActivity {
     private TextView newsTitle;
     //private TextView newsDate;
     private TextView newsContent;
+    private android.support.constraint.ConstraintLayout layout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class NewsDetailActivity extends AppCompatActivity {
         newsTitle = (TextView) findViewById(R.id.newsTitle);
         //newsDate = (TextView) findViewById(R.id.newsDate);
         newsContent = (TextView) findViewById(R.id.newsContent);
+
+        layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.news_details_layout);
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -54,6 +59,23 @@ public class NewsDetailActivity extends AppCompatActivity {
         if (intentThatStartedThisActivity.hasExtra("newsId")) {
             int id = intentThatStartedThisActivity.getIntExtra("newsId", -1);
            new GetNewsByIdTask().execute(id);
+        }
+        defaultSetup();
+    }
+
+    private void defaultSetup() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String str = sp.getString("defaultbackground", "temp");
+        if(str.equals("greenback")) {
+            layout.setBackgroundResource(R.drawable.greenback);
+        }
+        else if(str.equals("whitepic")) {
+            layout.setBackgroundResource(R.drawable.whitepic);
+        } else {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("defaultbackground", "whitepic");
+            editor.apply();
+            layout.setBackgroundResource(R.drawable.whitepic);
         }
     }
 
@@ -104,6 +126,14 @@ public class NewsDetailActivity extends AppCompatActivity {
             newsContent.setText(list.getLongDescription());
 
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        defaultSetup();
+        super.onResume();
+
     }
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {

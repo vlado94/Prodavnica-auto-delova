@@ -60,7 +60,7 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
         holder.carPartName.setText(carPart.getName());
         holder.carPartPrice.setText(String.valueOf(carPart.getPrice() + " RSD"));
         holder.carPartId = carPart.getID();
-        holder.phone = carPart.getShop().getPhone();
+        holder.phone = "0653268080";
 
     }
 

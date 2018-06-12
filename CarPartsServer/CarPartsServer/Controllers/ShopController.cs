@@ -128,19 +128,18 @@ namespace CarPartsServer.Controllers
             List<Shop> retval = null;
             using (var db = new EfContext())
             {
+
                 var query = db.Shops
                     .Include(x => x.CarBrands);
-                //if (!carBrand.Equals("") && !carBrand.Equals("Nije odabrano"))
-                //    query = query.Where(x => x.CarBrands.ToList().Name.Equals(carBrand));
 
-                //if (!carPart.Equals(""))
-                //   query = query.Where(x => x.Name.ToLower().Contains(carPart.ToLower()));
+                if (!carBrand.Equals("") && !carBrand.Equals("Marka auta"))
+                    query = db.Shops.Where(s => s.CarBrands.Any(cb => cb.Name.ToLower().Equals(carBrand)));
 
-                //if (maxPrice != null && maxPrice.Value > 0)
-                //    query = query.Where(x => x.Price < maxPrice);
+                if (!name.Equals(""))
+                   query = query.Where(x => x.Name.ToLower().Contains(name.ToLower()));
 
-                ////if (minPrice != null && minPrice.Value > 0)
-                ////    query = query.Where(x => x.Price > minPrice);
+                if (!city.Equals(""))
+                    query = query.Where(x => x.Address.Contains(city));
 
                 retval = query.ToList();
             }

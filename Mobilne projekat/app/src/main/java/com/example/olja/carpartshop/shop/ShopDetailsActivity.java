@@ -1,15 +1,24 @@
 package com.example.olja.carpartshop.shop;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,18 +62,26 @@ public class ShopDetailsActivity extends AppCompatActivity  {
     private TextView shopNameDetails;
     private ListView addresesListView;
     private ImageView viewCarPartsIcon;
+    private android.support.constraint.ConstraintLayout layout;
 
+    private ImageView callIcon;
+    private String phone;
     private int shopId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shop_details);
+
+        layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.shop_details_layout);
+
         shopNameDetails = (TextView) findViewById(R.id.shopNameDetails);
         addresesListView = (ListView) findViewById(R.id.addresesListView);
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
         viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
 
+        getSupportActionBar().setTitle("Detalji prodavnice");
+        callIcon = (ImageView) findViewById(R.id.shop_details_callIcon);
         if(savedInstanceState != null){
             shopId = savedInstanceState.getInt("shopId");
         }else {
@@ -86,24 +103,32 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             }
         });
 
+        defaultSetup();
+        callIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               callPhoneNumber(phone);
+            }
+        });
 
     }
 
 
-    /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.shop_map);
-      mapFragment.getMapAsync(new OnMapReadyCallback() {
-          @Override
-          public void onMapReady(GoogleMap googleMap) {
-              Geocoder coder= new Geocoder(getApplicationContext());
-              LatLng latLng = new LatLng(1.289545, 103.849972);
-              googleMap.addMarker(new MarkerOptions().position(latLng)
-                      .title("Prodavnica"));
-            //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-              googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
-          }
-
-
-      });*/
+    private void defaultSetup() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String str = sp.getString("defaultbackground", "temp");
+        if(str.equals("greenback")) {
+            layout.setBackgroundResource(R.drawable.greenback);
+        }
+        else if(str.equals("whitepic")) {
+            layout.setBackgroundResource(R.drawable.whitepic);
+        } else {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("defaultbackground", "whitepic");
+            editor.apply();
+            layout.setBackgroundResource(R.drawable.whitepic);
+        }
+    }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -121,6 +146,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
 
     @Override
     protected void onResume() {
+        defaultSetup();
         super.onResume();
 
     }
@@ -198,18 +224,19 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             carBrandsListView.setAdapter(carBrandsListAdapter);
             addresesListView.setAdapter(addresListAdapter);
             latitude = shop.getLatitude();
-            longitude = shop.getLatitude();
+            longitude = shop.getLongitude();
+            phone = shop.getPhone();
 
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.shop_map);
             mapFragment.getMapAsync(new OnMapReadyCallback() {
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
                     Geocoder coder= new Geocoder(getApplicationContext());
-                    LatLng latLng = new LatLng(latitude, longitude);
+                    LatLng latLng = new LatLng(latitude,longitude);
                     googleMap.addMarker(new MarkerOptions().position(latLng)
                             .title("Prodavnica"));
                     //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                    //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.0f));
                 }
             });
         }
@@ -250,5 +277,16 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             NavUtils.navigateUpFromSameTask(this);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void callPhoneNumber(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 101);
+        } else {
+            this.startActivity(intent);
+
+        }
     }
 }

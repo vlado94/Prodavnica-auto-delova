@@ -13,11 +13,16 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.olja.carpartshop.Constants;
 import com.example.olja.carpartshop.R;
+import com.example.olja.carpartshop.carBrand.CarBrand;
 import com.example.olja.carpartshop.carPart.CarPart;
 import com.example.olja.carpartshop.carPart.CarPartAdapter;
 import com.example.olja.carpartshop.carPart.CarPartInformationsActivity;
+import com.example.olja.carpartshop.database.DataAccess;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +31,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -67,10 +73,34 @@ public class ListCarPartsForShopActivity extends AppCompatActivity  implements C
 
             Bundle bundle = getIntent().getExtras();
             List<CarPart> carParts = bundle.getParcelableArrayList("data");
+           //carParts = populateCarPartsWithReferences(carParts);
+
             cartPartAdapter.setCarParts(carParts);
         }
 
     }
+   /* private List<CarPart> populateCarPartsWithReferences(List<CarPart> carParts){
+        for (CarPart carPart: carParts) {
+            //JSONArray json = DataAccess.sendGetResultList("CarPart", "Search", params[0]);
+            HashMap<String, String> map = new HashMap<String,String>();
+            HashMap<String, String> map2 = new HashMap<String,String>();
+            map.put("id", String.valueOf(carPart.getShopID()));
+            map2.put("id", String.valueOf(carPart.getCarBrandID()));
+            JSONObject shop = DataAccess.sendGet("Shop", "Get", map );
+            JSONObject carBrand = DataAccess.sendGet("CarBrand", "Get", map2 );
+
+            Shop shopResult = new Gson().fromJson(shop.toString(), new TypeToken<Shop>(){}.getType());
+            CarBrand carBrandResult = new Gson().fromJson(carBrand.toString(), new TypeToken<CarBrand>(){}.getType());
+
+            carPart.setCarBrand(carBrandResult);
+            carPart.setShop(shopResult);
+        }
+
+        return carParts;
+    }*/
+
+
+
     public class GetCarPartsForShopTask extends AsyncTask<Integer, Void, List<CarPart>> {
 
         @Override
