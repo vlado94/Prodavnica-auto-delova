@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Web.Security;
 using GoogleMaps.LocationServices;
+using System.Drawing;
 
 namespace CarPartsServer.Controllers
 {
@@ -118,7 +119,14 @@ namespace CarPartsServer.Controllers
                     };
 
                     var locationService = new GoogleLocationService();
-                    var point = locationService.GetLatLongFromAddress(s1.Address);
+                    MapPoint point = new MapPoint();
+                    point.Latitude = 44;
+                    point.Longitude = 20;
+                    try {
+                        point = locationService.GetLatLongFromAddress(s1.Address);
+                    }
+                    catch(Exception ee)
+                    {}
                     s1.Latitude = point.Latitude;
                     s1.Longitude = point.Longitude;
 
@@ -131,7 +139,13 @@ namespace CarPartsServer.Controllers
                         Address = "44, Gogoljeva, Novi Sad,Srbija",
                         CarBrands = db.CarBrands.ToList()
                     };
-                    point = locationService.GetLatLongFromAddress(s2.Address);
+
+                    try
+                    {
+                        point = locationService.GetLatLongFromAddress(s2.Address);
+                    }
+                    catch (Exception ee)
+                    { }
                     s2.Latitude = point.Latitude;
                     s2.Longitude = point.Longitude;
                     db.Shops.Add(s2);
@@ -143,7 +157,12 @@ namespace CarPartsServer.Controllers
                         Address = "20, Gogoljeva, Beograd,Srbija",
                         CarBrands = db.CarBrands.ToList()
                     };
-                    point = locationService.GetLatLongFromAddress(s3.Address);
+                    try
+                    {
+                        point = locationService.GetLatLongFromAddress(s3.Address);
+                    }
+                    catch (Exception ee)
+                    { }
                     s3.Latitude = point.Latitude;
                     s3.Longitude = point.Longitude;
 

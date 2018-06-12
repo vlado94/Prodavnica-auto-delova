@@ -63,3 +63,4 @@ C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\C
 C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.csproj.CoreCompileInputs.cache
 C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.dll
 C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.pdb
+C:\Users\Nebojsa\Desktop\carpartsFromGit\Prodavnica-auto-delova\CarPartsServer\CarPartsServer\obj\Debug\CarPartsServer.csprojResolveAssemblyReference.cache

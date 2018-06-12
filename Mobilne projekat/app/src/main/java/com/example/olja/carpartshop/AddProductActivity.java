@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -35,6 +37,7 @@ import com.example.olja.carpartshop.carBrand.CarBrand;
 import com.example.olja.carpartshop.carPart.CarPart;
 import com.example.olja.carpartshop.database.DataAccess;
 import com.example.olja.carpartshop.shop.Shop;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -42,6 +45,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -72,8 +76,8 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.add_product);
 
         partName = findViewById(R.id.cp_name);
@@ -90,15 +94,16 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         chooseImgBtn.setOnClickListener(this);
         requestStoragePermission();
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(Constants.currentCarPart != 0)
-            Toast.makeText(this, "IZmena", Toast.LENGTH_LONG).show();
-        else
+        if(Constants.currentCarPart == 0)
             Toast.makeText(this, "Dodavanje", Toast.LENGTH_LONG).show();
+        else{
+            //Izmena
+
+            HashMap<String, String> parameters = new HashMap<String, String>();
+            parameters.put("id", Integer.toString(Constants.currentCarPart));
+            new GetPartForChangeTask().execute(parameters);
+
+        }
     }
 
     private void requestStoragePermission(){
@@ -160,6 +165,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                 carPart.setShortDescription(partShortDesc.getText().toString());
                 carPart.setLongDescription(partLongDesc.getText().toString());
                 carPart.setUserID(Constants.getLoggedUser().getID());
+                carPart.setID(Constants.currentCarPart);
                 if(bitmap != null){
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -174,8 +180,7 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                 }
 
                 new AddProductActivity.PostCarPartTask().execute(carPart);
-            } else
-                Toast.makeText(AddProductActivity.this, "Greska.", Toast.LENGTH_SHORT).show();
+            }
         }
 
         if(view == chooseImgBtn)
@@ -187,7 +192,6 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
 
 
     }
-
 
 
     public class PostCarPartTask extends AsyncTask<CarPart, Void, JSONObject> {
@@ -204,13 +208,50 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
             if(jsonObject != null) {
                 Constants.hasShop = true;
                 Toast.makeText(AddProductActivity.this, "Uspesno dodat deo", Toast.LENGTH_SHORT).show();
-                recreate();
-            }
-            else {
-                Toast.makeText(AddProductActivity.this, "Greska.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AddProductActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         }
     }
+
+
+    public class GetPartForChangeTask extends AsyncTask<HashMap, Void, JSONObject> {
+
+        @Override
+        protected JSONObject doInBackground(HashMap... params) {
+            JSONObject json = DataAccess.sendPost("CarPart", "Get", params[0]);
+            return  json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            super.onPostExecute(jsonObject);
+            if(jsonObject != null) {
+                CarPart carPart = new Gson().fromJson(jsonObject.toString(), CarPart.class);
+
+                partName.setText(carPart.getName());
+                partBrand.setSelection(carPart.getCarBrandID());
+                partPrice.setText(Integer.toString((int)carPart.getPrice() ));
+                partQuantity.setText(Integer.toString(carPart.getQuantity()));
+                partShortDesc.setText(carPart.getShortDescription());
+                partLongDesc.setText(carPart.getLongDescription());
+
+                if(carPart.getImage() != null){
+                    if(carPart.getImage().length > 0){
+                        bitmap = BitmapFactory.decodeByteArray(carPart.getImage(), 0, carPart.getImage().length);
+                        imageToUpload.setImageBitmap(bitmap);
+                    }
+                }
+
+
+                Toast.makeText(AddProductActivity.this, "Nasao Deo", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+    }
+
+
+
 
 
 
