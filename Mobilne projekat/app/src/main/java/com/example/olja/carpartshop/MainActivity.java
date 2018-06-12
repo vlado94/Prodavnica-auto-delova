@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         setNavigationViewListener();
         setViewPager(0);
-        ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
+        ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(0).setChecked(true);
 
         //Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
         //this.startService(intentToSyncImmediately);

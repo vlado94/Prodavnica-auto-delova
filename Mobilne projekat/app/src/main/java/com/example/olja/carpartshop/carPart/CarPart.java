@@ -34,7 +34,7 @@ public class CarPart implements Parcelable {
     private Shop Shop;
 
     private int UserID = 0;
-
+private String Phone;
     private boolean IsDeleted;
 
     private byte[] Image;
@@ -43,7 +43,7 @@ public class CarPart implements Parcelable {
     public  CarPart(){
 
     }
-    public CarPart(int ID, String name, double price, String shortDescription, String longDescription, int quantity, int visitsNumber, Date publishDate, int ipAddresses, int carBrandID, com.example.olja.carpartshop.carBrand.CarBrand carBrand, int shopID, Shop shop, boolean isDeleted) {
+    public CarPart(int ID, String name, double price, String shortDescription, String longDescription, int quantity, int visitsNumber, Date publishDate, int ipAddresses, int carBrandID, com.example.olja.carpartshop.carBrand.CarBrand carBrand, int shopID, Shop shop, boolean isDeleted, String phone) {
         this.ID = ID;
         Name = name;
         Price = price;
@@ -57,6 +57,7 @@ public class CarPart implements Parcelable {
         ShopID = shopID;
         this.Shop = shop;
         IsDeleted = isDeleted;
+        Phone = phone;
     }
 
     public CarPart(Parcel in) {
@@ -70,6 +71,7 @@ public class CarPart implements Parcelable {
         //PublishDate = in.read
         CarBrandID = in.readInt();
         ShopID = in.readInt();
+        Phone = in.readString();
 
     }
 
@@ -88,6 +90,7 @@ public class CarPart implements Parcelable {
         dest.writeInt(visitsNumber);
         dest.writeInt(CarBrandID);
         dest.writeInt(ShopID);
+        dest.writeString(Phone);
 
     }
 

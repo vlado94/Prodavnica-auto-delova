@@ -62,7 +62,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         String address = shop.getAddress().split(",")[2];
         holder.shopName.setText(shop.getName());
         holder.shopPhone.setText(shop.getAddress().split(",")[2] + ","+shop.getAddress().split(",")[1] + " " + shop.getAddress().split(",")[0]);
-
+       phone = shop.getPhone();
     }
 
     @Override
@@ -96,7 +96,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
             iconCallShop.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    callPhoneNumber(shopPhone.getText().toString());
+                    callPhoneNumber(phone);
                 }
             });
             view.setOnClickListener(this);

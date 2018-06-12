@@ -1,15 +1,23 @@
 package com.example.olja.carpartshop.shop;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.SharedPreferences;
+=======
+import android.content.pm.PackageManager;
+>>>>>>> f2127f686180924cd587e32cf9fce3e3ff977e1e
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -59,6 +67,8 @@ public class ShopDetailsActivity extends AppCompatActivity  {
     private ImageView viewCarPartsIcon;
     private android.support.constraint.ConstraintLayout layout;
 
+    private ImageView callIcon;
+    private String phone;
     private int shopId;
 
     @Override
@@ -74,6 +84,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
 
         getSupportActionBar().setTitle("Detalji prodavnice");
+        callIcon = (ImageView) findViewById(R.id.shop_details_callIcon);
         if(savedInstanceState != null){
             shopId = savedInstanceState.getInt("shopId");
         }else {
@@ -96,6 +107,12 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         });
 
         defaultSetup();
+        callIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               callPhoneNumber(phone);
+            }
+        });
 
     }
 
@@ -211,6 +228,7 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             addresesListView.setAdapter(addresListAdapter);
             latitude = shop.getLatitude();
             longitude = shop.getLongitude();
+            phone = shop.getPhone();
 
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.shop_map);
             mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -262,5 +280,16 @@ public class ShopDetailsActivity extends AppCompatActivity  {
             NavUtils.navigateUpFromSameTask(this);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void callPhoneNumber(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 101);
+        } else {
+            this.startActivity(intent);
+
+        }
     }
 }

@@ -42,6 +42,7 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 retval = db.CarBrands.Add(model);
+
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
