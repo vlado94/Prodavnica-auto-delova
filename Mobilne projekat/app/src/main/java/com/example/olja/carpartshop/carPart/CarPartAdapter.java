@@ -60,6 +60,7 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
         holder.carPartName.setText(carPart.getName());
         holder.carPartPrice.setText(String.valueOf(carPart.getPrice() + " RSD"));
         holder.carPartId = carPart.getID();
+        holder.phone = carPart.getShop().getPhone();
 
     }
 
@@ -84,6 +85,7 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
         public final ImageView carPartIcon;
         public final ImageView callCarPartIcon;
         public final ImageView infoCarPartIcon;
+        public String phone;
         public int carPartId;
 
         public CarPartViewHolder(final View view) {
@@ -97,7 +99,7 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
             callCarPartIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    callPhoneNumber();
+                    callPhoneNumber(phone);
                 }
             });
 
@@ -125,8 +127,8 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
             contextAdapter.startActivity(startChildActivityIntent);
         }
 
-        public void callPhoneNumber() {
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "0653268080"));
+        public void callPhoneNumber(String phoneNumber) {
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
 
             if (ContextCompat.checkSelfPermission(contextAdapter, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions((Activity) contextAdapter, new String[]{Manifest.permission.CALL_PHONE}, 101);

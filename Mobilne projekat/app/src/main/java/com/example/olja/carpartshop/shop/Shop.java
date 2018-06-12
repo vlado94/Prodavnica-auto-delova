@@ -1,5 +1,8 @@
 package com.example.olja.carpartshop.shop;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.olja.carpartshop.address.Address;
 import com.example.olja.carpartshop.carBrand.CarBrand;
 import com.example.olja.carpartshop.carPart.CarPart;
@@ -10,7 +13,7 @@ import java.util.List;
  * Created by Olja on 6/7/2018.
  */
 
-public class Shop {
+public class Shop implements Parcelable {
 
     private int ID;
     private String Name;
@@ -29,6 +32,42 @@ public class Shop {
     private boolean IsDeleted;
     private int UserId = 0;
 
+    public Shop(Parcel in) {
+        ID = in.readInt();
+        Name = in.readString();
+        Phone = in.readString();
+        Address = in.readString();
+        Longitude = in.readDouble();
+        Latitude = in.readDouble();
+    }
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(ID);
+        dest.writeString(Name);
+        dest.writeString(Phone);
+        dest.writeString(Address);
+        dest.writeDouble(Longitude);
+        dest.writeDouble(Latitude);
+    }
+    public Shop(){
+
+    }
+
+    public static final Parcelable.Creator<Shop> CREATOR = new Parcelable.Creator<Shop>()
+    {
+        public Shop createFromParcel(Parcel in)
+        {
+            return new Shop(in);
+        }
+        public Shop[] newArray(int size)
+        {
+            return new Shop[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
     public int getID() {
         return ID;
     }

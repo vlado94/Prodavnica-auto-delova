@@ -77,30 +77,35 @@ namespace CarPartsServer.Controllers
             Shop retval = null;
             using (var db = new EfContext())
             {
-                if (model.CarBrands != null)
-                {
-                    List<CarBrand> brands = model.CarBrands.ToList();
-                    model.CarBrands.Clear();
-                    foreach (CarBrand a in brands)
-                    {
-                        CarBrand fromDb = db.CarBrands.FirstOrDefault(x => x.ID == a.ID);
-                        model.CarBrands.Add(fromDb);
-                    }
-                }
-
                 var locationService = new GoogleLocationService();
                 var point = locationService.GetLatLongFromAddress(model.Address);
-                model.Latitude = point.Latitude;
-                model.Longitude = point.Longitude;
-                if (model.UserId != null)
+                if (point != null)
                 {
-                    User u = db.Users.FirstOrDefault(x => x.ID == model.UserId);
-                    u.Shop = model;
+                    model.Latitude = point.Latitude;
+                    model.Longitude = point.Longitude;
+                    if (model.UserId != null)
+                    {
+                        User u = db.Users.FirstOrDefault(x => x.ID == model.UserId);
+                        u.Shop = model;
+                    }
+
+                    if (model.CarBrands != null)
+                    {
+                        List<CarBrand> brands = model.CarBrands.ToList();
+                        model.CarBrands.Clear();
+                        foreach (CarBrand a in brands)
+                        {
+                            CarBrand fromDb = db.CarBrands.FirstOrDefault(x => x.ID == a.ID);
+                            model.CarBrands.Add(fromDb);
+                        }
+                    }
+
+
+
+
+                    retval = db.Shops.Add(model);
+                    db.SaveChanges();
                 }
-
-
-                retval = db.Shops.Add(model);
-                db.SaveChanges();
             }
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
@@ -118,6 +123,28 @@ namespace CarPartsServer.Controllers
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Search(string name, string carBrand, string city)
+        {
+            List<Shop> retval = null;
+            using (var db = new EfContext())
+            {
+                var query = db.Shops
+                    .Include(x => x.CarBrands);
+                //if (!carBrand.Equals("") && !carBrand.Equals("Nije odabrano"))
+                //    query = query.Where(x => x.CarBrands.ToList().Name.Equals(carBrand));
 
+                //if (!carPart.Equals(""))
+                //   query = query.Where(x => x.Name.ToLower().Contains(carPart.ToLower()));
+
+                //if (maxPrice != null && maxPrice.Value > 0)
+                //    query = query.Where(x => x.Price < maxPrice);
+
+                ////if (minPrice != null && minPrice.Value > 0)
+                ////    query = query.Where(x => x.Price > minPrice);
+
+                retval = query.ToList();
+            }
+            return Json(retval, JsonRequestBehavior.AllowGet);
+        }
     }
 }

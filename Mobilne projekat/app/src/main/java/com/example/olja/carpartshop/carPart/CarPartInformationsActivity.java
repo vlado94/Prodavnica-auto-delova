@@ -1,12 +1,17 @@
 package com.example.olja.carpartshop.carPart;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
@@ -53,7 +58,9 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
     private TextView quantity;
     private TextView carBrand;
     private ImageView notifyImg;
+    private ImageView callImg;
     private int id = 0;
+    private String phoneNumber;
 
 
     @Override
@@ -69,8 +76,18 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
         quantity = (TextView) findViewById(R.id.car_part_details_quantity);
         carBrand = (TextView) findViewById(R.id.car_part_details_carBrand);
         notifyImg = (ImageView) findViewById(R.id.notifiy_img);
+        callImg = (ImageView) findViewById(R.id.car_part_details_callIcon);
+
 
         notifyImg.setOnClickListener(this);
+        callImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callPhoneNumber(phoneNumber);
+            }
+        });
+
+
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -85,7 +102,7 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
             new CarPartInformationsActivity.GetCarPartByIdTask(this).execute(id);
         }
 
-        if(Constants.getLoggedUser().getID() == 0)
+        if(Constants.getLoggedUser() == null || Constants.getLoggedUser().getID() == 0 )
             notifyImg.setVisibility(View.INVISIBLE);
 
     }
@@ -164,7 +181,7 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
             shopName.setText(carPart.getShop().getName());
             quantity.setText(String.valueOf(carPart.getQuantity()));
             carBrand.setText(carPart.getCarBrand().getName());
-
+            phoneNumber = carPart.getShop().getPhone();
         }
     }
 
@@ -193,5 +210,16 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
         Gson gson = new Gson();
         Type listType = new TypeToken<CarPart>() {}.getType();
         return gson.fromJson(json, listType);
+    }
+
+    public void callPhoneNumber(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 101);
+        } else {
+            this.startActivity(intent);
+
+        }
     }
 }

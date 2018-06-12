@@ -60,14 +60,8 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     public void onBindViewHolder(ShopAdapter.ShopViewHolder holder, int position) {
         Shop shop = listData.get(position);
         String address = shop.getAddress().split(",")[2];
-
         holder.shopName.setText(shop.getName());
-
-
-        //holder.shopPhone.setText( shop.getAddress().split(",")[1] + " " + shop.getAddress().split(",")[0]);
         holder.shopPhone.setText(shop.getAddress().split(",")[2] + ","+shop.getAddress().split(",")[1] + " " + shop.getAddress().split(",")[0]);
-
-        //String parsedDate = parse(shop.getPubishDate());
 
     }
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -60,12 +61,27 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         setViewPager(0);
         ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
 
-        Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
-        this.startService(intentToSyncImmediately);
+        //Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
+        //this.startService(intentToSyncImmediately);
 
         setLoggedUser();
+        defaultSetup();
     }
 
+    private void defaultSetup() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String str = sp.getString("defaultbackground", "temp");
+        if(str.equals("greenback")) {
+            mDrawerLayout.setBackgroundResource(R.drawable.greenback);
+        }
+        else if(str.equals("whitepic")) {
+            mDrawerLayout.setBackgroundResource(R.drawable.whitepic);
+        } else {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("defaultbackground", "whitepic");
+            editor.apply();
+        }
+    }
 
     private void setupViewPager(ViewPager viewPager){
         SectionsStatePageAdapter adapter = new SectionsStatePageAdapter(getSupportFragmentManager());
@@ -76,13 +92,21 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         adapter.addFragment(new NewsFragment(), "NewsFragment");
         adapter.addFragment(new NotificationsFragment(), "NotificationsFragment");
         adapter.addFragment(new TermsOfUseFragment(), "TermsOfUseFragment");
+        adapter.addFragment(new SearchShopNewFragment(), "SearchShopNewFragment");
         adapter.addFragment(new CreateShopFragment(), "CreateShopFragment");
         adapter.addFragment(new MyShopFragment(), "MyShopFragment");
+
         viewPager.setAdapter(adapter);
     }
 
     public void setViewPager(int fragmentNumber){
         mViewPager.setCurrentItem(fragmentNumber);
+    }
+
+    @Override
+    protected void onResume() {
+        defaultSetup();
+        super.onResume();
     }
 
     @Override
@@ -96,9 +120,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.countries){
+        if(id == R.id.settingsfragment1){
             Context context = MainActivity.this;
-            Class destinationActivity = CountriesActivity.class;
+            Class destinationActivity = SettingsActivity.class;
             Intent startChildActivityIntent = new Intent(context, destinationActivity);
             startActivity(startChildActivityIntent);
         }
@@ -174,14 +198,20 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 setViewPager(6);
                 break;
             }
-            case R.id.addShop: {
+            case R.id.search_shop: {
                 setViewPager(7);
                 break;
             }
-            case R.id.myShop: {
+            case R.id.addShop: {
                 setViewPager(8);
                 break;
             }
+            case R.id.myShop: {
+                setViewPager(9);
+                break;
+            }
+
+
         }
         //close navigation drawer
         mDrawerLayout.closeDrawer(GravityCompat.START);
