@@ -94,8 +94,9 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
         chooseImgBtn.setOnClickListener(this);
         requestStoragePermission();
 
-        if(Constants.currentCarPart == 0)
-            Toast.makeText(this, "Dodavanje", Toast.LENGTH_LONG).show();
+        if(Constants.currentCarPart == 0){
+            // dodavanje
+        }
         else{
             //Izmena
 
@@ -120,7 +121,6 @@ public class AddProductActivity extends AppCompatActivity implements View.OnClic
                 Toast.makeText(this, "Permision granted", Toast.LENGTH_LONG).show();
             }
             else{
-                Toast.makeText(this, "Permision not granted", Toast.LENGTH_LONG).show();
             }
         }
     }

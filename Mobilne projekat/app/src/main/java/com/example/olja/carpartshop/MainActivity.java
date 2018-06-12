@@ -1,12 +1,15 @@
 package com.example.olja.carpartshop;
 
 import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private int mTaskId = DEFAULT_TASK_ID;
 
     private SectionsStatePageAdapter  mSectionStateAdapter;
-    private ViewPager mViewPager;
+    //private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         setContentView(R.layout.activity_main);
 
         mSectionStateAdapter = new SectionsStatePageAdapter(getSupportFragmentManager());
-        mViewPager =  findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        //mViewPager =  findViewById(R.id.container);
+        //setupViewPager(mViewPager);
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         getSupportActionBar().setTitle("Naslovna");
 
         setNavigationViewListener();
-        setViewPager(0);
+        setFragment(new HomeFragment());
         ((NavigationView)findViewById(R.id.nav_view)).getMenu().getItem(6).setChecked(true);
 
         //Intent intentToSyncImmediately = new Intent(this, getFromLinkIntentService.class);
@@ -67,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         setLoggedUser();
         defaultSetup();
     }
+
+
 
     private void defaultSetup() {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -83,24 +88,12 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         }
     }
 
-    private void setupViewPager(ViewPager viewPager){
-        SectionsStatePageAdapter adapter = new SectionsStatePageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "HomeFragment");
-        adapter.addFragment(new SearchFragment(), "SearchFragment");
-        adapter.addFragment(new ShopsSearchFragment(), "ShopsSearchFragment");
-        adapter.addFragment(new MostPopularFragment(), "MostPopularFragment");
-        adapter.addFragment(new NewsFragment(), "NewsFragment");
-        adapter.addFragment(new NotificationsFragment(), "NotificationsFragment");
-        adapter.addFragment(new TermsOfUseFragment(), "TermsOfUseFragment");
-        adapter.addFragment(new SearchShopNewFragment(), "SearchShopNewFragment");
-        adapter.addFragment(new CreateShopFragment(), "CreateShopFragment");
-        adapter.addFragment(new MyShopFragment(), "MyShopFragment");
-
-        viewPager.setAdapter(adapter);
-    }
-
-    public void setViewPager(int fragmentNumber){
-        mViewPager.setCurrentItem(fragmentNumber);
+    public void setFragment(android.support.v4.app.Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container2, fragment, "starterFragment");
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     @Override
@@ -168,51 +161,59 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        switch (item.getItemId()) {
 
+        android.support.v4.app.Fragment fragment = new HomeFragment();
+        switch (item.getItemId()) {
             case R.id.home: {
-                setViewPager(0);
+                getSupportFragmentManager();
+                fragment = new HomeFragment();
                 break;
             }
             case R.id.search: {
-                setViewPager(1);
+                fragment = new SearchFragment();
                 break;
             }
             case R.id.shopsSearch: {
-                setViewPager(2);
+                fragment = new ShopsSearchFragment();
                 break;
             }
             case R.id.mostPopular: {
-                setViewPager(3);
+                fragment = new MostPopularFragment();
                 break;
             }
             case R.id.news: {
-                setViewPager(4);
+                fragment = new NewsFragment();
                 break;
             }
             case R.id.notifications: {
-                setViewPager(5);
+                fragment = new NotificationsFragment();
                 break;
             }
             case R.id.termsOfUse: {
-                setViewPager(6);
+                fragment = new TermsOfUseFragment();
                 break;
             }
             case R.id.search_shop: {
-                setViewPager(7);
+                fragment = new SearchShopNewFragment();
                 break;
             }
             case R.id.addShop: {
-                setViewPager(8);
+                fragment = new CreateShopFragment();
                 break;
             }
             case R.id.myShop: {
-                setViewPager(9);
+                fragment = new MyShopFragment();
                 break;
             }
-
-
         }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.container2, fragment, "starterFragment");
+        ft.addToBackStack(null);
+        ft.commit();
+
+
         //close navigation drawer
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
