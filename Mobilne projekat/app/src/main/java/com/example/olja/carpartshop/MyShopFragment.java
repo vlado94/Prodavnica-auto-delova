@@ -45,6 +45,7 @@ public class MyShopFragment extends android.support.v4.app.Fragment  implements 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my_shop, container, false);
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle("Moja prodavnica");
 
         addProductBtn = view.findViewById(R.id.add_product);
         shopName = view.findViewById(R.id.shop_name);

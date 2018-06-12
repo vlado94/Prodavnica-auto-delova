@@ -43,7 +43,6 @@ public class CreateShopFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.create_shop_fragment, container, false);
-        getActivity().setTitle("Nova prodavnica");
 
         shopName = view.findViewById(R.id.shop_name);
         shopPhone = view.findViewById(R.id.shop_phone);
