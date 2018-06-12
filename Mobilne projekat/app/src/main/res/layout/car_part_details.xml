@@ -189,6 +189,7 @@ android:scrollbars="vertical">
         android:src="@mipmap/notify_round"
        />
         <ImageView
+            android:id="@+id/car_part_details_callIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/call_icon_round"
