@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -63,46 +64,93 @@ public class ShopDetailsActivity extends AppCompatActivity  {
         addresesListView = (ListView) findViewById(R.id.addresesListView);
         carBrandsListView = (ListView) findViewById(R.id.carBrandsListView);
         viewCarPartsIcon = (ImageView) findViewById(R.id.viewCarPartsIcon);
-        viewCarPartsIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//ovdje treba implementirati poziv
 
-                Class destinationActivity = ListCarPartsForShopActivity.class;
-                Intent startChildActivityIntent = new Intent(getApplicationContext(), destinationActivity);
-                startChildActivityIntent.putExtra("shopId",shopId);
-                startActivity(startChildActivityIntent);
-            }
-        });
 
-        ActionBar actionBar = this.getSupportActionBar();
+
+    /*    ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle("Detalji prodavnice");
         }
-        Intent intentThatStartedThisActivity = getIntent();
-        if (intentThatStartedThisActivity.hasExtra("shopId")) {
-            int id = intentThatStartedThisActivity.getIntExtra("shopId", -1);
-            new ShopDetailsActivity.GetShopByIdTask(this).execute(id);
+*/
 
 
+        if(savedInstanceState != null){
+            shopId = savedInstanceState.getInt("shopId");
+        }else {
+            Intent intentThatStartedThisActivity = getIntent();
+            if (intentThatStartedThisActivity.hasExtra("shopId")) {
+                int id = intentThatStartedThisActivity.getIntExtra("shopId", -1);
+                shopId = id;
+
+
+
+            }
         }
 
-        /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.shop_map);
-        mapFragment.getMapAsync(new OnMapReadyCallback() {
+        new ShopDetailsActivity.GetShopByIdTask(this).execute(shopId);
+        viewCarPartsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onMapReady(GoogleMap googleMap) {
-                Geocoder coder= new Geocoder(getApplicationContext());
-                LatLng latLng = new LatLng(1.289545, 103.849972);
-                googleMap.addMarker(new MarkerOptions().position(latLng)
-                        .title("Prodavnica"));
-              //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+            public void onClick(View v) {
+                Class destinationActivity = ListCarPartsForShopActivity.class;
+                Intent startChildActivityIntent = new Intent(getApplicationContext(), destinationActivity);
+                startChildActivityIntent.putExtra("shopId", shopId);
+                startActivity(startChildActivityIntent);
             }
+        });
 
 
-        });*/
+    }
 
+
+    /*SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.shop_map);
+      mapFragment.getMapAsync(new OnMapReadyCallback() {
+          @Override
+          public void onMapReady(GoogleMap googleMap) {
+              Geocoder coder= new Geocoder(getApplicationContext());
+              LatLng latLng = new LatLng(1.289545, 103.849972);
+              googleMap.addMarker(new MarkerOptions().position(latLng)
+                      .title("Prodavnica"));
+            //  googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+              googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12.0f));
+          }
+
+
+      });*/
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        shopId = savedInstanceState.getInt("shopId");
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putInt("shopId",shopId);
+        super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("fa", "fsfafas");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
     public class GetShopByIdTask extends AsyncTask<Integer, Void, Shop> {
