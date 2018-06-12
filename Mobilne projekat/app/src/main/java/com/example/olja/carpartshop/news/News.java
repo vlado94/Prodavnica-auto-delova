@@ -22,17 +22,19 @@ public class News {
     private String LongDescription;
     private Date PubishDate;
     private boolean IsDeleted;
+    private byte[] Image;
 
 
     public News(){}
 
 
-    public News(String shortDescription, String longDescription, Date pubishDate, String title, boolean isDeleted) {
+    public News(String shortDescription, String longDescription, Date pubishDate, String title, boolean isDeleted, byte[] Image) {
         this.ShortDescription = shortDescription;
         this.LongDescription = longDescription;
         this.PubishDate = pubishDate;
         this.Title = title;
         this.IsDeleted = isDeleted;
+        this.Image = Image;
 
     }
 
@@ -63,6 +65,7 @@ public class News {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(Long.parseLong(right[0]));
         Date dateUtil = calendar.getTime();
+        Image = dto.getImage();
         this.PubishDate = dateUtil;
         this.Title = dto.getTitle();
         this.IsDeleted = dto.isDeleted();
@@ -108,4 +111,11 @@ public class News {
         this.Title = title;
     }
 
+    public byte[] getImage() {
+        return Image;
+    }
+
+    public void setImage(byte[] image) {
+        Image = image;
+    }
 }

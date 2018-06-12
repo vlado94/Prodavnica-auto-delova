@@ -78,7 +78,17 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 var locationService = new GoogleLocationService();
-                var point = locationService.GetLatLongFromAddress(model.Address);
+                MapPoint point = new MapPoint();
+                point.Longitude = 20.41;
+                point.Latitude = 44.78;
+                try
+                {
+                    if(model.Address.Contains(","))
+                        point = locationService.GetLatLongFromAddress(model.Address);
+                }
+                catch (Exception ex)
+                {}
+                
                 if (point != null)
                 {
                     model.Latitude = point.Latitude;

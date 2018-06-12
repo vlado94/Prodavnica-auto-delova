@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.shop_details_layout);
+        layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.login_layout);
 
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
@@ -115,8 +116,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             else {
                 Toast.makeText(LoginActivity.this, "Neuspesno logovanje, pokusajte ponovo", Toast.LENGTH_SHORT).show();
-                ((EditText) findViewById(R.id.log_email)).setText("");
-                ((EditText) findViewById(R.id.log_pass)).setText("");
+                ((TextInputEditText) findViewById(R.id.log_email_value)).setText("");
+                ((TextInputEditText) findViewById(R.id.log_pass_value)).setText("");
             }
         }
     }

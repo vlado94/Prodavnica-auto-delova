@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -56,6 +58,14 @@ public class CarPartAdapter extends RecyclerView.Adapter<CarPartAdapter.CarPartV
     @Override
     public void onBindViewHolder(CarPartAdapter.CarPartViewHolder holder, int position) {
         CarPart carPart = listData.get(position);
+
+        if(carPart.getImage() != null){
+            if(carPart.getImage().length > 0){
+                Bitmap bitmap = BitmapFactory.decodeByteArray(carPart.getImage(), 0, carPart.getImage().length);
+                holder.carPartIcon.setImageBitmap(bitmap);
+            }
+        }
+
 
         holder.carPartName.setText(carPart.getName());
         holder.carPartPrice.setText(String.valueOf(carPart.getPrice() + " RSD"));

@@ -69,7 +69,6 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
-        layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.shop_details_layout);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.car_part_details);
@@ -92,6 +91,8 @@ public class CarPartInformationsActivity  extends AppCompatActivity implements V
                 callPhoneNumber(phoneNumber);
             }
         });
+        layout = (android.support.constraint.ConstraintLayout) findViewById(R.id.carpart_details_layout);
+
 
 
 

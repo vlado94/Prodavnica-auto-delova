@@ -16,6 +16,7 @@ public class NewsDTO {
     private String ShortDescription;
     private String LongDescription;
     private String PubishDate;
+    private byte[] Image;
     private boolean IsDeleted;
 
 
@@ -95,4 +96,14 @@ public class NewsDTO {
     public void setDeleted(boolean deleted) {
         IsDeleted = deleted;
     }
+
+    public byte[] getImage() {
+        return Image;
+    }
+
+    public void setImage(byte[] image) {
+        Image = image;
+    }
 }
+
+

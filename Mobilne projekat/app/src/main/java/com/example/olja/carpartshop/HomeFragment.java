@@ -3,6 +3,7 @@ package com.example.olja.carpartshop;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -82,8 +83,10 @@ public class HomeFragment extends Fragment implements CarPartAdapter.CarPartOnCl
         protected void onPostExecute(JSONArray jsonObject) {
             super.onPostExecute(jsonObject);
 
-            result = new Gson().fromJson(jsonObject.toString(), new TypeToken<ArrayList<CarPart>>(){}.getType());
-            cartPartAdapter.setCarParts(result);
+            if(jsonObject != null){
+                result = new Gson().fromJson(jsonObject.toString(), new TypeToken<ArrayList<CarPart>>(){}.getType());
+                cartPartAdapter.setCarParts(result);
+            }
 
         }
 

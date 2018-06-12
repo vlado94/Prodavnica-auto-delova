@@ -171,6 +171,9 @@ public class DataAccess {
                     retVal = new JSONArray(response);
                 }
             }
+            catch (Exception rr){
+                int a = 3;
+            }
             finally {
                 urlConnection.disconnect();
             }
