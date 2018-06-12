@@ -10,50 +10,43 @@
     android:paddingTop="16dp"
     android:paddingBottom="16dp">
 
-
-
-   <android.support.design.widget.TextInputLayout
-        android:id="@+id/carPart"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/search_shop_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:layout_marginRight="30dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-
-
-       >
+        >
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/carPartValue"
+            android:id="@+id/search_shop_nameValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint = "Naziv auto dela"
+            android:hint = "Naziv prodavnice"
             android:inputType="textEmailAddress"/>
 
     </android.support.design.widget.TextInputLayout>
 
     <Spinner
-        android:id="@+id/carBrand"
+        android:id="@+id/search_shop_carBrands"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:entries="@array/carBrandsList"
         android:layout_marginRight="30dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:paddingTop="25dp"
+
         style="@style/Widget.AppCompat.Spinner.Underlined"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/carPart"
+        app:layout_constraintTop_toBottomOf="@id/search_shop_name"
         />
 
-
-
-    <LinearLayout
-        android:id="@+id/search_fragment_linear"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/search_shop_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
@@ -61,65 +54,50 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:paddingTop="10dp"
-        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/carBrand">
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/maxPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
+        app:layout_constraintTop_toBottomOf="@id/search_shop_carBrands"
 
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_weight="0.5">
+        >
 
         <android.support.design.widget.TextInputEditText
-            android:id="@+id/maxPriceValue"
+            android:id="@+id/search_shop_addressValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint = "Cena od"
-            android:inputType="textEmailAddress"/>
+            android:hint = "Grad"
+            android:inputType="text"/>
 
     </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/minPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-
-        android:layout_marginRight="10dp"
-        app:layout_constraintRight_toRightOf="parent">
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/minPriceValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint = "Cena do"
-            android:inputType="textEmailAddress"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-
-       </LinearLayout>
 
     <Button
-        android:id="@+id/searchBtn"
+        android:id="@+id/search_shops_Btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-android:background="@color/colorAccent"
+        android:background="@color/colorAccent"
         android:layout_marginRight="50dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="50dp"
 
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="Pretraga"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
-        app:layout_constraintTop_toBottomOf="@id/search_fragment_linear"/>
+        app:layout_constraintTop_toBottomOf="@id/search_shop_address"/>
 
+<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+    android:scrollbars="vertical"
+    app:layout_constraintTop_toBottomOf="@id/search_shops_Btn">
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        >
 
+    </FrameLayout>
+ </ScrollView>
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

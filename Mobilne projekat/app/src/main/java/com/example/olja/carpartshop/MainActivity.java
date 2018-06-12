@@ -92,8 +92,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         adapter.addFragment(new NewsFragment(), "NewsFragment");
         adapter.addFragment(new NotificationsFragment(), "NotificationsFragment");
         adapter.addFragment(new TermsOfUseFragment(), "TermsOfUseFragment");
+        adapter.addFragment(new SearchShopNewFragment(), "SearchShopNewFragment");
         adapter.addFragment(new CreateShopFragment(), "CreateShopFragment");
         adapter.addFragment(new MyShopFragment(), "MyShopFragment");
+
         viewPager.setAdapter(adapter);
     }
 
@@ -196,14 +198,20 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 setViewPager(6);
                 break;
             }
-            case R.id.addShop: {
+            case R.id.search_shop: {
                 setViewPager(7);
                 break;
             }
-            case R.id.myShop: {
+            case R.id.addShop: {
                 setViewPager(8);
                 break;
             }
+            case R.id.myShop: {
+                setViewPager(9);
+                break;
+            }
+
+
         }
         //close navigation drawer
         mDrawerLayout.closeDrawer(GravityCompat.START);

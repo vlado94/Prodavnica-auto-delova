@@ -11,9 +11,15 @@
         android:icon="@mipmap/baseline_search_black_24dp"
         android:title="Pretraga proizvoda" />
 
+
+
     <item android:id="@+id/shopsSearch"
         android:icon="@mipmap/baseline_location_searching_black_24dp"
         android:title="Prodavnice" />
+
+    <item android:id="@+id/search_shop"
+        android:icon="@mipmap/baseline_home_black_24dp"
+        android:title="Pretraga prodavnica" />
 </group>
 <group
     android:id="@+id/menu_bottom"
@@ -33,6 +39,8 @@
     <item android:id="@+id/termsOfUse"
         android:icon="@mipmap/baseline_list_alt_black_24dp"
         android:title="Uslovi korišćenja" />
+
+
 </group>
 <group
     android:id="@+id/menu_bottom2"
@@ -44,6 +52,8 @@
         android:icon="@mipmap/baseline_home_black_24dp"
         android:visible="false"
         android:title="Moja Prodavnica" />
+
+
 </group>
 
 </menu>

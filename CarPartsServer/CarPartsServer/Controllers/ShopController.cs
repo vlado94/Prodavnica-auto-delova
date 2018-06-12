@@ -123,6 +123,28 @@ namespace CarPartsServer.Controllers
             return Json(retval, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Search(string name, string carBrand, string city)
+        {
+            List<Shop> retval = null;
+            using (var db = new EfContext())
+            {
+                var query = db.Shops
+                    .Include(x => x.CarBrands);
+                //if (!carBrand.Equals("") && !carBrand.Equals("Nije odabrano"))
+                //    query = query.Where(x => x.CarBrands.ToList().Name.Equals(carBrand));
 
+                //if (!carPart.Equals(""))
+                //   query = query.Where(x => x.Name.ToLower().Contains(carPart.ToLower()));
+
+                //if (maxPrice != null && maxPrice.Value > 0)
+                //    query = query.Where(x => x.Price < maxPrice);
+
+                ////if (minPrice != null && minPrice.Value > 0)
+                ////    query = query.Where(x => x.Price > minPrice);
+
+                retval = query.ToList();
+            }
+            return Json(retval, JsonRequestBehavior.AllowGet);
+        }
     }
 }
