@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("defaultbackground", "whitepic");
             editor.apply();
+            mDrawerLayout.setBackgroundResource(R.drawable.whitepic);
         }
     }
 

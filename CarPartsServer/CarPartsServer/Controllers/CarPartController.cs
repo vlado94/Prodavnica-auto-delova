@@ -85,7 +85,7 @@ namespace CarPartsServer.Controllers
             {
                 var query = db.CarParts
                     .Include(x => x.CarBrand);
-                if (!carBrand.Equals("") && !carBrand.Equals("Nije odabrano"))
+                if (!carBrand.Equals("") && !carBrand.Equals("Marka auta"))
                     query = query.Where(x => x.CarBrand.Name.Equals(carBrand));
 
                 if (!carPart.Equals(""))
