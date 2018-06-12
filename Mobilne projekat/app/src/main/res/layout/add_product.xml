@@ -29,6 +29,7 @@
 
             <Button
                 android:id="@+id/cp_choose_img"
+                android:background="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Izaberi sliku"
@@ -87,16 +88,13 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:layout_margin="20dp">
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/cp_submit"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ok"></Button>
+                    android:background="@color/colorAccent"
+                    android:text="Sačuvaj"></Button>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

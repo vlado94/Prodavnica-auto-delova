@@ -98,7 +98,7 @@ public class CreateShopFragment extends Fragment implements View.OnClickListener
                 getActivity().recreate();
             }
             else {
-                Toast.makeText(CreateShopFragment.this.getActivity(), "Greska.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateShopFragment.this.getActivity(), "Greska pri kreiranju prodavnice, pokusajte ponovo.", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -11,5 +11,6 @@ namespace CarPartsServer.Models
         public DateTime PubishDate { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
+        public byte[] Image { get; set; }
     }
 }
