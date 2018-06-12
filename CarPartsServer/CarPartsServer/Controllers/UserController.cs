@@ -181,6 +181,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 3,
                         Price = 32,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -195,6 +196,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 0,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -209,6 +211,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -223,6 +226,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -237,6 +241,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 0,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -251,6 +256,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 3,
                         Price = 32,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -265,6 +271,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -279,6 +286,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -293,6 +301,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -307,6 +316,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 0,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.First().Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -321,7 +331,8 @@ namespace CarPartsServer.Controllers
                         Quantity = 3,
                         Price = 32,
                         CarBrand = db.CarBrands.First(),
-                        Shop = db.Shops.ToList().ElementAt(2)
+                        Shop = db.Shops.ToList().ElementAt(2),
+                        Phone = db.Shops.ToList().ElementAt(2).Phone,
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -335,6 +346,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.ToList().ElementAt(2).Phone,
                         Shop = db.Shops.ToList().ElementAt(2)
                     });
 
@@ -349,6 +361,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 2,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.ToList().ElementAt(2).Phone,
                         Shop = db.Shops.ToList().ElementAt(2)
                     });
 
@@ -363,6 +376,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 22,
                         Price = 132,
                         CarBrand = db.CarBrands.First(),
+                        Phone = db.Shops.ToList().ElementAt(2).Phone,
                         Shop = db.Shops.ToList().ElementAt(2),
                     });
 
@@ -377,6 +391,7 @@ namespace CarPartsServer.Controllers
                         Quantity = 12,
                         Price = 132,
                         CarBrand = db.CarBrands.ToList().ElementAt(1),
+                        Phone = db.Shops.ToList().ElementAt(0).Phone,
                         Shop = db.Shops.First(),
                     });
 
@@ -392,6 +407,7 @@ namespace CarPartsServer.Controllers
                         Price = 132,
                         CarBrand = db.CarBrands.ToList().ElementAt(1),
                         Shop = db.Shops.ToList().ElementAt(1),
+                        Phone = db.Shops.ToList().ElementAt(1).Phone,
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -406,6 +422,7 @@ namespace CarPartsServer.Controllers
                         Price = 132,
                         CarBrand = db.CarBrands.ToList().ElementAt(1),
                         Shop = db.Shops.ToList().ElementAt(1),
+                        Phone = db.Shops.ToList().ElementAt(1).Phone,
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -420,6 +437,7 @@ namespace CarPartsServer.Controllers
                         Price = 132,
                         CarBrand = db.CarBrands.ToList().ElementAt(1),
                         Shop = db.Shops.ToList().ElementAt(1),
+                        Phone = db.Shops.ToList().ElementAt(1).Phone,
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -434,6 +452,7 @@ namespace CarPartsServer.Controllers
                         Price = 132,
                         CarBrand = db.CarBrands.ToList().ElementAt(1),
                         Shop = db.Shops.ToList().ElementAt(1),
+                        Phone = db.Shops.ToList().ElementAt(1).Phone,
                     });
 
                     db.CarParts.Add(new CarPart()
@@ -448,6 +467,7 @@ namespace CarPartsServer.Controllers
                         Price = 132,
                         CarBrand = db.CarBrands.ToList().ElementAt(1),
                         Shop = db.Shops.ToList().ElementAt(1),
+                        Phone = db.Shops.ToList().ElementAt(1).Phone,
                     });
 
 

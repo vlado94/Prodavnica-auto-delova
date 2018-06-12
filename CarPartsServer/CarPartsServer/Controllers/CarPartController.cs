@@ -84,7 +84,8 @@ namespace CarPartsServer.Controllers
             using (var db = new EfContext())
             {
                 var query = db.CarParts
-                    .Include(x => x.CarBrand);
+                    .Include(x => x.CarBrand)
+                    .Include(x => x.Shop);
                 if (!carBrand.Equals("") && !carBrand.Equals("Nije odabrano"))
                     query = query.Where(x => x.CarBrand.Name.Equals(carBrand));
 
@@ -126,7 +127,7 @@ namespace CarPartsServer.Controllers
                 User user = db.Users.Include(x => x.Shop).FirstOrDefault(x => x.ID == model.UserID);
                 if(user != null)
                     model.Shop = user.Shop;
-                
+                    model.Shop.Phone = user.Shop.Phone;
 
                 if (model.ID == 0)
                 {
